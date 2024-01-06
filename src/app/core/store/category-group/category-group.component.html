@@ -1,0 +1,23 @@
+<section class="mb-4 mx-auto container">
+  <app-category-group-banner
+    [bannerItems]="categoryGroup?.bannerItems"
+    [isGradient]="false"
+  ></app-category-group-banner>
+</section>
+<div class="container mx-auto">
+  <section class="d-block w-100 mb-4 mb-lg-5">
+    <app-breadcrumb [breadcrumb]="breadcrumb"></app-breadcrumb>
+  </section>
+  <section>
+    <div class="mb-4">
+      <app-subtitle-header [subtitle]="'Categorías'"></app-subtitle-header>
+    </div>
+    <app-card-list [type]="'category'" [cardList]="cardList"></app-card-list>
+  </section>
+  <section class="my-3 my-lg-5">
+    <app-how-to-buy></app-how-to-buy>
+  </section>
+  <section class="mb-3 mb-lg-5">
+    <app-exclusive-services></app-exclusive-services>
+  </section>
+</div>

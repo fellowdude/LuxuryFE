@@ -1,0 +1,102 @@
+<div
+  class="d-flex position-absolute nav-container overtop top-decorator grey-dark-text"
+  style="max-height: 667px; height: 75vh"
+>
+  <div class="position-relative">
+    <div
+      #groupListContainer
+      class="white z-depth-2 font-weight-bold scrollbar-primary groupcategory-list-container w-100 h-100"
+      style="overflow-y: auto"
+      (scroll)="onScroll($event, 'group')"
+    >
+      <ng-container *ngIf="groupCategoriesList?.length > 0">
+        <div
+            class="d-flex flex-column justify-content-between py-5 px-4"
+            style="max-height: 667px; min-height: 100%"
+          >
+            <ul class="navbar-nav py-3">
+              <li
+                class="px-3 position-relative cursor-pointer"
+                *ngFor="let categoryGroupItem of groupCategoriesList; index as index"
+                (mouseenter)="selectGroup(categoryGroupItem, index)"
+                [ngClass]="{
+                  'blue-4f-text': categoryGroupItem?.typeGroupCategory?.ref1 === 'product',
+                  'brown-2c-text': categoryGroupItem?.typeGroupCategory?.ref1 !== 'product',
+                  'py-2': index !== 0,
+                  'pb-2': index === 0
+                }"
+              >
+                <a
+                  class="font-size-normal text-clip-1 hover-underline d-flex align-items-center"
+                  [routerLink]="[path(categoryGroupItem) + categoryGroupItem.friendly_url]"
+                >
+                    <img class="img-lazy" defaultImage="./assets/placeholder.svg" *ngIf="categoryGroupItem?.menu_icon" [lazyLoad]="categoryGroupItem.url_attachment + categoryGroupItem.menu_icon" width="18" height="18">
+                    <span [ngClass]="{'pl-2': categoryGroupItem?.menu_icon}">{{ categoryGroupItem.name }}</span>
+                </a>
+                <i
+                  class="fas fa-chevron-right position-absolute icon-active"
+                  *ngIf="index === selectedIndexGroup"
+                ></i>
+              </li>
+            </ul>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="groupCategoriesList?.length <= 0">
+        <app-global-loading class="d-flex w-100 align-items-center justify-content-center mt-4"></app-global-loading>
+      </ng-container>
+    </div>
+    <div
+        class="position-absolute bottom left w-100 d-flex justify-content-center align-items-center z-1 bg-white"
+        style="height: 40px"
+        *ngIf="scrollArrowGroups"
+      >
+        <mdb-icon fas icon="angle-down"></mdb-icon>
+    </div>
+  </div>
+  <div class="w-100 h-100 position-relative" *ngIf="selectedGroup">
+      <section
+        #categoriesWrapper
+        class="w-100 h-100 scrollbar-primary"
+        style="overflow-y: auto; overflow-x: hidden"
+        (scroll)="onScroll($event, 'categories')"
+      >
+        <div
+          #categoriesList
+          class="w-100 z-depth-1 d-flex flex-column flex-wrap overflow-hidden py-5 beige-2"
+          style="align-content: flex-start; max-height: 667px; min-height: 100%"
+        >
+          <ul
+            class="py-3 px-3 px-xl-5 list-category"
+            *ngFor="let campaign of selectedGroup.campaigns"
+          >
+            <app-category-list-item
+              class="mb-2"
+              type="campaign"
+              [category]="campaign"
+              [selectedGroup]="selectedGroup"
+              [cbPath]="path"
+            ></app-category-list-item>
+          </ul>
+          <ul
+            class="py-3 px-3 px-xl-5 list-category"
+            *ngFor="let category of selectedGroup.categories"
+          >
+            <app-category-list-item
+              class="mb-2"
+              type="category"
+              [category]="category"
+              [selectedGroup]="selectedGroup"
+              [cbPath]="path"
+            ></app-category-list-item>
+          </ul>
+        </div>
+        <div
+          class="position-absolute bottom left w-100 d-flex justify-content-center align-items-center beige-2 z-1"
+          style="height: 40px"
+          *ngIf="scrollArrowCategories"
+        >
+          <mdb-icon fas icon="angle-down"></mdb-icon>
+        </div>
+      </section>
+  </div>
+</div>

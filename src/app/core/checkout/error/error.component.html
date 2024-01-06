@@ -1,0 +1,58 @@
+<div class="row payment-screen blue-4f">
+  <div
+    class="col-12 col-md-8 col-lg-6 col-xl-5 px-2 px-md-5 py-2 h-100 d-flex flex-column justify-content-center align-items-center container white"
+  >
+      <img
+        class="px-5 my-5 w-100 d-block mx-auto img-lazy"
+        [lazyLoad]="true"
+        src="./assets/images/x_icon.svg"
+        style="max-width: 220px"
+      />
+    <p class="blue-dark-text font-size-24 text-center">
+      <strong>¡Error en el pago!</strong>
+    </p>
+    <div class="detail-container">
+
+      <div
+        class="text-container w-100 py-4 px-2 px-md-5 d-flex flex-column justify-content-center align-items-center"
+      >
+        <p class="blue-dark-text font-size-normal text-center mb-2">
+          Algo salió mal, no pudimos registrar su pago.
+        </p>
+        <p class="blue-dark-text font-size-normal text-center">
+          Por favor revise el número de tarjeta y/o CVV ingresados.
+        </p>
+      </div>
+      <app-button
+        class="d-none d-lg-block w-50 my-3 mx-auto"
+        [label]="'Volver a intentar'"
+        [rounded]="true"
+        [bold]="true"
+        [textSize]="'normal'"
+        [size]="100"
+        [additionalClasses]="'ls-1 py-3 br-10'"
+        (onClick)="returnToCheckout()"
+      ></app-button>
+      <app-button
+        class="d-block d-lg-none w-100 my-2 mx-auto"
+        [label]="'Volver a intentar'"
+        [rounded]="true"
+        [bold]="true"
+        [textSize]="'normal'"
+        [size]="100"
+        [additionalClasses]="'ls-1 py-3 br-10'"
+        (onClick)="returnToCheckout()"
+      ></app-button>
+      <div
+        class="text-container w-100 py-4 px-2 px-md-5 d-flex flex-column justify-content-center align-items-center"
+      >
+        <p class="blue-dark-text font-size-normal text-center mb-2">
+          Si el problema persiste, por favor contáctese con nuestro
+        </p>
+        <p class="blue-dark-text font-size-normal text-center mb-2">
+          Luxury Call (01) 208 0333 o <a class="light-blue-link-text font-weight-bold" href="mailto:atencionalcliente@luxury.pe">atencionalcliente@luxury.pe</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

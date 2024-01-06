@@ -1,0 +1,53 @@
+<section
+  *ngIf="content && !finished"
+  class="row w-100 mx-0 justify-content-end justify-content-lg-between align-items-center full-img-bg countdown-banner px-2 px-md-5"
+  [style.backgroundImage]="'url('+content?.backgroundImage+')'"
+>
+  <!-- <div -->
+  <!--   class="col-12 col-lg-4 align-items-center flex-column d-lg-flex center pair-text" -->
+  <!--   [ngClass]="!content?.upperText?.trim() && !content?.lowerText?.trim() ? 'd-none' : 'd-flex'" -->
+  <!-- > -->
+  <!--   <p -->
+  <!--     class="my-0 w-100" -->
+  <!--     *ngIf="content?.upperText" -->
+  <!--     [innerHTML]="content?.upperText" -->
+  <!--   ></p> -->
+  <!--   <p -->
+  <!--     class="my-0 w-100" -->
+  <!--     *ngIf="content?.lowerText" -->
+  <!--     [innerHTML]="content?.lowerText" -->
+  <!--   ></p> -->
+  <!-- </div> -->
+  <div class="fixer d-none d-lg-block col-lg-4"></div>
+  <div class="fixer d-none d-lg-block col-lg-4"></div>
+  <div
+    class="col-lg-4 d-flex align-items-center justify-content-end justify-content-lg-center px-0 px-md-2"
+    *ngIf="hoursLeft || minutesLeft || secondsLeft"
+  >
+    <div class="d-flex align-items-center justify-content-center">
+      <app-timer-box
+        class="mr-1 mr-lg-2"
+        [counter]="daysLeft"
+        tag="Días"
+      ></app-timer-box>
+      <app-timer-box
+        class="mx-1 mx-lg-2"
+        [counter]="hoursLeft"
+        tag="Horas"
+        tagMobile="Hrs"
+      ></app-timer-box>
+      <app-timer-box
+        class="mx-1 mx-lg-2"
+        [counter]="minutesLeft"
+        tag="Minutos"
+        tagMobile="Min"
+      ></app-timer-box>
+      <app-timer-box
+        class="ml-1 ml-lg-2"
+        [counter]="secondsLeft"
+        tag="Segundos"
+        tagMobile="Seg"
+      ></app-timer-box>
+    </div>
+  </div>
+</section>

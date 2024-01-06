@@ -1,0 +1,7 @@
+:host{
+  ::ng-deep ul, ::ng-deep ol {
+    list-style: disc outside none;
+    padding-left: 20px;
+    padding-top: 10px;
+  }
+}

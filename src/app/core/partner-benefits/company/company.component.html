@@ -1,0 +1,93 @@
+<div class="mb-4 container mx-auto">
+  <app-brand-banner
+    [logo]="companyPage.logo"
+    [background]="companyPage.desktopBanner"
+    [name]="companyPage.name"
+    (onInfoClick)="showInformation()"
+    (onMediaClick)="showMediaGalery()"
+    [isGradient]="true"
+  ></app-brand-banner>
+</div>
+<div class="container mx-auto">
+  <section class="d-block w-100 mb-4 mb-lg-5">
+    <app-breadcrumb [breadcrumb]="breadcrumb"></app-breadcrumb>
+  </section>
+  <section class="row m-0 mb-1 mb-lg-5">
+    <div class="pl-0 col-lg-3 pr-0 pr-lg-5 col-12 d-flex w-100 flex-column">
+      <div class="d-none d-lg-flex w-100 flex-column mb-5">
+        <app-button
+          [label]="'Información de la marca'"
+          [type]="''"
+          [color]="'light-blue-5'"
+          [textSize]="1"
+          [bold]="true"
+          [textColor]="'blue-4f'"
+          [sufixIcon]="'info-circle'"
+          [size]="100"
+          [additionalClasses]="'d-flex text-left justify-content-between align-items-center '"
+          (onClick)="showInformation()"
+        ></app-button>
+        <app-button
+          [label]="'Galeria multimedia'"
+          [type]="''"
+          [color]="'light-blue-5'"
+          [textSize]="1"
+          [bold]="true"
+          [textColor]="'blue-4f'"
+          [sufixIcon]="'image'"
+          [size]="100"
+          [additionalClasses]="'d-flex text-left justify-content-between align-items-center mt-2'"
+          (onClick)="showMediaGalery()"
+        ></app-button>
+      </div>
+      <div class="w-100">
+        <app-category-select
+          class="w-100"
+          [listCategories]="listCategories"
+        ></app-category-select>
+      </div>
+      <div
+        class="d-flex w-100 mt-5 flex-column"
+        *ngIf="fakeFilterList?.length > 0 || currentCategory?.filters?.length > 0"
+      >
+        <app-subtitle-header [subtitle]="'Filtros'"></app-subtitle-header>
+        <app-fake-filter-list
+          [fakeFilterList]="fakeFilterList"
+        ></app-fake-filter-list>
+        <app-filter-list
+          [filters]="filters"
+          (onClick)="sendFilterData($event)"
+        ></app-filter-list>
+      </div>
+    </div>
+    <div
+      class="p-0 pl-lg-5 mt-4 mt-lg-0 col-12 col-lg-9 d-flex d-md-block flex-column"
+    >
+      <app-subtitle-header [subtitle]="'Experiencias'"></app-subtitle-header>
+      <app-experiences-card-list
+        [experiencesCards]="companyPage.experiences"
+      ></app-experiences-card-list>
+    </div>
+  </section>
+  <section class="row mx-0 mt-0 mt-lg-5 pt-0 pt-lg-5">
+    <div
+      class="pl-0 col-lg-3 pr-0 pr-lg-5 col-12 d-flex w-100 flex-column order-2 order-lg-1 mt-4 mt-lg-0"
+    >
+      <app-contact-info
+        [contactInfo]="companyPage.contactInfo"
+        [companyInfo]="companyPage"
+      ></app-contact-info>
+    </div>
+    <div
+      class="p-0 pl-lg-5 mt-4 mt-lg-0 col-12 col-lg-9 d-flex d-md-block flex-column order-1 order-lg-2"
+    >
+      <app-map
+        *ngIf="companyPage.list_address.length"
+        [addressList]="companyPage.list_address"
+      ></app-map>
+    </div>
+  </section>
+  <section class="my-4 my-lg-5 pt-0 pb-4 py-lg-5">
+    <app-magazine-prestige-list></app-magazine-prestige-list>
+  </section>
+</div>

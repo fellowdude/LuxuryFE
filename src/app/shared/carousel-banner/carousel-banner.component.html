@@ -1,0 +1,10 @@
+<div class="home-banner">
+  <carousel [interval]="config?.interval" [itemsPerSlide]="config?.itemsPerSlide" [singleSlideOffset]="true"
+    [showIndicators]="config?.indicators" [isAnimated]="config?.animation">
+    <slide *ngFor="let slide of config?.banners" class="w-100">
+      <app-custom-link [link]="slide.redirectURL" class="w-100">
+        <app-carousel-banner-item [slide]="slide"></app-carousel-banner-item>
+      </app-custom-link>
+    </slide>
+  </carousel>
+</div>

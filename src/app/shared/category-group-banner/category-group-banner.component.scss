@@ -1,0 +1,9 @@
+@import "_media";
+
+.banner-background{
+  background-size: cover;
+  background-repeat: no-repeat;
+  @include media-breakpoint-up(xxl) {
+    background-size: contain;
+  }
+}

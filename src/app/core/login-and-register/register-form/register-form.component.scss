@@ -1,0 +1,76 @@
+@import "_media";
+.custom-height{
+  height: calc(100vh - 285px);
+  max-height: 550px;
+  overflow-y: auto;
+  @include media-breakpoint-down(lg) {
+    height: calc(100vh - 225px);
+    max-height: 550px;
+    @include media-breakpoint-down(md) {
+      height: calc(100vh - 225px);
+      max-height: 550px;
+    }
+  }
+}
+
+.custom-arrow, .custom-arrow:focus{
+
+  select{
+    border: 0;
+    background: white;
+    -webkit-appearance: none;
+  }
+
+  &::after{
+    content: "";
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    bottom: 0;
+    background-image: url("http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png");
+    background-size: cover;
+    width: 10px;
+    height: 10px;
+    z-index: 3;
+  }
+}
+
+.datepicker{
+  ::after{
+    content: "F. de nacimiento*";
+    position: absolute;
+    background: white;
+    font-size: 17px;
+    color: #495057;
+  }
+}
+
+@media all and (min-width:0px) and (max-width: 768px) {
+  input[type="date"]::before {
+    content: attr(placeholder) !important;
+  }
+  input[type="date"]:focus::before
+  input[type="date"]:valid::before {
+    content: ""
+  }
+}
+
+.desk {
+  width: 97% !important;
+}
+.mobile {
+}
+@media screen and (max-width : 1920px) {
+  .mobile {
+    display: none;
+  }
+}
+@media screen and (max-width : 768px) {
+ .desk {
+    display: none;
+  }
+ .mobile {
+    display: contents;
+  }
+}

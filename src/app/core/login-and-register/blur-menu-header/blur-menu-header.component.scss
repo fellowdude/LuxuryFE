@@ -1,0 +1,36 @@
+@import "_media";
+
+.custom-height{
+  --custom-height: calc(100vh - 404px);
+  min-height: var(--custom-height);
+
+  @include media-breakpoint-down(xxl) {
+    --custom-height: calc(100vh - 100px);
+  }
+
+  @include media-breakpoint-down(lg) {
+    --custom-height: calc(100vh - 100px);
+  }
+
+  @include media-breakpoint-down(md) {
+    --custom-height: 100vh;
+  }
+}
+
+.custom-width{
+  --custom-width: 75%;
+  top: 100%;
+  width: var(--custom-width);
+  min-width: 350px;
+  max-width: 450px;
+  @include media-breakpoint-down(lg) {
+    --custom-width: 80%;
+  }
+
+  @include media-breakpoint-down(md) {
+    --custom-width: 95%;
+  }
+}
+
+
+

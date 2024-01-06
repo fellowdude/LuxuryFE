@@ -1,0 +1,30 @@
+<div class="brands-secondary">
+  <swiper [config]="swiperConfig" class="order-1 w-100">
+    <ng-container *ngFor="let item of items">
+      <div
+        swiperSlide
+        class="rounded d-xs-block d-flex align-items-center justify-content-center"
+      >
+        <a
+          class="cursor-pointer d-flex justify-content-center align-items-center w-100 p-4"
+          style="
+            min-height: 170px;
+            max-height: 170px;
+            background-image: url('{{ item?.imageUrl }}');
+            background-size: cover;
+            background-position: center;
+          "
+          [routerLink]="item.linkRedirect"
+        >
+          <img
+            style="
+			        max-width: {{ item?.imageUrl ? '150px' : '80%' }};
+			        max-height: {{ item?.imageUrl ? '150px' : '40%' }};
+             "
+            [src]="item?.logo"
+          />
+        </a>
+      </div>
+    </ng-container>
+  </swiper>
+</div>

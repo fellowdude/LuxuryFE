@@ -1,0 +1,13 @@
+<div class="container mx-auto">
+  <app-single-banner
+    [title]="privacyPoliciesPage.bannerTitle | uppercase"
+    [desktopBanner]="privacyPoliciesPage.bannerImage"
+    [isGradient]="true"
+    [mobileBanner]="privacyPoliciesPage.bannerImage"
+  ></app-single-banner>
+</div>
+<div class="container mx-auto">
+  <div class="mx-auto mt-4 mb-5" style="max-width: 800px">
+    <div [innerHTML]="privacyPoliciesPage.privacyPoliciesText | safeHtml"></div>
+  </div>
+</div>

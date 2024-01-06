@@ -1,0 +1,19 @@
+<label class="w-100 font-size-large bold-text blue-4f-text mt-3"
+  >{{ name }}
+  <ng-container *ngIf="fakeFilters.length > 0"
+    >({{fakeFilters.length}})</ng-container
+  ></label
+>
+<div
+  class="d-block w-100 ml-0 scrollbar-primary"
+  style="overflow-y: auto; max-height: 210px"
+>
+  <app-checkbox
+    class="d-block"
+    *ngFor="let option of fakeFilters"
+    [label]="option.name"
+    [checked]="option.active"
+    [noClick]="true"
+    (click)="changeActive(option)"
+  ></app-checkbox>
+</div>

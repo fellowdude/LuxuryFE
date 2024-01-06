@@ -1,0 +1,44 @@
+<!-- If Campaign -->
+<li
+  class="blue-4f-text font-weight-bold font-size-normal"
+  *ngIf="type === 'campaign'"
+>
+  <a
+    class="text-clip-1 hover-underline d-flex align-items-center"
+    [routerLink]="[cbPath(selectedGroup) + selectedGroup.friendly_url + '/camp/' + category.friendly_url]"
+  >
+    <img *ngIf="category?.image_menu" class="img-lazy" defaultImage="./assets/placeholder.svg" [lazyLoad]="category.url_attachment + category.image_menu" width="18" height="18">
+    <span [ngClass]="{'pl-2': category.image_menu}">{{ category.name }}</span>
+  </a>
+</li>
+
+<!-- If Category -->
+
+<li
+  class="font-weight-bold font-size-normal"
+  *ngIf="type === 'category'"
+  [ngClass]="{ 'blue-4f-text': selectedGroup?.typeGroupCategory?.ref1 === 'product',  'brown-2c-text': selectedGroup?.typeGroupCategory?.ref1 !== 'product' }"
+>
+  <a
+    class="text-clip-1 hover-underline d-flex align-items-center"
+    [routerLink]="[cbPath(selectedGroup) + selectedGroup.friendly_url + '/categoria/' + category.friendly_url]"
+  >
+    <img *ngIf="category?.image_menu" class="img-lazy" defaultImage="./assets/placeholder.svg" [lazyLoad]="category.url_attachment + category.image_menu" width="18" height="18">
+    <span [ngClass]="{'pl-2': category.image_menu}">{{ category.name }}</span>
+  </a>
+</li>
+
+<ul
+  class="pl-4 mt-3"
+  *ngIf="type === 'category' && category.subcategories.length"
+>
+  <li class="mt-1" *ngFor="let subcategory of category.subcategories">
+    <a
+      class="text-clip-1 font-size-small blue-4f-text hover-underline d-flex align-items-center"
+      [routerLink]="[cbPath(selectedGroup) + selectedGroup.friendly_url + '/categoria/' + subcategory.friendly_url]"
+      >
+        <img *ngIf="subcategory?.image_menu" class="img-lazy" defaultImage="./assets/placeholder.svg" [lazyLoad]="subcategory?.url_attachment + subcategory?.image_menu" width="18" height="18">
+        <span [ngClass]="{'pl-2': subcategory.image_menu}">{{ subcategory.name }}</span>
+      </a>
+  </li>
+</ul>

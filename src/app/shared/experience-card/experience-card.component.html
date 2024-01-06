@@ -1,0 +1,25 @@
+<!-- <div -->
+<!--   class="d-flex card-item full-img-bg position-relative white-text p-3 overflow-hidden group-bg" -->
+<!--   [style.background-image]="'url('+experience.backgroundUrl +')'" -->
+<!-- > -->
+<!--   <p class="position-absolute z-1"> -->
+<!--     <span class="mb-1">{{ experience.title }}</span> -->
+<!--     <span class="m-0" *ngIf="experience.subtitle" -->
+<!--       >{{ experience.subtitle }}</span -->
+<!--     > -->
+<!--   </p> -->
+<!-- </div> -->
+
+<a
+  class="cursor-pointer d-flex card-item full-img-bg position-relative white-text p-0 overflow-hidden group-bg my-2"
+  [style.background-image]="'url(' + experience?.backgroundUrl + ')'"
+  [routerLink]="experience?.link"
+>
+  <p class="position-absolute z-1 w-90 ml-3" style="bottom: 20px">
+    <span class="d-block pb-1" *ngIf="experience?.buisness">{{ experience?.buisness}}</span>
+    <span class="mb-1">{{ experience?.title | noNextLine }}</span>
+    <span class="m-0" *ngIf="experience?.subtitle"
+      >{{ experience?.subtitle }}</span
+    >
+  </p>
+</a>

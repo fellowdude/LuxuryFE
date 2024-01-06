@@ -1,0 +1,84 @@
+<section class="d-block container mb-4 mx-auto">
+  <!-- <app-multiple-banners [categoryResults]="campaignResults"></app-multiple-banners> -->
+</section>
+<section class="d-block container mx-auto">
+  <section class="d-block w-100 mb-3 mb-md-5">
+    <app-breadcrumb [breadcrumb]="breadcrumb"></app-breadcrumb>
+  </section>
+  <div class="row m-0">
+    <div
+      class="pl-0 col-lg-3 pr-0 pr-lg-5 col-12 d-none d-lg-flex w-100 flex-column"
+    >
+      <div class="d-flex w-100">
+        <app-category-select
+          class="w-100"
+          [listCategories]="categoryList"
+        ></app-category-select>
+      </div>
+      <div
+        class="d-flex w-100 mt-5 flex-column"
+        *ngIf="fakeFilterList?.length > 0 || campaignResults?.filters?.length > 0"
+      >
+        <app-subtitle-header [subtitle]="'Filtros'"></app-subtitle-header>
+        <app-fake-filter-list
+          [fakeFilterList]="fakeFilterList"
+        ></app-fake-filter-list>
+        <app-filter-list
+          [filters]="campaignResults?.filters"
+          (onClick)="sendFilterData($event)"
+        ></app-filter-list>
+      </div>
+    </div>
+
+    <section class="d-flex d-lg-none w-100 my-4 flex-column">
+      <app-product-list-mobile-menu
+        [listCategories]="categoryList"
+        [fakeFilterList]="fakeFilterList"
+        [filterList]="campaignResults?.filters"
+        (sortResponse)="changeSortType($event)"
+        (onResponse)="sendFilterData($event)"
+      ></app-product-list-mobile-menu>
+    </section>
+
+    <div
+      class="p-0 pl-lg-5 mt-4 mt-lg-0 col-12 col-lg-9 d-flex d-md-block flex-column"
+    >
+      <section class="mb-5 order-2" *ngIf="campaignResults?.brands?.length > 0">
+        <app-subtitle-header [subtitle]="'Marcas'"></app-subtitle-header>
+        <app-brands-carousel-secondary
+          [items]="campaignResults?.brands"
+        ></app-brands-carousel-secondary>
+      </section>
+      <section
+        class="mb-3 order-1"
+        *ngIf="campaignResults?.campaignProducts?.length > 0"
+      >
+        <app-subtitle-header
+          [subtitle]="'Todos los productos'"
+        ></app-subtitle-header>
+        <app-product-list
+          [productsFound]="campaignResults?.campaignProducts"
+          [totalFound]="campaignResults?.totalProducts"
+          (onPageClick)="changePage($event)"
+          (onSortClick)="changeSortType($event)"
+          [pages]="campaignResults?.totalPages"
+          [maxColumns]="3"
+          [loading]="loadingProducts || !sortOptions?.length"
+          [origin]="campaignResults?.campaignName"
+          [currentPage]="currentPage"
+          [sortOption]="sortOption"
+          [sortOptions]="sortOptions"
+        ></app-product-list>
+      </section>
+    </div>
+  </div>
+  <section class="my-4 my-md-5">
+    <app-magazine-prestige-list></app-magazine-prestige-list>
+  </section>
+  <section class="my-4">
+    <app-how-to-buy></app-how-to-buy>
+  </section>
+  <section class="mb-5">
+    <app-exclusive-services></app-exclusive-services>
+  </section>
+</section>

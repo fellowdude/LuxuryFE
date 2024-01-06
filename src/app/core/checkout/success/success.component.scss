@@ -1,0 +1,7 @@
+.payment-info {
+  width: 300px !important;
+
+  @media screen and (min-width: 992px) {
+    width: 400px !important;
+  }
+}

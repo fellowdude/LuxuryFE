@@ -1,0 +1,171 @@
+<div class="d-flex w-100 flex-column br-8 grey-border font-family-2 px-3 py-2 beige-light">
+  <div class="d-flex w-100 flex-column align-items-center rounded question pl-1">
+    <p class="font-size-large blue-dark-text w-100">
+      <strong>Resumen de compra</strong>
+    </p>
+    <hr class="my-3 w-100" />
+    <div class="d-flex w-100 flex-row justify-content-between">
+      <label class="font-size-large blue-dark-text bold-text-400">Subtotal</label>
+      <label class="font-size-large blue-dark-text bold-text-400">{{ subtotal || 0 | currency: "S/"}}</label>
+    </div>
+    <div class="d-flex w-100 flex-row justify-content-between mt-1">
+      <label class="font-size-large blue-dark-text bold-text-400">Costo de envío</label>
+      <ng-container *ngIf="this.selectedAddress && this.inSummary">
+        <label class="font-size-large blue-dark-text bold-text-400" *ngIf="this.selectedAddress?.amount_total >= 0">{{
+          this.selectedAddress?.amount_total || 0 | currency: "S/"}}</label>
+        <label class="font-size-large blue-dark-text bold-text-400" *ngIf="this.selectedAddress?.amount_total < 0">Sin
+          envío</label>
+      </ng-container>
+      <ng-container *ngIf="!this.inSummary">
+        <label class="font-size-large blue-dark-text bold-text-400">Por definir</label>
+      </ng-container>
+    </div>
+    <div class="d-flex w-100 flex-column justify-content-between flex-column"
+      *ngIf="this.selectedAddress && this.inSummary">
+      <ng-container *ngFor="let supplier of this.selectedAddress?.suppliersArray">
+        <div class="d-flex w-100 flex-row justify-content-between flex-row">
+          <ng-container *ngIf="supplier.methods_send?.length == 1">
+            <label class="font-size-normal grey-checkout-text bold-text-400"><span class="text-clip-1"
+                style="max-width: 175px; text-overflow: ellipsis">{{ supplier?.name }}</span></label>
+            <label class="font-size-normal grey-checkout-text bold-text-400" *ngIf="supplier?.amount >= 0">
+              <ng-container *ngIf="sellerDiscount">
+                <ng-container *ngIf="sellerDiscount[supplier?.methods_send[0]?._id]?.discount <= supplier?.amount">{{
+                  supplier?.amount | currency: "S/"}}</ng-container>
+                <ng-container *ngIf="sellerDiscount[supplier?.methods_send[0]?._id]?.discount > supplier?.amount">{{ 0 |
+                  currency: "S/"}}</ng-container>
+              </ng-container>
+              <ng-container *ngIf="!sellerDiscount"> {{ supplier?.amount | currency: "S/"}} </ng-container>
+            </label>
+            <label class="font-size-normal grey-checkout-text bold-text-400" *ngIf="supplier?.amount < 0">Sin
+              envío</label>
+          </ng-container>
+        </div>
+        <ng-container *ngIf="supplier.methods_send?.length > 1">
+          <ng-container *ngFor="let method of supplier.methods_send">
+            <div class="d-flex w-100 flex-row justify-content-between flex-row">
+              <label class="font-size-normal grey-checkout-text bold-text-400 d-flex"><span class="text-clip-1"
+                  style="max-width: 100px; text-overflow: ellipsis">{{ supplier?.name }}</span>
+                ({{ validateMethodTime(method?.ubigeo) }})</label>
+              <label class="font-size-normal grey-checkout-text bold-text-400" *ngIf="method?.ubigeo?.price >= 0">
+                <ng-container *ngIf="sellerDiscount">
+                  <ng-container *ngIf="sellerDiscount[method?._id ]?.discount <= method?.ubigeo?.price">{{
+                    method?.ubigeo?.price | currency: "S/"}}</ng-container>
+                  <ng-container *ngIf="sellerDiscount[method?._id ]?.discount > method?.ubigeo?.price">{{ 0 | currency:
+                    "S/"}}</ng-container>
+                </ng-container>
+                <ng-container *ngIf="!sellerDiscount">{{ method?.ubigeo?.price | currency: "S/"}}</ng-container>
+              </label>
+              <label class="font-size-normal grey-checkout-text bold-text-400" *ngIf="method?.ubigeo?.price < 0">Sin
+                envío</label>
+            </div>
+          </ng-container>
+        </ng-container>
+      </ng-container>
+    </div>
+    <div class="d-flex w-100 flex-row justify-content-between mt-1" *ngIf="haveValidCoupon">
+      <div class="d-flex w-100 flex-row justify-content-between mt-1"
+        *ngIf="discountAmount && this.selectedAddress && this.inSummary; else definePrice">
+        <strong class="font-size-large blue-dark-text">{{couponName!=''? couponName : "Descuento por cupón" }}</strong>
+        <strong class="font-size-large blue-dark-text">- {{ (discountAmount || 0) +
+          (discountDeliveryAmount || 0) | currency: "S/"}}</strong>
+      </div>
+      <ng-template #definePrice>
+        <div class="d-flex w-100 flex-row justify-content-between mt-1" *ngIf="discountAmount && haveValidCoupon; else defineDelivery">
+          <strong class="font-size-large blue-dark-text">{{couponName!=''? couponName : "Descuento por cupón" }}</strong>
+          <strong class="font-size-large blue-dark-text">- {{currentStep == 1 ? "Por definir" : this.discountAmount | currency: "S/"}}</strong>
+        </div>
+      </ng-template>
+      <ng-template #defineDelivery>
+        <div class="d-flex w-100 flex-row justify-content-between mt-1"
+          *ngIf="!discountAmount && discountDeliveryAmount; else Delivery">
+          <strong class="font-size-large blue-dark-text">Descuento por delivery</strong>
+          <strong class="font-size-large blue-dark-text">-Por definir</strong>
+        </div>
+      </ng-template>
+      <ng-template #Delivery>
+        <div class="d-flex w-100 flex-row justify-content-between mt-1"
+          *ngIf="discountDeliveryAmount && this.selectedAddress && this.inSummary">
+          <strong class="font-size-large blue-dark-text">Descuento por delivery</strong>
+          <strong class="font-size-large blue-dark-text">- {{ discountDeliveryAmount | currency: "S/"}}</strong>
+        </div>
+      </ng-template>
+    </div>
+    <!-- <div class="d-flex w-100 flex-row justify-content-between mt-1"
+      *ngIf="discountAmount && this.selectedAddress && this.inSummary && currentStep > 5">
+      <strong class="font-size-large blue-dark-text">{{couponName!=''? couponName : "Descuento por cupón" }}</strong>
+      <strong class="font-size-large blue-dark-text">- {{ discountAmount + (discountDeliveryAmount || 0) | currency:
+        "S/"}}</strong>
+    </div> -->
+    <hr class="my-2 w-100" />
+    <div class="d-flex w-100 flex-row justify-content-between mt-1" *ngIf="currentStep > 5; else noDiscount">
+      <label class="font-size-large blue-dark-text"><strong>Total</strong></label>
+      <label class="font-size-large blue-dark-text"><strong>{{ (subtotal || 0) + ((this.selectedAddress?.amount_total
+          >
+          0 &&
+          this.inSummary? this.selectedAddress?.amount_total : 0) || 0) - (discountAmount || 0) -
+          (discountDeliveryAmount || 0) |
+          currency: "S/"}}</strong></label>
+    </div>
+    <ng-template #noDiscount>
+      <div class="d-flex w-100 flex-row justify-content-between mt-1"
+        *ngIf="this.selectedAddress && this.inSummary; else onlySubtotal">
+        <label class="font-size-large blue-dark-text"><strong>Total</strong></label>
+        <label class="font-size-large blue-dark-text"><strong>{{ (subtotal || 0) + ((this.selectedAddress?.amount_total
+          >
+          0 &&
+          this.inSummary? this.selectedAddress?.amount_total : 0) || 0) - (discountAmount || 0) -
+          (discountDeliveryAmount || 0) |
+          currency: "S/"}}</strong></label>
+      </div>
+    </ng-template>
+    <ng-template #onlySubtotal>
+      <div class="d-flex w-100 flex-row justify-content-between mt-1">
+        <label class="font-size-large blue-dark-text"><strong>Total</strong></label>
+        <label class="font-size-large blue-dark-text"><strong>{{ currentStep == 1 ? ((subtotal || 0) | currency: "S/") : ( ( haveValidCoupon ? (subtotal || 0)
+          - (this.discountAmount || 0) : (subtotal || 0) ) | currency: "S/")}}</strong></label>
+      </div>
+    </ng-template>
+    <ng-container *ngIf="loading">
+      <app-global-loading class="d-flex justify-content-center align-items-center my-2 py-1"></app-global-loading>
+    </ng-container>
+    <ng-container *ngIf="!loading">
+      <ng-container *ngIf="!continueStep">
+        <ng-container *ngIf="this.selectedAddress?.amount_total < 0">
+          <label class="font-size-small red-text bold-text text-center mt-2">Uno o más productos no aplican para su
+            destino. <br> Por favor, eliminelos para poder continuar.</label>
+        </ng-container>
+        <ng-container *ngIf="this.selectedAddress?.amount_total >= 0">
+          <label class="font-size-small red-text bold-text"></label>
+        </ng-container>
+      </ng-container>
+      <ng-container *ngIf="savedValue > 0">
+        <p class="text-center font-size-normal my-2 blue-1-text"><b>¡Felicitaciones!</b> Usted ha ahorrado <b>{{
+            savedValue + (discountAmount || 0) + (discountDeliveryAmount || 0)| currency: "S/"}}</b> por ser socio
+          <b>Luxury</b>.
+        </p>
+      </ng-container>
+      <app-button *ngIf="!selectedCard" class="d-block w-100 mt-2" [label]="'Continuar'" [rounded]="true" [bold]="true"
+        [textSize]="2" [size]="100" [disabled]="!continueStep" [additionalClasses]="'ls-1 py-3 br-10'"
+        (onClick)="continue()"></app-button>
+      <ng-container *ngIf="selectedCard">
+        <ng-container *ngIf="currentStep <= 5">
+          <ng-container *ngIf="haveValidCoupon">
+            <app-button class="d-block w-100 mt-2" [label]="'Continuar'" [rounded]="true" [bold]="true" [textSize]="2"
+              [size]="100" [additionalClasses]="'ls-1 py-3 br-10'" [disabled]="!continueStep" (onClick)="pay()">
+            </app-button>
+          </ng-container>
+          <ng-container *ngIf="!haveValidCoupon">
+            <app-button class="d-block w-100 mt-2" [label]="'Pagar'" [rounded]="true" [bold]="true" [textSize]="2"
+              [size]="100" [additionalClasses]="'ls-1 py-3 br-10'" [disabled]="!continueStep" (onClick)="pay()">
+            </app-button>
+          </ng-container>
+        </ng-container>
+        <ng-container *ngIf="currentStep > 5">
+          <app-button class="d-block w-100 mt-2" [label]="'Pagar'" [rounded]="true" [bold]="true" [textSize]="2"
+            [size]="100" [additionalClasses]="'ls-1 py-3 br-10'" [disabled]="!continueStep" (onClick)="pay()">
+          </app-button>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+  </div>
+</div>

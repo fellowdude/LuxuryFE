@@ -1,0 +1,232 @@
+<ng-container *ngIf="loadingForm">
+  <div class="w-100 h-100 d-flex justify-content-center align-items-center">
+    <app-modal-loading
+      class="w-100 py-2 d-flex mx-2 justify-content-center"
+    ></app-modal-loading>
+  </div>
+</ng-container>
+<ng-container *ngIf="rateExperienceFormModal && !loadingForm">
+  <app-modal-header
+    [title]="rateExperienceFormModal.title"
+    [returnCondition]="canBack"
+    (onClose)="closeModal()"
+    (onReturn)="returnModal()"
+  ></app-modal-header>
+  <div class="modal-body">
+    <form
+      [formGroup]="rateExperienceForm"
+      class="px-3 d-flex flex-column justify-content-between h-100"
+    >
+      <div>
+        <!-- <ng-container -->
+        <!--   *ngFor="let item of rateExperienceFormModal.requestFields" -->
+        <!-- > -->
+        <!--   <div class="my-4 my-md-3"> -->
+        <!--     <ng-container *ngIf="item.type === 'list'"> -->
+        <!--       <div class="input-group md-form my-0"> -->
+        <!--         <label [for]="item.name" class="font-size-1 w-100 blue-4f-text"> -->
+        <!--           {{ item.name }} -->
+        <!--         </label> -->
+        <!--         <select -->
+        <!--           mdbInput -->
+        <!--           [name]="item.name" -->
+        <!--           class="blue-4f-text my-0 form-control font-size-1 w-100 outline-none pl-1 input-border-bottom-blue border-0" -->
+        <!--           [formControlName]="item.field" -->
+        <!--           [attr.readonly]="true" -->
+        <!--         > -->
+        <!--           <option value="" style="display: none"></option> -->
+        <!--           <ng-container *ngFor="let option of item.list"> -->
+        <!--             <option -->
+        <!--               *ngIf="item.field !== 'local' " -->
+        <!--               class="blue-4f-text" -->
+        <!--               [value]="option.friendly_url" -->
+        <!--             > -->
+        <!--               {{ option.name }} -->
+        <!--             </option> -->
+        <!--           </ng-container> -->
+        <!--           <ng-container *ngFor="let option of item.list"> -->
+        <!--             <option -->
+        <!--               *ngIf="item.field === 'local' " -->
+        <!--               class="blue-4f-text" -->
+        <!--               [value]="option.address" -->
+        <!--             > -->
+        <!--               {{ option.address }} -->
+        <!--             </option> -->
+        <!--           </ng-container> -->
+        <!--         </select> -->
+        <!--       </div> -->
+        <!--     </ng-container> -->
+
+        <!--     <!-1- Date -1-> -->
+        <!--     <ng-container *ngIf="item.field === 'fecha'"> -->
+        <!--       <div class="input-group md-form my-0"> -->
+        <!--         <label [for]="item.name" class="font-size-1 w-100 blue-4f-text" -->
+        <!--           >{{ item.name }}</label -->
+        <!--         > -->
+        <!--         <input -->
+        <!--           mdbInput -->
+        <!--           #dateInput -->
+        <!--           [name]="item.name" -->
+        <!--           onfocus="(this.type='date')" -->
+        <!--           (blur)="onBlurDate($event)" -->
+        <!--           type="text" -->
+        <!--           class="blue-4f-text input-border-bottom-blue my-0 form-control font-size-1 w-100 outline-none pl-1" -->
+        <!--           [formControlName]="item.field" -->
+        <!--         /> -->
+        <!--       </div> -->
+        <!--     </ng-container> -->
+
+        <!--     <!-1- Rating -1-> -->
+
+        <!--     <ng-container *ngIf="item.type === 'rate'"> -->
+        <!--       <div class="input-group md-form my-0"> -->
+        <!--         <div> -->
+        <!--           <label -->
+        <!--             [for]="item.name" -->
+        <!--             class="font-size-1 w-100 blue-4f-text" -->
+        <!--             >Seleccione la calificación de la experiencia:</label -->
+        <!--           > -->
+        <!--         </div> -->
+        <!--         <div class="mt-4 pt-3 mx-auto"> -->
+        <!--           <app-stars-rating -->
+        <!--             [rating]="initialRating" -->
+        <!--             (ratingEmitted)="selectRating($event)" -->
+        <!--           ></app-stars-rating> -->
+        <!--         </div> -->
+        <!--       </div> -->
+        <!--     </ng-container> -->
+
+        <!--     <!-1- Textarea -1-> -->
+        <!--     <ng-container *ngIf="item.type === 'text-area'"> -->
+        <!--       <div class="input-group md-form my-0"> -->
+        <!--         <label [for]="item.name" class="font-size-1 w-100 blue-4f-text"> -->
+        <!--           {{ item.name }} -->
+        <!--         </label> -->
+        <!--         <textarea -->
+        <!--           mdbInput -->
+        <!--           [name]="item.name" -->
+        <!--           rows="3" -->
+        <!--           class="blue-4f-text input-border-bottom-blue scrollbar-primary my-0 md-textare form-control font-size-1 w-100 outline-none pl-1 border-0" -->
+        <!--           [formControlName]="item.field" -->
+        <!--         ></textarea> -->
+        <!--       </div> -->
+        <!--     </ng-container> -->
+        <!--   </div> -->
+        <!-- </ng-container> -->
+
+        <ng-container
+          *ngFor="let item of rateExperienceFormModal.requestFields"
+        >
+          <div class="my-4 my-md-3">
+            <ng-container *ngIf="item.type === 'list'">
+              <div class="input-block">
+                <label [for]="item.name" class="blue-4f-text">
+                  <strong>{{ item.name }}</strong>
+                </label>
+                <select
+                  mdbInput
+                  mdbValidate
+                  [name]="item.name"
+                  class="form-control blue-4f-text"
+                  [formControlName]="item.field"
+                >
+                  <option [value]="null" selected class="d-none"></option>
+                  <ng-container *ngFor="let option of item.list">
+                    <option
+                      *ngIf="item.field !== 'local' "
+                      class="blue-4f-text"
+                      [value]="option.friendly_url"
+                    >
+                      {{ option.name }}
+                    </option>
+                  </ng-container>
+                  <ng-container *ngFor="let option of item.list">
+                    <option
+                      *ngIf="item.field === 'local' "
+                      class="blue-4f-text"
+                      [value]="option.address"
+                    >
+                      {{ option.address }}
+                    </option>
+                  </ng-container>
+                </select>
+              </div>
+            </ng-container>
+
+            <!-- Date -->
+            <ng-container *ngIf="item.field === 'fecha'">
+              <div class="input-block">
+                <label [for]="item.name" class="blue-4f-text">
+                  <strong>{{ item.name }}</strong>
+                </label>
+                <input
+                  mdbInput
+                  mdbValidate
+                  #dateInput
+                  [name]="item.name"
+                  type="date"
+                  class="form-control blue-4f-text"
+                  [formControlName]="item.field"
+                />
+              </div>
+            </ng-container>
+
+            <!-- Rating -->
+
+            <ng-container *ngIf="item.type === 'rate'">
+              <div class="input-group md-form my-0">
+                <div>
+                  <label [for]="item.name" class="blue-4f-text">
+                    <strong>
+                      Seleccione la calificación de la experiencia:
+                    </strong>
+                  </label>
+                </div>
+                <div class="mt-4 pt-3 mx-auto">
+                  <app-stars-rating
+                    [rating]="initialRating"
+                    (ratingEmitted)="selectRating($event)"
+                  ></app-stars-rating>
+                </div>
+              </div>
+            </ng-container>
+
+            <!-- Textarea -->
+            <ng-container *ngIf="item.type === 'text-area'">
+              <div class="input-block">
+                <label [for]="item.name" class="blue-4f-text">
+                  <strong> {{ item.name }} </strong>
+                </label>
+                <textarea
+                  mdbInput
+                  mdbValidate
+                  [name]="item.name"
+                  rows="3"
+                  class="form-control blue-4f-text scrollbar-primary"
+                  [formControlName]="item.field"
+                ></textarea>
+              </div>
+            </ng-container>
+          </div>
+        </ng-container>
+        <app-button
+          *ngIf="!loadingSendingEmail; else loadingSendingemail"
+          class="d-block w-100"
+          [label]="rateExperienceFormModal.buttonText"
+          [rounded]="true"
+          [bold]="true"
+          [textSize]="2"
+          [size]="100"
+          [disabled]="!rateExperienceForm.valid"
+          [additionalClasses]="'ls-1 py-3'"
+          (click)="submitForm()"
+        ></app-button>
+        <ng-template #loadingSendingemail>
+          <app-modal-loading
+            class="w-100 py-2 d-flex mx-2 justify-content-center"
+          ></app-modal-loading>
+        </ng-template>
+      </div>
+    </form>
+  </div>
+</ng-container>

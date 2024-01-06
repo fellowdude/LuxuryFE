@@ -1,0 +1,18 @@
+.countdown-banner {
+  height: 65px;
+  padding: 0 5% !important;
+
+  @media (min-width: 992px) {
+    // height: 3.4vw;
+    height: 85px;
+  }
+}
+
+.pair-text {
+  height: auto;
+  font-size: 12px;
+
+  @media (min-width: 992px) {
+    color: white;
+  }
+}

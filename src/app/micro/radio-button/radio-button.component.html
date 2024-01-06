@@ -1,0 +1,25 @@
+<label
+  class="container"
+  [ngStyle]="{ 'font-size': fontSize+'px'}"
+  [ngClass]="{'button-centered': centered}"
+  >{{label}}
+  <input
+    type="radio"
+    name="radio"
+    [ngClass]="checked? 'checked':''"
+    [(ngModel)]="checked"
+    (click)="choose($event)"
+    [attr.disabled]="noClick"
+  />
+  <span
+    class="checkmark"
+    [ngClass]="checked? color: 'grey'"
+    [style.width]="size+'px'"
+    [style.height]="size+'px'"
+  >
+    <span
+      class="center"
+      [ngStyle]="{'border': centerWidth+'px solid ' + centerColor, 'width': (size/2 + 4)+'px', 'height': (size/2 + 4)+'px'}"
+    ></span>
+  </span>
+</label>

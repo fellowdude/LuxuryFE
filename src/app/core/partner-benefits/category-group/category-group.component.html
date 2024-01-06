@@ -1,0 +1,19 @@
+<section class="mb-4 container mx-auto">
+  <app-category-group-banner
+    [bannerItems]="experiencesData?.bannerItems"
+  ></app-category-group-banner>
+</section>
+<div class="container mx-auto">
+  <section class="d-block w-100 mb-3 mb-md-5">
+    <app-breadcrumb [breadcrumb]="breadcrumb"></app-breadcrumb>
+  </section>
+  <section>
+    <div class="mb-4">
+      <app-subtitle-header [subtitle]="'Categorías'"></app-subtitle-header>
+    </div>
+    <app-card-list [cardList]="cardList" [type]="'category'"></app-card-list>
+  </section>
+  <section class="my-5">
+    <app-magazine-prestige-list></app-magazine-prestige-list>
+  </section>
+</div>

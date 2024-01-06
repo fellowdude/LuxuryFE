@@ -1,0 +1,22 @@
+.icon-transition {
+  transition: all 0.5s ease-in-out;
+}
+
+.answer {
+  overflow: hidden;
+  font-size: 0;
+  opacity: 0;
+  transition: padding 0.3s ease-in-out, opacity 0.3s ease,
+    margin-top 0.4s 0.3s ease, font-size 0.4s 0.3s ease;
+  &.open {
+    opacity: 1;
+    transition: padding 0.3s ease, opacity 0.3s ease, font-size 0.3s ease,
+      margin-top 0.3s ease, opacity 0.6s 0.3s ease;
+
+    ::ng-deep .detail > ul {
+      list-style: disc outside none;
+      padding-left: 30px;
+      padding-top: 10px;
+    }
+  }
+}

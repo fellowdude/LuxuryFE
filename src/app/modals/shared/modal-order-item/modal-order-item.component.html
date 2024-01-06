@@ -1,0 +1,35 @@
+<div
+  class="rounded p-2 my-2 grey-border blue-4f-text"
+  [ngClass]="history ? 'cursor-pointer' : ''"
+  (click)="sendOrderDetail()"
+>
+  <div class="d-flex justify-content-between py-1">
+    <strong>Order N° {{ order.orderNumber }}</strong>
+    <strong>{{ order.date }}</strong>
+  </div>
+  <div class="d-flex justify-content-between py-1">
+    <span>Estatus de la orden</span>
+    <!--<strong [class]="getStatusClass(order.status)">{{ order.status | orderStatus }}</strong>-->
+    <strong>{{ order.status }}</strong>
+  </div>
+  <div class="d-flex justify-content-between py-1">
+    <span>Productos</span>
+    <strong>{{ order.productsQuantity }}</strong>
+  </div>
+  <div class="d-flex justify-content-between py-1">
+    <span>Total</span>
+    <strong>{{ order.totalPrice | currency:'S/' }}</strong>
+  </div>
+  <div class="d-flex justify-content-between py-1">
+    <app-button
+      *ngIf="order.status == 'No pagado' && cart == 0"
+      class="w-100 d-none d-md-block"
+      [textColor]="'white'"
+      [size]="100"
+      [label]="'Recuperar pedido'"
+      [rounded]="true"
+      [additionalClasses]="'px-2 h-100 br-15'"
+      (onClick)="retrieveOrder(order)"
+    ></app-button>
+  </div>
+</div>

@@ -1,0 +1,41 @@
+<div class="d-flex w-100">
+  <app-category-select
+    class="w-100"
+    [listCategories]="listCategories"
+  ></app-category-select>
+</div>
+<div class="d-flex mt-2">
+  <div
+    class="w-100"
+    [ngClass]="{'mr-3': !experience}"
+    *ngIf="fakeFilterList?.length > 0 || filterList?.length > 0"
+    style="height: 40px;"
+  >
+    <app-button
+      [label]="'Filtrar'"
+      [type]="''"
+      [color]="'white'"
+      [textSize]="2"
+      [prefixIcon]="'filter'"
+      [size]="100"
+      [additionalClasses]="'p-0 br-10 black-border h-100'"
+      (onClick)="openFilter()"
+    ></app-button>
+  </div>
+  <div class="w-100" *ngIf="!experience">
+    <select
+      class="w-100 h-100 black-border pl-2 br-10"
+      style="height: 40px !important"
+      [ngClass]="{'pl-md-5': fakeFilterList?.length > 0 || filterList?.length > 0}"
+      [(ngModel)]="optionSelected"
+      (change)="modifySort()"
+    >
+      <option [value]="0">Ordenar por</option>
+      <option [value]="1">Precio (mayor a menor)</option>
+      <option [value]="2">Precio (menor a mayor)</option>
+      <option [value]="3">Nombre (A - Z)</option>
+      <option [value]="4">Nombre (Z - A)</option>
+      <option [value]="0">Mayor descuento</option>
+    </select>
+  </div>
+</div>

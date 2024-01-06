@@ -1,0 +1,23 @@
+<app-subtitle-header
+  [subtitle]="'Servicios exclusivos'"
+  [highlight]="highlight"
+  class="w-100"
+></app-subtitle-header>
+<div class="w-100">
+  <swiper class="d-md-none overflow-visible" [config]="swiperConfig">
+    <div
+      swiperSlide
+      class="w-100 h-unset align-items-stretch"
+      *ngFor="let card of exclusiveServicesList; let i = index"
+    >
+      <app-es-card class="d-block px-1" [card]="card"></app-es-card>
+    </div>
+  </swiper>
+  <div class="row no-gutters d-none d-md-flex align-items-stretch">
+    <app-es-card
+      *ngFor="let card of exclusiveServicesList; let i = index"
+      class="d-flex px-1 pb-2 col-lg-6 col-xl-3"
+      [card]="card"
+    ></app-es-card>
+  </div>
+</div>

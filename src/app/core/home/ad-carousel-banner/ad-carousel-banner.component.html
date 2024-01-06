@@ -1,0 +1,53 @@
+<div
+  [ngClass]="type === 'horizontal' ? 'ad-horizontal-banner' : 'ad-vertical-banner'"
+  class="br-10 overflow-hidden"
+>
+  <carousel
+    [interval]="config?.interval"
+    [itemsPerSlide]="config?.itemsPerSlide"
+    [singleSlideOffset]="true"
+    [showIndicators]="config?.indicators"
+    [isAnimated]="config?.animation"
+    [noPause]="true"
+    class="h-100"
+  >
+    <slide *ngFor="let slide of config?.banners" class="w-100 h-100">
+      <app-custom-link [link]="slide.redirectURL">
+        <div
+          class="d-flex full-img-bg position-relative p-3 p-sm-4 p-md-5 banner-parent"
+          [style.background-image]="'url(' + slide?.imageURL + ')'"
+        >
+          <div class="white-text banner-parent">
+            <p class="font-size-x-large">{{slide?.title}}</p>
+            <p
+              *ngIf="slide.subtitle"
+              class="font-size-x-large ml-sm-auto mt-2 banner-subtitle w-100"
+            >
+              {{slide?.subtitle}}
+            </p>
+          </div>
+          <app-button
+            *ngIf="slide.buttonLabel"
+            class="d-none d-sm-block position-absolute right bottom"
+            [textColor]="'white'"
+            [label]="slide.buttonLabel"
+            [textSize]="'2'"
+            [size]="'banner-btn'"
+            style="z-index: 40"
+            [additionalClasses]="'br-tr-15'"
+          ></app-button>
+          <app-button
+            *ngIf="slide.buttonLabel"
+            class="d-block d-sm-none position-absolute right bottom"
+            [additionalClasses]="'p-2 br-tr-15'"
+            [textColor]="'white'"
+            [label]="slide.buttonLabel"
+            [textSize]="'3'"
+            [size]="'130'"
+            style="z-index: 40"
+          ></app-button>
+        </div>
+      </app-custom-link>
+    </slide>
+  </carousel>
+</div>

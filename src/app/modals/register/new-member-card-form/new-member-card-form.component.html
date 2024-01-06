@@ -1,0 +1,124 @@
+<div class="mx-4 my-4 position-relative">
+  <mdb-icon
+    fas
+    icon="times"
+    class="font-size-x-large position-absolute top right cursor-pointer pr-0"
+    (click)="closeModal()"
+  ></mdb-icon>
+  <h2 class="font-size-4 primary-blue-text bold-text">
+    Deseo ser socio Luxury
+  </h2>
+  <form
+    class="mt-2"
+    [formGroup]="newMemberForm"
+    autocomplete="off"
+    *ngIf="newMemberForm"
+  >
+    <div class="d-block text-left pb-1">
+      <label class="d-block text-black font-size-normal w-100 primary-blue-text"
+        >Ingrese sus datos para poder contactarnos con usted.</label
+      >
+    </div>
+    <ng-container *ngFor="let item of newMemberModal.requestFields">
+      <div class="input-group my-1 md-form">
+        <ng-container
+          *ngIf="item.type === 'text' && (item.sub_type === 'text' || item.sub_type === 'email')"
+        >
+          <input
+            mdbInput
+            type="text"
+            [formControlName]="item.field"
+            [placeholder]="item.name + (item.required? '*':'')"
+            class="form-control font-size-large w-100 outline-none pl-3 br-10 primary-blue-border"
+            style="border: 0; background: white"
+            NoPaste
+            autocomplete="new-password"
+          />
+        </ng-container>
+        <ng-container
+          *ngIf="item.type === 'text' && item.sub_type === 'password'"
+        >
+          <input
+            mdbInput
+            type="password"
+            [formControlName]="item.field"
+            [placeholder]="item.name + (item.required? '*':'')"
+            class="form-control font-size-large w-100 outline-none pl-3 br-10 primary-blue-border"
+            style="border: 0; background: white"
+            NoPaste
+            autocomplete="new-password"
+          />
+        </ng-container>
+        <ng-container
+          *ngIf="item.type === 'text' && item.sub_type === 'number'"
+        >
+          <input
+            mdbInput
+            type="number"
+            [formControlName]="item.field"
+            [placeholder]="item.name + (item.required? '*':'')"
+            class="form-control font-size-large w-100 outline-none pl-3 br-10 primary-blue-border"
+            style="border: 0; background: white"
+            OnlyNumbers="true"
+            NoPaste
+            autocomplete="new-password"
+          />
+        </ng-container>
+        <ng-container *ngIf="item.type === 'text' && item.sub_type === 'date'">
+          <input
+            mdbInput
+            type="date"
+            [formControlName]="item.field"
+            [placeholder]="item.name + (item.required? '*':'')"
+            class="form-control font-size-large w-100 outline-none pl-3 br-10 primary-blue-border"
+            style="border: 0; background: white"
+          />
+        </ng-container>
+        <ng-container *ngIf="item.type == 'list'">
+          <select
+            [formControlName]="item.field"
+            class="form-control font-size-large w-100 outline-none pl-2 br-10 primary-blue-border"
+            style="border: 0; background: white"
+          >
+            <option [value]="null" selected disabled>
+              {{item.name + (item.required? '*':'')}}
+            </option>
+            <option *ngFor="let option of item.list" [value]="option">
+              {{option}}
+            </option>
+          </select>
+        </ng-container>
+        <ng-container *ngIf="item.type === 'text-area'">
+          <textarea
+            mdbInput
+            [formControlName]="item.field"
+            [placeholder]="item.name + (item.required? '*':'')"
+            class="form-control font-size-large w-100 outline-none pl-3 br-10 primary-blue-border"
+            style="border: 0; background: white"
+          ></textarea>
+        </ng-container>
+      </div>
+    </ng-container>
+    <app-button
+      *ngIf="!requested"
+      [type]="''"
+      [color]="'primary-blue'"
+      [textColor]="'white'"
+      [label]="'Enviar'"
+      [size]="'50'"
+      [rounded]="true"
+      [additionalClasses]="'mt-3 mx-auto d-block br-20'"
+      [disabled]="newMemberForm.invalid"
+      (onClick)="requestNewMemberNumber()"
+    ></app-button>
+    <ng-container *ngIf="requested">
+      <label class="w-100 text-center primary-blue-text mt-3"
+        ><strong>¡Gracias!</strong><br />Pronto nos pondremos en contacto con
+        usted.</label
+      >
+      <label class="w-100 text-center primary-blue-text"
+        ><a (click)="closeModal()"><u>Cerrar</u></a></label
+      >
+    </ng-container>
+  </form>
+</div>

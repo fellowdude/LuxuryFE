@@ -1,0 +1,20 @@
+<div class="container mx-auto">
+  <app-single-banner
+    [title]="frequentlyQuestionsPage.titleBanner | uppercase"
+    [desktopBanner]="frequentlyQuestionsPage.bannerImage"
+    [mobileBanner]="frequentlyQuestionsPage.bannerImage"
+    [isGradient]="true"
+  ></app-single-banner>
+</div>
+<div class="container mx-auto">
+  <div class="mx-auto mt-4 mb-5" style="max-width: 800px">
+    <ng-container
+      *ngFor="let questionAndAnswer of frequentlyQuestionsPage.questionsAnswers;"
+    >
+      <app-single-accordion
+        [accordion]="{ title: questionAndAnswer.question, content: questionAndAnswer.answer, opened: false }"
+        additionalContentClasses="p-3"
+      ></app-single-accordion>
+    </ng-container>
+  </div>
+</div>

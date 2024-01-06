@@ -1,0 +1,35 @@
+<app-modal-header
+  [title]="'Historial de pedidos'"
+  [returnCondition]="canBack"
+  (onClose)="closeModal()"
+  (onReturn)="returnModal()"
+></app-modal-header>
+
+<div class="modal-body scrollbar-primary">
+  <ng-container *ngIf="!loading">
+    <div class="py-2 mx-0">
+      <div class="list-group">
+        <app-modal-order-item
+          *ngFor="let order of orders.orderHistory"
+          [cart]="carts"
+          [order]="order"
+          [history]="true"
+          (onClick)="ordersChange($event)"
+        ></app-modal-order-item>
+      </div>
+    </div>
+    <div
+      class="px-2 py-2 mx-2 d-flex justify-content-center"
+      *ngIf="!orders.orderHistory.length"
+    >
+      <label class="my-0 font-size-large text-center"
+        >Tu lista de Órdenes está vacía</label
+      >
+    </div>
+  </ng-container>
+  <ng-container *ngIf="loading">
+    <app-modal-loading
+      class="w-100 py-2 d-flex mx-2 justify-content-center"
+    ></app-modal-loading>
+  </ng-container>
+</div>

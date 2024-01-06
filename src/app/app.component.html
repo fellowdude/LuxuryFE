@@ -1,0 +1,38 @@
+<app-header
+  *ngIf="!isLogin"
+  #header
+  (onResponse)="itHasCountdown($event)"
+></app-header>
+<div
+  class="p-0 m-0 position-relative"
+  [ngClass]="{ 'mt-with-countdown': hasCountdown && inHome }"
+>
+  <div
+    class="w-100 h-100 position-fixed top left z-1 full-img-bg"
+    *ngIf="isBlur"
+    [ngStyle]="{
+      position: 'fixed',
+      top: '0',
+      left: '0',
+      'z-index': '2',
+      width: '100%',
+      height: '100%',
+      background: 'rgba(0, 0, 0, .5)',
+      opacity: '1'
+    }"
+    (click)="closeSubMenu()"
+  ></div>
+  <section
+    class="overflow-hidden"
+    [ngClass]="{ 'default-height': !isLogin, 'login-height': isLogin, 'd-flex align-items-center': loading}"
+  >
+    <router-outlet *ngIf="!loading"></router-outlet>
+    <div
+      class="d-flex w-100 h-100 loading-height align-items-center justify-content-center"
+      *ngIf="loading"
+    >
+      <app-global-loading></app-global-loading>
+    </div>
+  </section>
+  <app-footer *ngIf="!isLogin"></app-footer>
+</div>

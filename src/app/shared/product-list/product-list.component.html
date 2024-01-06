@@ -1,0 +1,36 @@
+<div class="d-none d-lg-block w-100">
+  <app-options
+    [total]="totalFound"
+    [option]="sortOption"
+    [options]="sortOptions"
+    (onClick)="changeSort($event)"
+  ></app-options>
+</div>
+<div class="w-100">
+  <div class="row px-2">
+    <ng-container *ngIf="!loading">
+      <div
+        *ngFor="let product of productsFound | paginate: {
+          itemsPerPage: 12,
+          currentPage: currentPage,
+          totalItems: totalFound
+        }; let index = index"
+        class="card-product-container col-6 col-sm-6 col-xl-4 px-2"
+        [ngClass]="{'col-xxxl-3': maxColumns === 4}"
+      >
+        <app-card-product class="w-100" [product]="product" [origin]="origin" [index]="(index + 1) + ((currentPage - 1) * 12)" [categoryId]="categoryId" [showFlag]="true"></app-card-product>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="loading">
+      <app-global-loading
+        class="w-100 d-flex justify-content-center my-3"
+      ></app-global-loading>
+    </ng-container>
+  </div>
+</div>
+<div
+  class="w-100 d-flex justify-content-center justify-content-lg-end mt-4"
+  *ngIf="productsFound?.length > 0"
+>
+  <app-pagination (onClick)="changePage($event)"></app-pagination>
+</div>

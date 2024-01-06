@@ -1,0 +1,74 @@
+<div class="w-100 position-relative bg-white p-0 br-20 h-100">
+  <div class="row pt-1 pb-1 pb-lg-1 px-1 p-lg-1 m-0 justify-content-center">
+    <img
+      class="img-fluid d-none d-lg-block img-lazy w-100 br-20  cursor-pointer"
+      defaultImage="./assets/placeholder.svg"
+      [lazyLoad]="popupData.desktopImage"
+      (click)="buttonRedirect(popupData.redirectURLDesktop)"
+    />
+    <div
+      class="d-block d-lg-none w-100"
+    >
+      <img
+        [src]=""
+        class="img-fluid img-lazy w-100 br-20 cursor-pointer"
+        defaultImage="./assets/placeholder.svg"
+        [lazyLoad]="popupData.mobileImage || popupData.desktopImage"
+        style="min-height: 50%; object-fit: cover"
+        (click)="buttonRedirect(popupData.redirectURLMobile || popupData.redirectURLDesktop)"
+      />
+    </div>
+  </div>
+  <div
+    class="cursor-pointer p-0 bg-white position-absolute z-1 top right d-flex align-items-center justify-content-center"
+    style="border-radius: 0px 00px 0px 15px; width: 30px; height: 30px;"
+    (click)="closePopup()"
+  >
+    <mdb-icon fas icon="times" class="font-size-large"></mdb-icon>
+  </div>
+  <!-- <div
+    class="row d-flex flex-column-reverse flex-lg-row fixed-top position-absolute m-0 w-100 h-100 overflow-hidden br-20"
+  >
+    <div
+      class="col-12 col-lg-5 d-flex flex-column justify-content-between text-white px-4 py-4 px-lg-5 flex-1 blue-4f popup-border"
+    >
+      <div>
+        <h2 class="popup-title">{{ popupData.title }}</h2>
+        <h3 class="popup-subtitle mt-3">{{ popupData.subtitle }}</h3>
+      </div>
+      <div>
+        <p
+          class="popup-content mt-3 mt-lg-0"
+          [innerHtml]="popupData.content"
+        ></p>
+        <div class="row mt-4">
+          <div class="col-12 col-lg-10">
+            <app-button
+              [type]="''"
+              [label]="popupData.buttonLabel"
+              [color]="'blue-8'"
+              [bold]="true"
+              [rounded]="true"
+              [size]="100"
+              [textSize]="35"
+              [additionalClasses]="'text-white br-10'"
+              (onClick)="buttonRedirect()"
+            ></app-button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="col-12 col-lg-7 d-flex align-items-start justify-content-end p-0 h-100 flex-1"
+    >
+      <div
+        class="cursor-pointer p-3 bg-white"
+        style="border-radius: 20px"
+        (click)="closePopup()"
+      >
+        <img class="img-lazy" src="assets/images/close.svg" [lazyLoad]="true" />
+      </div>
+    </div>
+  </div> -->
+  <!-- righttop end-->
+</div>

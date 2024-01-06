@@ -1,0 +1,51 @@
+.popup-border {
+  border-radius: 20px 0 0 0;
+}
+
+.popup-title {
+  font-size: 20px;
+
+  @media screen and (min-width: 576px) {
+    font-size: 32px;
+  }
+
+  @media screen and (min-width: 1200px) {
+    font-size: 50px;
+  }
+
+  @media screen and (min-width: 1400px) {
+    font-size: 70px;
+  }
+}
+
+.popup-subtitle {
+  font-size: 16px;
+
+  @media screen and (min-width: 576px) {
+    font-size: 20px;
+  }
+
+  @media screen and (min-width: 1200px) {
+    font-size: 30px;
+  }
+
+  @media screen and (min-width: 1400px) {
+    font-size: 40px;
+  }
+}
+
+.popup-content {
+  font-size: 12px;
+
+  @media screen and (min-width: 576px) {
+    font-size: 16px;
+  }
+
+  @media screen and (min-width: 1200px) {
+    font-size: 20px;
+  }
+
+  @media screen and (min-width: 1400px) {
+    font-size: 25px;
+  }
+}

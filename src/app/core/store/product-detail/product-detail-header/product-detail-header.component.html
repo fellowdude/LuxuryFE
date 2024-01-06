@@ -1,0 +1,70 @@
+<div class="d-sm-block">
+  <h3 class="d-none d-md-block font-size-x-large primary-blue-text mb-2 font-weight-bold">
+    {{ productDetail?.brand }}
+  </h3>
+  <div class="row">
+    <h3 class="col-8 d-sm-inline font-size-x-large primary-blue-text mb-2 font-weight-bold">
+      {{ productDetail?.name }}
+    </h3>
+    <div class="col-4 d-inline d-md-none ml-auto">
+      <app-stars-rating-product class="float-right"
+        *ngIf="!loading"
+        [rating]="initialRating"
+        (ratingEmitted)="rateProduct($event)"
+        [disabled]="productDetail?.userRating"
+      ></app-stars-rating-product>
+      <app-global-loading *ngIf="loading"></app-global-loading>
+    </div>
+  </div>
+  <div>
+    <span
+      class="d-block d-md-none font-size-large primary-blue-text mb-2 font-weight-bold"
+    >
+      Stock disponible: 2
+    </span>
+    <small class="font-size-small primary-blue-text mb-2"
+      >Vendido y enviado por
+      <span class="font-weight-bold"
+        >{{ productDetail?.supplier }}</span
+      ></small
+    >
+  </div>
+</div>
+<div class="d-flex flex-column flex-md-row justify-content-md-between">
+  <div
+    class="flex-1 d-flex flex-row flex-md-column justify-content-between justify-content-md-start"
+  >
+    <div class="d-none d-md-flex mt-md-3 mb-0 mb-md-2 ">
+      <app-stars-rating-product
+        *ngIf="!loading"
+        [rating]="initialRating"
+        (ratingEmitted)="rateProduct($event)"
+        [disabled]="productDetail?.userRating"
+      ></app-stars-rating-product>
+      <app-global-loading *ngIf="loading"></app-global-loading>
+    </div>
+  </div>
+  <!-- spacer -->
+  <div class="d-none d-md-block mx-10"></div>
+  <div class="flex-1 d-flex align-items-md-end">
+    <app-button
+      class="w-100 w-md-auto mt-3 mt-md-0"
+      [label]="'Ver tiempo de entrega'"
+      [type]="''"
+      [color]="'gray-button'"
+      [bold]="true"
+      [prefixIcon]="'truck'"
+      [size]="'100'"
+      [sufixIcon]="'info-circle'"
+      [rounded]="true"
+      [textColor]="'blue-4f'"
+      [additionalClasses]="'px-2 py-2 d-flex justify-content-between align-items-center font-size-normal br-10'"
+      (onClick)="openModal()"
+    ></app-button>
+  </div>
+  <!-- <app-information-modal -->
+  <!--   [modalTitle]="'Delivery Lima y Provincias'" -->
+  <!--   [modalBody]="'IPSUM'" -->
+  <!--   (onHide)="hideModal($event)" -->
+  <!-- ></app-information-modal> -->
+</div>

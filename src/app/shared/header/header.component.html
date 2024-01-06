@@ -1,0 +1,270 @@
+<section class="sticky-top w-100 d-block">
+  <div class="blue-4f w-100">
+    <label
+      class="d-flex align-items-center white-text font-size-05 my-0 overflow-hidden position-relative animation-container w-100"
+      style="height: 35px"
+    >
+      <label class="animation-left my-0">
+        Miles de productos con entregas en 24 horas*.
+        <span class="pl-3"
+          >¿Necesita ayuda? Luxury Call <strong>511 208 0333</strong> (L a S de
+          9:00 a.m. a 6:00 p.m.).</span
+        >
+        <span class="pl-3"
+          >Luxury Mail:
+          <a href="mailto:atencionalcliente@luxury.pe"
+            ><u>atencionalcliente@luxury.pe</u></a
+          ></span
+        >
+      </label>
+    </label>
+  </div>
+  <app-countdown-banner
+    *ngIf="hasCountdown && inHome"
+    [info]="countDownInfo"
+    type="desktop"
+    class="d-none d-lg-block"
+  ></app-countdown-banner>
+  <app-countdown-banner
+    *ngIf="hasCountdown && inHome"
+    [info]="countDownInfo"
+    type="mobile"
+    class="d-block d-lg-none"
+  ></app-countdown-banner>
+  <nav class="w-100 white z-depth-2">
+    <div class="mw-container mx-auto">
+      <div class="row m-0">
+        <!-- Categories and logo -->
+        <div class="d-flex col-6 p-0 align-items-center" style="height: 85px">
+          <div
+            class="d-none d-lg-flex blue-4f-text align-items-center mx-sm-1 mx-lg-3 cursor-pointer"
+            (click)="toggleMenu(menuName.CATEGORY_LIST)"
+          >
+            <div
+              class="d-flex blue-4f white-text text-center rounded mr-2 align-items-center justify-content-center"
+              style="width: 30px; height: 30px"
+            >
+              <i
+                class="fas fa-times"
+                *ngIf="openMenu && openMenu === menuName.CATEGORY_LIST; else barIcon;"
+              ></i>
+              <ng-template #barIcon>
+                <i class="fa fa-bars"></i>
+              </ng-template>
+            </div>
+            <div
+              *ngIf="openMenu && openMenu === menuName.CATEGORY_LIST"
+              class="d-none d-lg-flex"
+            >
+              <app-new-categories-list
+                #categorieList
+                [groupCategoriesList]="groupCategoryList"
+              ></app-new-categories-list>
+            </div>
+            <p
+              class="d-inline my-0 py-0 blue-4f-text font-size-1"
+              style="
+                line-height: normal;
+                vertical-align: middle;
+                vertical-align: -webkit-baseline-middle;
+              "
+            >
+              Categorías
+            </p>
+          </div>
+          <div
+            class="d-flex d-lg-none blue-4f-text align-items-center mx-sm-1 mx-lg-3 cursor-pointer"
+            (click)="toggleMenu(menuName.MOBILE_CATEGORY_LIST)"
+          >
+            <div
+              class="d-flex blue-4f white-text text-center rounded mr-2 align-items-center justify-content-center"
+              style="width: 30px; height: 30px"
+            >
+              <i
+                class="fas fa-times"
+                *ngIf="openMenu && openMenu === menuName.MOBILE_CATEGORY_LIST; else barIcon;"
+              ></i>
+              <ng-template #barIcon>
+                <i class="fa fa-bars"></i>
+              </ng-template>
+            </div>
+          </div>
+          <!-- Logo -->
+          <a
+            class="d-flex align-items-center overflow-hidden h-100"
+            routerLink="/inicio"
+          >
+            <img
+              (click)="toggleMenu()"
+              class="d-none img-lazy d-xl-flex w-40 mr-sm-4 ml-lg-2"
+              [lazyLoad]="true"
+              style="min-width: 390px"
+              src="/assets/images/luxury_logo_desktop.svg"
+            />
+            <img
+              (click)="toggleMenu()"
+              class="d-flex d-xl-none w-60 img-lazy pb-2"
+              [lazyLoad]="true"
+              style="min-width: 150px; max-width: 250px"
+              src="/assets/images/luxury_logo_mobile.svg"
+            />
+          </a>
+        </div>
+
+        <!-- Search Input and Icons -->
+        <div
+          class="col-6 p-0 d-flex flex-column flex-lg-row justify-content-end gray-a7-text font-size-35"
+        >
+          <!-- Input desktop container -->
+          <div
+            class="p-0 d-none d-lg-flex align-items-center position-relative mr-md-5 w-100 col-lg-8 flex-1"
+          >
+            <input
+              mdbInput
+              type="text"
+              class="form-control grey-input border-0 d-inline my-0 py-0 font-size-1"
+              [(ngModel)]="searchValue"
+              [placeholder]="placeholderSearch"
+              (focus)="erasePlaceholder()"
+              (blur)="readdPlaceholder()"
+              (keydown.enter)="search()"
+              style="
+                line-height: normal;
+                vertical-align: middle;
+                vertical-align: -webkit-baseline-middle;
+              "
+            />
+            <i
+              class="fa fa-search position-absolute right-search-icon cursor-pointer"
+              (click)="search()"
+            ></i>
+          </div>
+          <!-- Icons container -->
+          <div
+            class="d-flex justify-content-end justify-content-lg-between align-items-center col-lg-4 p-0"
+            style="flex: 1"
+          >
+            <!-- Search Icon container -->
+            <span
+              class="d-flex flex-column align-items-center d-lg-none cursor-pointer"
+              (click)="toggleMenu(menuName.MOBILE_SEARCH_INPUT)"
+            >
+              <div class="d-flex align-items-center" style="height: 20px">
+                <i class="fa fa-search"></i>
+              </div>
+              <span class="font-size-05 d-block d-lg-none mt-2">Buscar</span>
+            </span>
+            <!-- Cart Icon container -->
+            <div
+              class="d-flex flex-column align-items-center ml-3 ml-sm-4 ml-lg-0 cursor-pointer"
+              (click)="showCart()"
+            >
+              <span class="position-relative">
+                <div class="d-flex align-items-center" style="height: 20px">
+                  <i class="fa fa-shopping-cart font-size-4"></i>
+                </div>
+                <label
+                  class="cursor-pointer white-text red-2 position-absolute top-icon font-size-1 rounded-circle d-flex justify-content-center align-items-center m-0"
+                  style="width: 20px; height: 20px"
+                  *ngIf="cartSize > 0"
+                >
+                  <p class="my-0">{{cartSize}}</p>
+                </label>
+              </span>
+              <span class="font-size-05 d-block d-lg-none mt-2">Carrito</span>
+            </div>
+            <!-- Wishlist Icon container -->
+            <span
+              class="position-relative d-none d-lg-block cursor-pointer mx-0 mx-lg-2 mx-xl-0"
+              (click)="showWishlist()"
+            >
+              <div class="d-flex align-items-center" style="height: 20px">
+                <i class="fa fa-heart font-size-4"></i>
+              </div>
+              <label
+                class="cursor-pointer white-text red-2 position-absolute top-icon font-size-1 rounded-circle d-flex justify-content-center align-items-center m-0"
+                style="width: 20px; height: 20px"
+                *ngIf="wishlistSize > 0"
+              >
+                <p class="my-0">{{wishlistSize}}</p>
+              </label>
+            </span>
+            <!-- Contact Icon container -->
+            <i
+              class="fa fa-phone-alt cursor-pointer d-none d-lg-block font-size-4 mx-0 mx-lg-2 mx-xl-0"
+              (click)="showContact()"
+            ></i>
+
+            <!-- User Mobile Icon container -->
+            <span
+              class="align-items-center cursor-pointer d-flex d-lg-none flex-column ml-3 ml-sm-4"
+              (click)="toggleMenu(menuName.LATERAL_BAR)"
+            >
+              <div
+                class="d-flex justify-content-between align-items-center"
+                style="min-width: 38px; height: 20px"
+              >
+                <i class="fa fa-user"></i>
+                <i
+                  class="fas fa-caret-down {{ openMenu === menuName.LATERAL_BAR ? 'fa-rotate-180' : ''}}"
+                ></i>
+              </div>
+              <span class="font-size-05 mt-2">Mi Perfil</span>
+            </span>
+            <!-- User Desktop Icon container -->
+            <span
+              class="align-items-center cursor-pointer d-none d-lg-flex mx-0 mx-lg-1"
+              (click)="showUserMenu()"
+            >
+              <i class="fa fa-user font-size-4"></i>
+
+              <!-- <span class="pl-3 blue-1-text d-none d-xxl-flex">{{userInfo?.suffix}} {{userInfo?.last_name_father}}</span> -->
+            </span>
+          </div>
+        </div>
+        <!-- Search Input Mobile Container -->
+        <div
+          class="d-flex align-items-center position-relative w-100 pb-4"
+          *ngIf="openMenu === menuName.MOBILE_SEARCH_INPUT"
+        >
+          <input
+            mdbInput
+            type="text"
+            class="form-control grey-input border-0"
+            [(ngModel)]="searchValue"
+            [placeholder]="placeholderSearch"
+            (focus)="erasePlaceholder()"
+            (blur)="readdPlaceholder()"
+            (keydown.enter)="search()"
+          />
+          <i
+            class="fa fa-search position-absolute right-search-icon cursor-pointer"
+            (click)="search()"
+          ></i>
+        </div>
+      </div>
+    </div>
+  </nav>
+</section>
+<div
+  class="w-100 position-fixed"
+  style="z-index: 99"
+  [ngClass]="hasCountdown && inHome ? 'header-with-countdown': 'header-without-search'"
+  *ngIf="openMenu === menuName.MOBILE_CATEGORY_LIST"
+>
+  <app-mobile-categories-list
+    [groupCategoriesList]="groupCategoryList"
+    (onClose)="toggleMenu($event)"
+  ></app-mobile-categories-list>
+</div>
+<div
+  class="w-100 position-fixed"
+  style="z-index: 99"
+  [ngClass]="hasCountdown && inHome ? 'header-with-countdown': 'header-without-search'"
+  *ngIf="openMenu === menuName.LATERAL_BAR"
+>
+  <!-- [config]="configMenuMobile" -->
+  <app-mobile-lateral-bar
+    (onClose)="toggleMenu($event)"
+  ></app-mobile-lateral-bar>
+</div>

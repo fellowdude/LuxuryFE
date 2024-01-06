@@ -1,0 +1,4 @@
+<div class="d-flex w-100 flex-column align-items-center mt-3 br-8 position-relative overflow-hidden cursor-pointer" (click)="sendToPage()" *ngIf="imageURL">
+  <img class="w-100 h-100 object-fit img-fluid img-lazy" style="max-height: 650px;" defaultImage="./assets/placeholder.svg" [lazyLoad]="imageURL">
+</div>
+

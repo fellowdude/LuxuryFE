@@ -1,0 +1,23 @@
+<div
+  class="d-flex flex-row my-3 br-8 white font-size-normal py-2 pl-2 pr-4 position-relative"
+  [ngClass]="{'blue-1-text': !data?.selected, 'blue-categories-text blue-categories-border': data?.selected}"
+  (click)="changeLocation()"
+  style="cursor: pointer"
+>
+  <div class="d-flex align-items-start mr-2">
+    <img src="assets/images/map-icon.svg" />
+  </div>
+  <div class="line-height-20">
+    <p class="d-none d-md-block pb-1" [ngClass]="{'pb-3': !data?.phone}">
+      {{data?.address}}
+    </p>
+    <p class="d-md-none text-clip-1 pb-1" [ngClass]="{'pb-3': !data?.phone}">
+      {{data?.address}}
+    </p>
+    <p class="pb-1" *ngIf="data?.localName">{{data?.localName}}</p>
+    <p *ngIf="data?.phone">Teléfono: {{data?.phone}}</p>
+  </div>
+  <span class="position-absolute" style="top: calc(50% - 8px); right: 15px"
+    ><i class="fas fa-chevron-right"></i
+  ></span>
+</div>

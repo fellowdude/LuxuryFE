@@ -1,0 +1,7 @@
+<ng-container *ngFor="let filter of fakeFilterList">
+  <app-fake-filter
+    [name]="filter?.name"
+    [fakeFilters]="filter?.filters"
+    (onClick)="changeAction($event)"
+  ></app-fake-filter>
+</ng-container>

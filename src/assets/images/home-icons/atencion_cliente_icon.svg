@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="47px" height="45px" viewBox="0 0 47 45" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 58 (84663) - https://sketch.com -->
+    <title>atencion-cliente_icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="0 44.0425532 46 44.0425532 46 0 0 0"></polygon>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="atencion-cliente_icon" transform="translate(-11.000000, -13.000000)">
+            <g transform="translate(12.000000, 13.000000)">
+                <path d="M8.31914894,29.8510638 L5.38297872,29.8510638 C3.22097872,29.8510638 1.46808511,28.0981702 1.46808511,25.9361702 L1.46808511,20.0638298 C1.46808511,17.9018298 3.22097872,16.1489362 5.38297872,16.1489362 L8.31914894,16.1489362 L8.31914894,29.8510638 Z" id="Stroke-1" stroke="#A2A1A8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <g id="Clip-4"></g>
+                <polygon id="Stroke-3" stroke="#A2A1A8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" mask="url(#mask-2)" points="8.31914894 29.8510638 13.212766 29.8510638 13.212766 16.1489362 8.31914894 16.1489362"></polygon>
+                <path d="M37.6808511,29.8510638 L40.6170213,29.8510638 C42.7790213,29.8510638 44.5319149,28.0981702 44.5319149,25.9361702 L44.5319149,20.0638298 C44.5319149,17.9018298 42.7790213,16.1489362 40.6170213,16.1489362 L37.6808511,16.1489362 L37.6808511,29.8510638 Z" id="Stroke-5" stroke="#A2A1A8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" mask="url(#mask-2)"></path>
+                <polygon id="Stroke-6" stroke="#A2A1A8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" mask="url(#mask-2)" points="32.787234 29.8510638 37.6808511 29.8510638 37.6808511 16.1489362 32.787234 16.1489362"></polygon>
+                <path d="M8.31914894,16.1489362 L8.31914894,16.1489362 C8.31914894,8.04119149 14.8922553,1.46808511 23,1.46808511 C31.1077447,1.46808511 37.6808511,8.04119149 37.6808511,16.1489362" id="Stroke-7" stroke="#A2A1A8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" mask="url(#mask-2)"></path>
+                <path d="M23,42.5744681 L23,42.5744681 C21.3782553,42.5744681 20.0638298,41.2600426 20.0638298,39.6382979 C20.0638298,38.0165532 21.3782553,36.7021277 23,36.7021277 C24.620766,36.7021277 25.9361702,38.0165532 25.9361702,39.6382979 C25.9361702,41.2600426 24.620766,42.5744681 23,42.5744681 Z" id="Stroke-8" stroke="#A2A1A8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" mask="url(#mask-2)"></path>
+                <path d="M8.31914894,29.8510638 L8.31914894,35.7234043 C8.31914894,37.8854043 10.0720426,39.6382979 12.2340426,39.6382979 L20.0638298,39.6382979" id="Stroke-9" stroke="#A2A1A8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" mask="url(#mask-2)"></path>
+            </g>
+        </g>
+    </g>
+</svg>

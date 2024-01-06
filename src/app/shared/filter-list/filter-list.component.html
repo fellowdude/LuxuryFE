@@ -1,0 +1,32 @@
+<ng-container *ngFor="let filter of filters">
+  <app-filter-checkbox
+    class="d-block w-100 my-4"
+    *ngIf="filter?.filter?.type === 'checkbox' && filter?.value.length > 0"
+    [filter]="filter"
+    [contrastFilter]="filter?.contrast"
+    (onClick)="filterCheckboxChange($event)"
+  ></app-filter-checkbox>
+  <app-filter-radial
+    class="d-block w-100 my-4"
+    *ngIf="filter?.filter?.type === 'radio' && filter?.value.length > 0"
+    [filter]="filter"
+    [contrastFilter]="filter?.contrast"
+    (onClick)="filterRadialChange($event)"
+  ></app-filter-radial>
+  <app-filter-range
+    #range
+    class="d-block w-100 my-4"
+    *ngIf="filter?.filter?.type === 'range'"
+    [filter]="filter"
+    [contrastFilter]="filter?.contrast"
+    [mobile]="mobile"
+    (onClick)="filterRangeChange($event)"
+  ></app-filter-range>
+  <app-filter-boolean
+    class="d-block w-100 my-4"
+    *ngIf="filter?.filter?.type === 'boolean'"
+    [filter]="filter"
+    [contrastFilter]="filter?.contrast"
+    (onClick)="filterBooleanChange($event)"
+  ></app-filter-boolean>
+</ng-container>

@@ -1,0 +1,31 @@
+
+  <div class="modal-content text-center">
+    <!--Body-->
+    <div class="modal-body h-auto">
+      <p class="font-size-normal" *ngIf="type">¿Desea ver <strong>{{(type == 'product'? 'el producto ':'la experiencia ')}}</strong> en la aplicación de Luxury?</p>
+    </div>
+
+    <!--Footer-->
+    <div class="modal-footer justify-content-center d-flex flex-row">
+      <app-button
+        class="d-block w-40"
+        [label]="'Si'"
+        [rounded]="true"
+        [bold]="true"
+        [textSize]="2"
+        [size]="100"
+        [additionalClasses]="'ls-1 py-2'"
+        (onClick)="confirm()"
+      ></app-button>
+      <app-button
+        class="d-block w-40"
+        [label]="'No'"
+        [rounded]="true"
+        [bold]="true"
+        [textSize]="2"
+        [size]="100"
+        [additionalClasses]="'ls-1 py-2'"
+        (onClick)="deny()"
+      ></app-button>
+    </div>
+  </div>

@@ -1,0 +1,11 @@
+h1.aboutus-title + div p strong span {
+  color: var(--blue-4f) !important;
+}
+
+:host{
+  ::ng-deep ul, ::ng-deep ol {
+    list-style: disc outside none;
+    padding-left: 20px;
+    padding-top: 10px;
+  }
+}

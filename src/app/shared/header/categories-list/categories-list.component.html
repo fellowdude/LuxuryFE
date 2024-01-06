@@ -1,0 +1,116 @@
+<div
+  class="d-flex position-absolute nav-container overtop top-decorator grey-dark-text"
+  style="left: -45px; max-height: 550px; height: 65vh"
+>
+  <div
+    class="col-md-6 py-3 px-0 white z-depth-2 font-weight-bold scrollbar-primary"
+    style="overflow-y: auto"
+  >
+    <div
+      class="d-flex flex-column justify-content-between"
+      style="height: 100%"
+    >
+      <ul class="navbar-nav grey-nav-text">
+        <li
+          class="py-2 px-3 position-relative"
+          *ngFor="let categoryGroupItem of groupCategoriesList; index as index"
+          (mouseenter)="selectGroup(categoryGroupItem, index)"
+          [ngClass]="{ 'blue-categories-text': index === selectedIndexGroup && categoryGroupItem?.typeGroupCategory?.ref1 === 'product', 'blue-categories white-text': categoryGroupItem?.typeGroupCategory?.ref1 !== 'product' }"
+        >
+          <a
+            class="font-weight-normal hover-underline"
+            [routerLink]="[path(categoryGroupItem) + categoryGroupItem.friendly_url]"
+            >{{ categoryGroupItem.name }}</a
+          >
+          <i
+            class="fas fa-chevron-right position-absolute icon-active pr-3"
+            [ngClass]="{ 'blue-categories-text': categoryGroupItem?.typeGroupCategory?.ref1 === 'product',  'white-text': categoryGroupItem?.typeGroupCategory?.ref1 !== 'product' }"
+            *ngIf="index === selectedIndexGroup"
+          ></i>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div
+    class="col-md-6 py-3 pl-3 pr-0 h-100 z-depth-1 font-weight-bold position-relative"
+    *ngIf="selectedGroup"
+    [ngClass]="selectedGroup?.typeGroupCategory?.ref1 == 'experience' ? 'light-blue-5' : 'beige-2' "
+  >
+    <ul
+      class="navbar-nav w-100 h-100 scrollbar-primary"
+      style="overflow-y: auto"
+      (scroll)="onScroll($event)"
+      [ngClass]="selectedGroup?.typeGroupCategory?.ref1 == 'experience' ? 'blue-5-text' : 'grey-nav-text'"
+    >
+      <li
+        class="py-2 position-relative w-90"
+        *ngFor="let campaign of selectedGroup.campaigns; index as index"
+        (mouseenter)="selectCategory(campaign, index)"
+      >
+        <a
+          class="text-clip-1 hover-underline"
+          [routerLink]="[path(selectedGroup) + selectedGroup.friendly_url + '/camp/' + campaign.friendly_url]"
+          >{{ campaign.name }}</a
+        >
+      </li>
+      <li
+        class="py-2 position-relative w-90"
+        *ngFor="let category of selectedGroup.categories; index as index"
+        (mouseenter)="selectCategory(category, index)"
+        [ngClass]="{ 'blue-categories-text': index === selectedIndexCategory && selectedGroup?.typeGroupCategory?.ref1 !== 'experience', 'blue-1-text': index === selectedIndexCategory && selectedGroup?.typeGroupCategory?.ref1 === 'experience' }"
+      >
+        <a
+          class="text-clip-1 hover-underline"
+          [routerLink]="[path(selectedGroup) + selectedGroup.friendly_url + '/categoria/' + category.friendly_url]"
+          >{{ category.name }}
+          <ng-container *ngIf="category?.subcategories?.length > 1"
+            >({{ category?.subcategories?.length }})</ng-container
+          ></a
+        >
+        <i
+          class="fas fa-chevron-right position-absolute icon-active blue-categories-text"
+          *ngIf="index === selectedIndexCategory && selectedCategory.subcategories.length > 0"
+        ></i>
+      </li>
+    </ul>
+    <div
+      class="position-absolute bottom left w-100 d-flex justify-content-center align-items-center beige-2 z-1"
+      style="height: 40px"
+      *ngIf="scrollArrow"
+    >
+      <mdb-icon fas icon="angle-down"></mdb-icon>
+    </div>
+  </div>
+  <div
+    class="col-md-6 p-3 beige-3 z-depth-1 scrollbar-primary"
+    *ngIf="selectedCategory && selectedCategory?.subcategories?.length > 0"
+    style="overflow-y: auto"
+    [ngClass]="selectedGroup?.typeGroupCategory?.ref1 == 'experience' ? 'light-blue-6' : 'beige-3' "
+  >
+    <ul
+      class="navbar-nav"
+      [ngClass]="selectedGroup?.typeGroupCategory?.ref1 === 'experience' ? 'blue-5-text' : 'grey-nav-text' "
+    >
+      <li
+        class="py-2 position-relative"
+        *ngFor="let subcategory of selectedCategory.subcategories; index as index"
+      >
+        <a
+          class="text-clip-1 hover-underline"
+          [routerLink]="[path(selectedGroup) + selectedGroup.friendly_url + '/categoria/' + subcategory.friendly_url]"
+          >{{ subcategory.name }}</a
+        >
+      </li>
+    </ul>
+  </div>
+  <div
+    class="col-md-6 z-depth-0 p-0 overflow-hidden br-right-10 d-none d-xl-block"
+    *ngIf="selectedCategory && selectedCategory?.image_menu"
+  >
+    <img
+      [src]="selectedCategory?.url_attachment + selectedCategory?.image_menu"
+      class="h-100 img-fluid"
+      style="object-fit: cover"
+    />
+  </div>
+</div>

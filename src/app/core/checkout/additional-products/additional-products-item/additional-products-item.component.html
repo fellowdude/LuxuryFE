@@ -1,0 +1,23 @@
+<div
+  class="d-flex w-100 flex-lg-column flex-column-reverse full-img-bg br-10 justify-content-between align-items-center overflow-hidden position-relative custom-bg-gradient"
+  [style.backgroundImage]="'url(' + item?.backgroundImage + ')'"
+>
+  <div class="px-4 py-3 z-1 flex-1 w-100">
+    <app-card-product
+      [product]="item?.productInfo"
+      (onClick)="onClick.emit()"
+    ></app-card-product>
+  </div>
+  <div
+    class="d-flex w-100 p-4 pr-5 text-right flex-column z-1"
+    [ngClass]="{ 'mr-lg-5': onlyOne }"
+  >
+    <label
+      class="font-size-x-large white-text mb-5"
+      [innerHTML]="item?.saleMessage"
+    ></label>
+    <!-- <label class="font-size-3 white-text"><del>Precio Normal: {{ item?.normalPrice || 0 | currency: 'S/'}}</del></label>
+    <label class="font-size-35 white-text">Precio Luxury: {{ item?.specialPrice || 0 | currency: 'S/'}}</label>
+    <label class="font-size-4 white-text"><b>Llévatela por solo {{ item?.specialSalePrice || 0 | currency: 'S/'}}</b></label> -->
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<div class="d-flex justify-content-between mb-4 align-items-center">
+  <select
+    class="p-2 blue-4f-text blue-4f-border rounded font-size-normal"
+    [(ngModel)]="option"
+    (change)="onClick.emit(option)"
+  >
+    <option *ngFor="let item of options" [value]="item.ref1">{{item.value}}</option>
+    <!--<option [value]="0">Ordenar resultados por</option>
+    <option [value]="1">Precio (mayor a menor)</option>
+    <option [value]="2">Precio (menor a mayor)</option>
+    <option [value]="3">Nombre (A - Z)</option>
+    <option [value]="4">Nombre (Z - A)</option>
+    <option [value]="5">Mayor descuento</option>-->
+  </select>
+  <span *ngIf="total" class="blue-4f-text font-size-normal"
+    >Se encontraron {{ total }} producto(s)</span
+  >
+  <span *ngIf="!total" class="blue-4f-text font-size-normal">No se encontraron productos</span>
+</div>

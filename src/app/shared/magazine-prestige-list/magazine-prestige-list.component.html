@@ -1,0 +1,25 @@
+<a href="https://www.prestigia.pe?loggued=true" target="_blank">
+  <app-subtitle-header
+  [subtitle]="'Revista Prestigia'"
+  [highlight]="highlight"
+  ></app-subtitle-header>
+</a>
+<div class="row mt-4">
+  <div class="col-12 col-md-6 mb-4" *ngFor="let card of magazinePrestigeList">
+    <app-magazine-prestige-card
+      [magazinePrestigeCard]="card"
+    ></app-magazine-prestige-card>
+  </div>
+</div>
+
+<a href="https://www.prestigia.pe?loggued=true" target="_blank">
+  <app-button
+    [type]="''"
+    [size]="100"
+    [rounded]="true"
+    [color]="''"
+    [bold]="true"
+    [label]="'+ ver más artículos'"
+    [additionalClasses]="'py-2 blue-4f-border blue-4f-text'"
+  ></app-button>
+</a>

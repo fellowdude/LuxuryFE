@@ -1,0 +1,40 @@
+<div class="gallery-container">
+  <div class="px-0 px-sm-4 py-3">
+    <div class="modal-header">
+      <button
+        type="button"
+        class="close pull-right p-0 font-size-6"
+        style="top: 40px; right: 40px;"
+        (click)="hideModal()"
+      >
+        <span>×</span>
+      </button>
+      <h4 class="modal-title w-100 font-weight-bold font-size-x-large">{{ modalTitle }}</h4>
+    </div>
+    <div class="modal-body w-100">
+      <div  class="swiper-container" [swiper]="swiperConfig" #gallery='ngxSwiper' (indexChange)="prueba()">
+          <div class="swiper-wrapper">
+              <div class="swiper-slide img-gallery" *ngFor="let image of imageList">
+                  <img class="w-100 h-100 img-lazy" defaultImage="./assets/placeholder.svg" [lazyLoad]="url_attachment + image" style="object-fit: contain;">
+              </div>
+              <div class="swiper-slide" *ngFor="let video of videoList">
+                <iframe class="video-gallery" *ngIf="video" [src]="video | saveVideo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
+          </div>
+      </div>
+      <div class="mt-3"></div>
+      <div class="swiper-container" [swiper]="thumbConfig" #thumbnails='ngxSwiper'>
+        <div class="swiper-wrapper">
+            <div class="swiper-slide thumbnail-gallery" *ngFor="let image of imageList">
+                <img defaultImage="./assets/placeholder.svg" [lazyLoad]="url_attachment + image" class="w-100 h-100 img-lazy">
+            </div>
+            <div class="swiper-slide thumbnail-gallery" *ngFor="let video of videoList">
+              <img defaultImage="./assets/placeholder.svg" [lazyLoad]="getVideoThumbnail(video)" class="w-100 h-100 img-lazy">
+            </div>
+        </div>
+        <div class="swiper-button-prev ml-0"></div>
+        <div class="swiper-button-next mr-0"></div>
+      </div>
+    </div>
+  </div>
+</div>

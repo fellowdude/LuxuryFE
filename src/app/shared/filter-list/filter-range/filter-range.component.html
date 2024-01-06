@@ -1,0 +1,33 @@
+<label class="w-100 font-size-large bold-text blue-4f-text"
+  >{{ filter?.filter?.name }}</label
+>
+<form [formGroup]="rangeForm">
+  <div class="d-flex w-100 ml-0 align-items-center justify-content-between">
+    <input
+      mdbInput
+      class="d-flex w-100 py-2 px-2"
+      type="number"
+      min="0"
+      [placeholder]="(filter?.filter?.unit || '') + ' ' + (this.filter?.options?.floor?.toFixed(2) || '')"
+      formControlName="min"
+    />
+    <label class="font-size-normal mx-2 my-0">a</label>
+    <input
+      mdbInput
+      class="d-flex w-100 py-2 px-2"
+      type="number"
+      min="0"
+      [placeholder]="(filter?.filter?.unit || '') + ' ' + (this.filter?.options?.ceil?.toFixed(2) || '')"
+      formControlName="max"
+    />
+    <app-button
+      *ngIf="!mobile"
+      class="d-flex ml-2"
+      [label]="''"
+      [sufixIcon]="'chevron-right'"
+      [additionalClasses]="'px-1'"
+      [disabled]="rangeForm.invalid"
+      (onClick)="rangeSelected()"
+    ></app-button>
+  </div>
+</form>

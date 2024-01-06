@@ -1,0 +1,23 @@
+<div class="w-100">
+  <p
+    class="primary-blue-text mb-2 bold-text d-flex"
+    [ngClass]="{'font-size-large': highlight, 'font-size-normal': !highlight}"
+  >
+    <ng-container *ngFor="let item of breadcrumb; let last = last">
+      <a class="cursor-pointer" [routerLink]="[item.link]">
+        <label
+          class="my-0 cursor-pointer"
+          [ngClass]="{'bold-text d-block': last, 'd-none d-lg-block': !last}"
+          >{{item.name | noNextLine}}</label
+        >
+        <label
+          class="my-0 cursor-pointer"
+          [ngClass]="{'d-block d-lg-none': !last, 'd-none': last}"
+          >...</label
+        >
+      </a>
+      <span *ngIf="!last" class="px-2 bold-text">/</span>
+    </ng-container>
+  </p>
+  <hr class="gray-4f mt-0" style="height: 2px" />
+</div>

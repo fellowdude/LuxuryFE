@@ -1,0 +1,27 @@
+import { environment } from 'src/environments/environment';
+
+export class Constants {
+  // tslint:disable-next-line: max-line-length
+  public static API_KEY =
+    'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXkiOiJlMDAwNzc0NjQ5ZjJhMmQzMjY4NTMxMGQ3NmRhYjBjYTU5NzU2MWQ2ZjI4MTg4NzlmYjc1ZGQ4ZjQ0ZjMyMTFhYmI3OGU0YzVkN2JjOTIwYjcwYzM3NjVlMmZiMGIzOWQiLCJpYXQiOjE1NTUzNDYwMjB9.GdnQJepFz1DDoQbhCy61tBqp4hBmg6z1RFUExuuUPpLDWmaH7TyLIlO8IGPQt90QBzu3KNa4rGVsT4xvgRlYaA';
+
+  public static URL_BACKEND = environment.URL_BACKEND;
+  public static GTAG = environment.GTAG; //'UA-203868702-1';
+
+  public static readonly FRONT_KEY = `-----BEGIN RSA PRIVATE KEY-----
+    MIIBOgIBAAJBAIu+SitTqEqImZqzFrKkvp58PVbcSGDv/q9l4xkYe24kU5AACSZc
+    TYRQrfPwL9Sr+VZNgZiZH7AIeV5GEgZG3QMCAwEAAQJABbxfyvt6EuUceO8U5WxB
+    rrumwOP1zJTNPWHPOn54woKHpW1rEp5elL1SHzDqaPkY2VZirl998xbZ7bphs35p
+    8QIhAMjcrLQWwu2R4ErmF7QW8gCqoYwWB898tZPxQLaJlMP1AiEAshqTbWuVdDUQ
+    wcq/xx/LsH4QdDNfOX7Pd+2oVozc+hcCIDW2NQSPVZ7btGOy9cG1pQ8ikcJ5HauR
+    SKkACXMGhV6FAiAEA49RBvyuSsfe5jfeP/wyNRUf2UyLGi2I0WVa1f/g7wIhAK9B
+    e2JSos7G96yPpDeA5CcXwxYAYYjqWGwOwpLOqooI
+        -----END RSA PRIVATE KEY-----`;
+
+  public static readonly GOOGLE_MAPS_KEY =
+    'AIzaSyCOJ5TAyXP5_KCrN-PwW6R2QcCP7RWQTo4';
+
+  public static PRESTIGIA_BACKEND = 'https://backend.prestigia.pe';
+  public static PRESTIGIA_API_KEY =
+    'ZXlKaGJHY2lPaUpTVXpJMU5pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SnJaWGtpT2lJeFpHRTFaVEpoWWpsa1pUUmpNV05rTjJaaVpHRTFaRFU1WVdGalpXVXdOekZoWXpoa05HVXpNVE13TUdWaE5qRmhNelF6T0dJMFlqQmxZV1k0Tm1JeVpqQTNZVGhqTVRZNFpEVTFaRFl3TldVNU1XSm1PVGMxTURReFpqbGtNV1lpTENKemVYTjBaVzFmWVhCcElqb2ljSEpsYzNScFoybGhJaXdpYVdGMElqb3hOVGc1TWpJeE5qUTBmUS5uMUlNM2E1ZVRhaGFGT2NTUmZ3MU1LUHVrT1RDcEF4TU5sV0dOSGZRRC1GMGUzRm9Bc3M0dnRDQWtobkZ2TFdpRWVQOGtSOHJVX3VRZVFrMUJWdjFnUQ==';
+}

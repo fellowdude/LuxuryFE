@@ -1,0 +1,79 @@
+<app-modal-header
+  [title]="'Mi perfil'"
+  [returnCondition]="canBack"
+  (onClose)="closeModal()"
+></app-modal-header>
+<div class="modal-body d-flex align-items-center blue-4f-text">
+  <div class="d-flex flex-column w-100 h-100 align-items-xl-center">
+    <div class="text-center">
+      <div class="mt-5 mb-3 d-flex flex-column text-center">
+        <label class="font-size-x-large"
+          >{{userInfo?.suffix}} {{userInfo?.last_name_father}}</label
+        >
+        <label class="font-size-large"
+          >Socio Luxury #{{userInfo?.number_card}}</label
+        >
+      </div>
+      <div class="w-80 mx-auto">
+        <div class="blue-4f" style="height: 1px">&nbsp;</div>
+      </div>
+    </div>
+    <div class="text-center">
+      <ul class="my-5 p-0">
+        <li
+          class="font-size-x-large my-3 line-height-24 cursor-pointer"
+          (click)="showUser()"
+        >
+          Mis datos
+        </li>
+        <li
+          class="font-size-x-large my-3 line-height-24 cursor-pointer"
+          (click)="showAddresses()"
+        >
+          Mis direcciones
+        </li>
+        <li
+          class="font-size-x-large my-3 line-height-24 cursor-pointer"
+          (click)="showOrderHistory()"
+        >
+          Historial de pedidos
+        </li>
+        <li
+          class="font-size-x-large my-3 line-height-24 cursor-pointer"
+          (click)="showRateExperience()"
+        >
+          Califique sus experiencias
+        </li>
+      </ul>
+      <ul class="my-5 px-0 pt-5">
+        <li class="font-size-large cursor-pointer my-2 py-1" (click)="goToFAQ()">
+          Preguntas frecuentes
+        </li>
+        <li class="font-size-large cursor-pointer my-2 py-1" (click)="goToBook()">
+          Libro de reclamaciones
+        </li>
+        <li class="font-size-large cursor-pointer my-2 py-1" (click)="goToTerms()">
+          Términos y condiciones
+        </li>
+        <li
+          class="font-size-large cursor-pointer my-2 py-1"
+          (click)="goToPolitics()"
+        >
+          Políticas de privacidad
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <app-button
+    class="d-block w-100"
+    [label]="'Cerrar sesión'"
+    [rounded]="true"
+    [bold]="true"
+    [textSize]="2"
+    [size]="100"
+    [additionalClasses]="'ls-1 py-3'"
+    (onClick)="logout()"
+  ></app-button>
+</div>

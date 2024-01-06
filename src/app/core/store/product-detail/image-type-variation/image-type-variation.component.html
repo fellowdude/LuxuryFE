@@ -1,0 +1,12 @@
+<button
+  class="outline-none cursor-pointer mr-2 mb-2 border-none p-0"
+  [ngClass]="{'secondary-blue-border': imageSelected === image}"
+  (click)="selectImageVariation( image )"
+  [style.borderWidth]="image === imageSelected ? '3px !important': '0px !important'"
+>
+  <img
+    src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/800px-Image_created_with_a_mobile_phone.png"
+    height="60"
+    width="60"
+  />
+</button>

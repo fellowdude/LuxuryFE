@@ -1,0 +1,423 @@
+<app-modal-header
+  [title]="'Mis datos'"
+  [returnCondition]="canBack"
+  (onClose)="closeModal()"
+  (onReturn)="returnModal()"
+></app-modal-header>
+<div class="modal-body scrollbar-primary">
+  <p class="font-weight-bold font-size-large mb-3">Datos de la cuenta</p>
+  <form [formGroup]="profileForm">
+    <div class="row mt-3">
+      <div class="col-12">
+        <div class="form-group">
+          <div class="input-block">
+            <label><strong>Número de tarjeta</strong></label>
+            <input
+              type="text"
+              id="number_card"
+              formControlName="number_card"
+              class="form-control"
+              mdbInput
+              readonly
+              OnlyNumbers="true"
+            />
+          </div>
+          <div class="row mt-3">
+            <div class="col-4">
+              <div class="input-block">
+                <label><strong>Sufijo</strong></label>
+                <select
+                  class="form-control"
+                  id="suffix"
+                  formControlName="suffix"
+                  mdbInput
+                  mdbValidate
+                >
+                  <option [value]="null" selected disabled></option>
+                  <option
+                    *ngFor="let suffix of suffixList"
+                    [value]="suffix?.value"
+                  >
+                    {{suffix?.value}}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="col-8">
+              <div class="input-block">
+                <label><strong>Nombre(s)</strong></label>
+                <input
+                  type="text"
+                  id="name"
+                  formControlName="name"
+                  class="form-control"
+                  mdbInput
+                  mdbValidate
+                />
+              </div>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col-6">
+              <div class="input-block">
+                <label><strong>Apellido Paterno</strong></label>
+                <input
+                  type="text"
+                  id="last_name_father"
+                  formControlName="last_name_father"
+                  class="form-control"
+                  mdbInput
+                  mdbValidate
+                />
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="input-block">
+                <label><strong>Apellido Materno</strong></label>
+                <input
+                  type="text"
+                  id="last_name_mother"
+                  formControlName="last_name_mother"
+                  class="form-control"
+                  mdbInput
+                  mdbValidate
+                />
+              </div>
+            </div>
+          </div>
+          <div class="input-block mt-3">
+            <label><strong>Correo electrónico personal</strong></label>
+            <input
+              type="text"
+              id="email"
+              formControlName="email"
+              class="form-control"
+              mdbInput
+              mdbValidate
+            />
+          </div>
+          <div class="row mt-3">
+            <div class="col-6">
+              <label><strong>Teléfono</strong></label>
+              <input
+                type="text"
+                id="phone"
+                formControlName="phone"
+                class="form-control"
+                mdbInput
+                mdbValidate
+                OnlyNumbers="true"
+                NoPaste
+              />
+            </div>
+            <div class="col-6">
+              <label><strong>Fecha de nacimiento</strong></label>
+              <input
+                mdbInput
+                type="date"
+                id="birth_date"
+                formControlName="birth_date"
+                class="form-control"
+              />
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col-4">
+              <div class="input-block">
+                <label><strong>DNI / CE</strong></label>
+                <select
+                  class="form-control"
+                  id="type_document"
+                  formControlName="type_document"
+                  mdbInput
+                  mdbValidate
+                >
+                  <option [value]="null" selected disabled></option>
+                  <option
+                    *ngFor="let typeDoc of typeDocList"
+                    [value]="typeDoc?._id"
+                  >
+                    {{typeDoc?.value}}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="col-8">
+              <label><strong>Número de documento</strong></label>
+              <input
+                type="text"
+                id="number_document"
+                formControlName="number_document"
+                class="form-control"
+                mdbInput
+                mdbValidate
+                OnlyNumbers="true"
+                NoPaste
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="row mt-3"> -->
+    <!--   <div class="col-12"> -->
+    <!--     <div class="form-group"> -->
+    <!--       <div class="input-group md-form my-3"> -->
+    <!--         <label class="w-100 blue-4f-text" -->
+    <!--           ><strong>Número de tarjeta</strong></label -->
+    <!--         > -->
+    <!--         <input -->
+    <!--           type="text" -->
+    <!--           id="number_card" -->
+    <!--           formControlName="number_card" -->
+    <!--           class="blue-4f-text input-border-bottom-blue my-0 form-control font-size-1 w-100 outline-none pl-1" -->
+    <!--           mdbInput -->
+    <!--           readonly -->
+    <!--           OnlyNumbers="true" -->
+    <!--         /> -->
+    <!--       </div> -->
+    <!--       <div class="row mt-3"> -->
+    <!--         <div class="col-4"> -->
+    <!--           <div class="input-group md-form my-3"> -->
+    <!--             <label class="font-size-1 w-100 blue-4f-text" -->
+    <!--               ><strong>Sufijo</strong></label -->
+    <!--             > -->
+    <!--             <select -->
+    <!--               class="blue-4f-text my-0 form-control font-size-1 w-100 outline-none pl-1 input-border-bottom-blue border-0" -->
+    <!--               id="suffix" -->
+    <!--               formControlName="suffix" -->
+    <!--               mdbInput -->
+    <!--               mdbValidate -->
+    <!--             > -->
+    <!--               <option [value]="null" selected disabled></option> -->
+    <!--               <option -->
+    <!--                 *ngFor="let suffix of suffixList" -->
+    <!--                 [value]="suffix?.value" -->
+    <!--                 class="blue-4ftext" -->
+    <!--               > -->
+    <!--                 {{suffix?.value}} -->
+    <!--               </option> -->
+    <!--             </select> -->
+    <!--           </div> -->
+    <!--         </div> -->
+    <!--         <div class="col-8"> -->
+    <!--           <div class="input-group md-form my-3"> -->
+    <!--             <label class="font-size-1 w-100 blue-4f-text" -->
+    <!--               ><strong>Nombre(s)</strong></label -->
+    <!--             > -->
+    <!--             <input -->
+    <!--               type="text" -->
+    <!--               id="name" -->
+    <!--               formControlName="name" -->
+    <!--               class="blue-4f-text input-border-bottom-blue my-0 form-control font-size-1 w-100 outline-none pl-1" -->
+    <!--               mdbInput -->
+    <!--               mdbValidate -->
+    <!--             /> -->
+    <!--           </div> -->
+    <!--         </div> -->
+    <!--       </div> -->
+    <!--       <div class="row"> -->
+    <!--         <div class="col-6"> -->
+    <!--           <div class="input-group md-form my-3"> -->
+    <!--             <label class="font-size-1 w-100 blue-4f-text" -->
+    <!--               ><strong>Apellido Paterno</strong></label -->
+    <!--             > -->
+    <!--             <input -->
+    <!--               type="text" -->
+    <!--               id="last_name_father" -->
+    <!--               formControlName="last_name_father" -->
+    <!--               class="blue-4f-text input-border-bottom-blue my-0 form-control font-size-1 w-100 outline-none pl-1" -->
+    <!--               mdbInput -->
+    <!--               mdbValidate -->
+    <!--             /> -->
+    <!--           </div> -->
+    <!--         </div> -->
+    <!--         <div class="col-6"> -->
+    <!--           <div class="input-group md-form my-3"> -->
+    <!--             <label class="font-size-1 w-100 blue-4f-text" -->
+    <!--               ><strong>Apellido Materno</strong></label -->
+    <!--             > -->
+    <!--             <input -->
+    <!--               type="text" -->
+    <!--               id="last_name_mother" -->
+    <!--               formControlName="last_name_mother" -->
+    <!--               class="blue-4f-text input-border-bottom-blue my-0 form-control font-size-1 w-100 outline-none pl-1" -->
+    <!--               mdbInput -->
+    <!--               mdbValidate -->
+    <!--             /> -->
+    <!--           </div> -->
+    <!--         </div> -->
+    <!--       </div> -->
+    <!--       <div class="input-group md-form my-3"> -->
+    <!--         <label class="font-size-1 w-100 blue-4f-text" -->
+    <!--           ><strong>Correo electrónico personal</strong></label -->
+    <!--         > -->
+    <!--         <input -->
+    <!--           type="text" -->
+    <!--           id="email" -->
+    <!--           formControlName="email" -->
+    <!--           class="blue-4f-text input-border-bottom-blue my-0 form-control font-size-1 w-100 outline-none pl-1" -->
+    <!--           mdbInput -->
+    <!--           mdbValidate -->
+    <!--         /> -->
+    <!--       </div> -->
+    <!--       <div class="row"> -->
+    <!--         <div class="col-6"> -->
+    <!--           <div class="input-group md-form my-3"> -->
+    <!--             <label class="font-size-1 w-100 blue-4f-text" -->
+    <!--               ><strong>Teléfono</strong></label -->
+    <!--             > -->
+    <!--             <input -->
+    <!--               type="text" -->
+    <!--               id="phone" -->
+    <!--               formControlName="phone" -->
+    <!--               class="blue-4f-text input-border-bottom-blue my-0 form-control font-size-1 w-100 outline-none pl-1" -->
+    <!--               mdbInput -->
+    <!--               mdbValidate -->
+    <!--               OnlyNumbers="true" -->
+    <!--               NoPaste -->
+    <!--             /> -->
+    <!--           </div> -->
+    <!--         </div> -->
+    <!--         <div class="col-6"> -->
+    <!--           <div class="input-group md-form my-3"> -->
+    <!--             <label class="font-size-1 w-100 blue-4f-text" -->
+    <!--               ><strong>Fecha de nacimiento</strong></label -->
+    <!--             > -->
+    <!--             <input -->
+    <!--               mdbInput -->
+    <!--               type="date" -->
+    <!--               id="birth_date" -->
+    <!--               formControlName="birth_date" -->
+    <!--               class="blue-4f-text input-border-bottom-blue my-0 form-control font-size-1 w-100 outline-none pl-1" -->
+    <!--             /> -->
+    <!--           </div> -->
+    <!--         </div> -->
+    <!--       </div> -->
+    <!--       <div class="row"> -->
+    <!--         <div class="col-4"> -->
+    <!--           <div class="input-group md-form my-3"> -->
+    <!--             <label class="font-size-1 w-100 blue-4f-text" -->
+    <!--               ><strong>DNI / CE</strong></label -->
+    <!--             > -->
+    <!--             <select -->
+    <!--               mdbInput -->
+    <!--               id="type_document" -->
+    <!--               formControlName="type_document" -->
+    <!--               mdbValidate -->
+    <!--               class="blue-4f-text my-0 form-control font-size-1 w-100 outline-none pl-1 input-border-bottom-blue border-0" -->
+    <!--             > -->
+    <!--               <option [value]="null" selected disabled></option> -->
+    <!--               <option -->
+    <!--                 *ngFor="let typeDoc of typeDocList" -->
+    <!--                 [value]="typeDoc?._id" -->
+    <!--               > -->
+    <!--                 {{typeDoc?.value}} -->
+    <!--               </option> -->
+    <!--             </select> -->
+    <!--           </div> -->
+    <!--         </div> -->
+    <!--         <div class="col-8"> -->
+    <!--           <div class="input-group md-form my-3"> -->
+    <!--             <label class="font-size-1 w-100 blue-4f-text" -->
+    <!--               ><strong>Número de documento</strong></label -->
+    <!--             > -->
+    <!--             <input -->
+    <!--               type="text" -->
+    <!--               id="number_document" -->
+    <!--               formControlName="number_document" -->
+    <!--               class="blue-4f-text input-border-bottom-blue my-0 form-control font-size-1 w-100 outline-none pl-1" -->
+    <!--               mdbInput -->
+    <!--               mdbValidate -->
+    <!--               OnlyNumbers="true" -->
+    <!--               NoPaste -->
+    <!--             /> -->
+    <!--           </div> -->
+    <!--         </div> -->
+    <!--       </div> -->
+    <!--     </div> -->
+    <!--   </div> -->
+    <!-- </div> -->
+  </form>
+  <div class="w-100">
+    <app-modal-loading
+      *ngIf="loadingProfileUpdating"
+      class="mx-auto"
+    ></app-modal-loading>
+    <app-button
+      *ngIf="!loadingProfileUpdating"
+      class="d-block w-100"
+      [label]="'Actualizar'"
+      [rounded]="true"
+      [bold]="false"
+      [textSize]="2"
+      [size]="100"
+      [disabled]="profileForm.invalid"
+      [additionalClasses]="'ls-1 py-2'"
+      (onClick)="updateProfileInfo()"
+    ></app-button>
+  </div>
+  <p class="font-weight-bold font-size-large mb-3 mt-5">
+    Actualización de Contraseña
+  </p>
+  <form [formGroup]="passForm">
+    <div class="row mt-3">
+      <div class="col-12">
+        <div class="form-group">
+          <div class="input-block">
+            <label><strong>Contraseña Actual</strong></label>
+            <input
+              type="password"
+              id="oldPass"
+              formControlName="oldPass"
+              class="form-control"
+              mdbInput
+              mdbValidate
+            />
+          </div>
+          <div class="input-block mt-3">
+            <label><strong>Nueva Contraseña</strong></label>
+            <input
+              type="password"
+              id="newPass"
+              formControlName="newPass"
+              class="form-control"
+              mdbInput
+              mdbValidate
+            />
+          </div>
+          <div class="input-block mt-3">
+            <label><strong>Repetir Contraseña</strong></label>
+            <input
+              type="password"
+              id="repPass"
+              formControlName="repPass"
+              class="form-control"
+              mdbInput
+              mdbValidate
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  <div class="w-100">
+    <app-modal-loading
+      *ngIf="loadingPasswordUpdating"
+      class="mx-auto"
+    ></app-modal-loading>
+    <app-button
+      *ngIf="!loadingPasswordUpdating"
+      class="d-block w-100"
+      [label]="'Guardar'"
+      [rounded]="true"
+      [bold]="false"
+      [disabled]="passForm.invalid"
+      [textSize]="2"
+      [size]="100"
+      [additionalClasses]="'ls-1 py-2'"
+      (onClick)="changePassword()"
+    ></app-button>
+  </div>
+</div>

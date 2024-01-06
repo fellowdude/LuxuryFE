@@ -1,0 +1,19 @@
+<div class="row">
+  <ng-container
+    *ngFor="let card of experiencesCards | paginate : {
+      itemsPerPage: 8,
+      currentPage: currentPage,
+      totalItems: totalFound
+		}"
+  >
+    <div class="col-6 col-md-6">
+      <app-experience-card [experience]="card"></app-experience-card>
+    </div>
+  </ng-container>
+
+  <div
+    class="w-100 d-flex justify-content-center justify-content-lg-end mt-4"
+  >
+    <app-pagination (onClick)="changePage($event)"></app-pagination>
+  </div>
+</div>

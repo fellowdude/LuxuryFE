@@ -1,0 +1,6 @@
+<label class="container" [ngStyle]="{ 'font-size': fontSize+'px'}" [ngClass]="{'button-centered': centered}">
+  <input type="checkbox" name="checkbox" [checked]="checked" [ngClass]="checked? 'checked':''" [(ngModel)]="checked" (click)="choose($event)" [attr.disabled]="noClick">
+  <span class="checkmark d-flex align-items-center justify-content-center"  [ngClass]="checked? color: 'white grey-border'" [style.width]="size+'px'" [style.height]="size+'px'">
+  </span>
+  <span class="label d-block">{{label}}</span>
+</label>

@@ -1,0 +1,35 @@
+<div
+  *ngIf="background"
+  class="d-flex justify-content-between align-items-center full-img-bg position-relative w-100"
+  style="height: 15vw; min-height: 220px"
+  [style.backgroundImage]="'url('+background+')'"
+>
+  <div class="d-flex h-100 col-10" [class.gradient-banner]="isGradient">
+    <img
+      class="item-image img-lazy ml-4"
+      *ngIf="logo"
+      defaultImage="./assets/placeholder.svg"
+      [lazyLoad]="logo"
+      style="z-index: 50;"
+    />
+    <label *ngIf="!logo" class="font-size-x-large white-text pl-3 pl-lg-5"
+      >{{name}}</label
+    >
+  </div>
+  <div class="d-flex d-lg-none align-items-center flex-column col-2">
+    <mdb-icon
+      *ngIf="showInfo"
+      fas
+      icon="info-circle"
+      class="white-text font-size-icons"
+      (click)="onInfoClick.emit()"
+    ></mdb-icon>
+    <mdb-icon
+      *ngIf="showMedia"
+      fas
+      icon="image"
+      class="white-text mt-3 font-size-icons"
+      (click)="onMediaClick.emit()"
+    ></mdb-icon>
+  </div>
+</div>

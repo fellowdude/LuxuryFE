@@ -1,0 +1,46 @@
+<div class="row payment-screen blue-4f">
+  <div
+    class="col-12 col-md-8 col-lg-6 col-xl-5 px-2 px-md-5 py-2 h-100 d-flex flex-column justify-content-center align-items-center container white"
+  >
+    <img
+      class="px-5 my-5 w-100"
+      src="./assets/images/check_icon.svg"
+      style="max-width: 220px"
+    />
+    <p class="blue-dark-text font-size-24 text-center mb-3">
+      <strong>¡Pago exitoso!</strong>
+    </p>
+    <div class="detail-container">
+      <div
+        class="text-container w-100 py-4 d-flex flex-column justify-content-center align-items-center"
+      >
+        <p class="blue-dark-text font-size-large text-center mb-4">
+          Muchas gracias por su compra
+        </p>
+        <div class="d-flex pt-2 flex-column payment-info">
+          <p
+            class="simple d-flex w-100 mt-0 mb-3 justify-content-between blue-dark-text"
+          >
+            <span>Número de pedido:</span><strong>{{orderCode}}</strong>
+          </p>
+          <p
+            class="simple d-flex w-100 my-0 justify-content-between blue-dark-text"
+          >
+            <span>Fecha:</span><strong>{{ today | date: 'dd/MM/yyyy'}}</strong>
+          </p>
+        </div>
+        <div class="mt-4">
+          <a [routerLink]="['/inicio']">
+            <app-button
+              label="Seguir comprando"
+              [rounded]="true"
+              [bold]="true"
+              [textSize]="1"
+              [additionalClasses]="'ls-1 py-3 br-10'"
+            ></app-button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

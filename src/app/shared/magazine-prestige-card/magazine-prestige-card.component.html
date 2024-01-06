@@ -1,0 +1,35 @@
+<a [href]="magazinePrestigeCard.link" target="_blank">
+  <div class="row m-0 cursor-pointer">
+    <div
+      class="col-6 col-md-5 d-flex justify-content-center overflow-hidden rounded"
+    >
+      <img
+        class="img-lazy w-100"
+        src="{{ magazinePrestigeCard.prestigeImage }}"
+        [lazyLoad]="true"
+        style="
+          min-height: 135px;
+          max-height: 155px;
+          object-fit: cover;
+          object-position: top;
+        "
+      />
+    </div>
+    <div class="col-6 col-md-7 d-flex flex-column justify-content-around">
+      <span class="font-size-base blue-1-text font-weight-bold"
+        >{{ magazinePrestigeCard.prestigeTitle }}</span
+      >
+      <p
+        class="blue-1-text line-height-24 text-clip-3 font-size-normal"
+        [innerHTML]="magazinePrestigeCard.prestigeBody"
+      ></p>
+      <a
+        class="text-right blue-1-text font-size-1"
+        [href]="magazinePrestigeCard.link"
+        target="_blank"
+        >ver más</a
+      >
+    </div>
+  </div>
+</a>
+

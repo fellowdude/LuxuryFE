@@ -1,0 +1,54 @@
+<div class="login-register-carousel w-100 position-fixed top">
+  <!-- <swiper [config]="swiperConfig">
+    <ng-container *ngFor="let item of items">
+      <div
+        swiperSlide
+        class="p-5 border-none"
+        style="
+          background-image: url('{{item.image}}');
+          background-size: cover;
+          background-position: center;
+          height: 404px;
+          min-height: 316px;
+        "
+      >
+        <h3 class="text-white font-size-5 mb-3">{{ item.title }}</h3>
+        <p class="text-white font-size-35">{{ item.text }}</p>
+      </div>
+    </ng-container>
+  </swiper> -->
+  <div class="d-none d-lg-block w-100 h-100 position-relative primary-blue">
+    <div class="carousel_overlay"></div>
+    <!-- <owl-carousel-o [options]="customOptions" *ngIf="items?.length > 0">
+      <ng-container *ngFor="let item of items">
+        <ng-template carouselSlide> -->
+          <img
+            class="p-0 border-none img-lazy primary-blue"
+            style="object-fit: cover; height: 100vh; width: 100vw"
+            defaultImage="./assets/placeholder-blue.svg"
+            lazyLoad="assets/images/login-carousel/1.jpg"
+          />
+          <!-- <h3 class="text-white font-size-5 mb-3">{{ item.title }}</h3>
+            <p class="text-white font-size-35">{{ item.text }}</p> -->
+        <!-- </ng-template>
+      </ng-container>
+    </owl-carousel-o> -->
+  </div>
+  <div class="d-block d-lg-none w-100 h-100 primary-blue">
+    <div class="carousel_overlay"></div>
+    <!-- <owl-carousel-o [options]="customOptions" *ngIf="itemsMobile?.length > 0">
+      <ng-container *ngFor="let item of itemsMobile">
+        <ng-template carouselSlide> -->
+          <img
+            class="p-0 border-none img-lazy blue-1 primary-blue"
+            style="object-fit: cover; height: 100vh; width: 100vw;"
+            defaultImage="./assets/placeholder-blue.svg"
+            lazyLoad="assets/images/login-carousel/1.jpg"
+          />
+          <!-- <h3 class="text-white font-size-5 mb-3">{{ item.title }}</h3>
+            <p class="text-white font-size-35">{{ item.text }}</p> -->
+        <!-- </ng-template>
+      </ng-container>
+    </owl-carousel-o> -->
+  </div>
+</div>

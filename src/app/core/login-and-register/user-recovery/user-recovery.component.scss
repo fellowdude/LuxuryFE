@@ -1,0 +1,17 @@
+.wrapper {
+    min-width: 100%;
+    .alternative-method {
+        //width: 389px;
+        height: 110px;
+        border-radius: 4px;
+        background: var(--blue-3);
+        box-shadow: 2px 2px 4px rgba(8, 38, 74, 0.5);
+        .alterna-content-method {
+            transform: translateY(20px);
+        }
+    }
+}
+
+select option {
+    color: black;
+}

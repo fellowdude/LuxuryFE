@@ -1,0 +1,15 @@
+<app-subtitle-header
+  class="d-none d-lg-flex w-100"
+  [subtitle]="'Categorías'"
+></app-subtitle-header>
+<select
+  class="w-100 blue-4f-text blue-4f-border br-10 pl-2 font-size-normal"
+  style="height: 40px"
+  [(ngModel)]="selectedCategoryLink"
+  (change)="changeSelection()"
+>
+  <option [value]="null" selected disabled>Categorías</option>
+  <option *ngFor="let category of listCategories" [value]="category?.link">
+    {{category?.name}}
+  </option>
+</select>

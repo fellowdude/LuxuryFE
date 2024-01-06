@@ -1,0 +1,61 @@
+<app-modal-header
+  [title]="'Carrito de compras'"
+  [returnCondition]="false"
+  (onClose)="closeModal()"
+></app-modal-header>
+<div class="modal-body scrollbar-primary">
+  <ng-container *ngIf="!loading">
+    <div class="py-2 mx-0">
+      <div class="list-group">
+        <app-modal-cart-item
+          *ngFor="let item of cart?.infoShoppingCart"
+          [cartItem]="item"
+          (onClick)="cartChange($event)"
+        ></app-modal-cart-item>
+      </div>
+    </div>
+    <div
+      class="px-2 py-2 mx-2 d-flex justify-content-center"
+      *ngIf="cart?.infoShoppingCart?.length == 0"
+    >
+      <label class="my-0 font-size-large text-center"
+        >Tu carrito de compras está vacío.</label
+      >
+    </div>
+  </ng-container>
+  <ng-container *ngIf="loading">
+    <app-modal-loading
+      class="w-100 py-2 d-flex mx-2 justify-content-center"
+    ></app-modal-loading>
+  </ng-container>
+</div>
+<div class="modal-footer">
+  <div class="d-flex flex-column flex-grow-1 px-2 py-2 mx-2">
+    <div class="d-flex w-100 my-2"></div>
+    <div class="d-flex justify-content-between">
+      <label class="font-size-large"><strong>Subtotal</strong></label>
+      <label class="font-size-large"
+        ><strong>{{ subtotal | currency: 'S/'}}</strong></label
+      >
+    </div>
+    <div class="d-flex justify-content-center flex-column my-2">
+      <label class="font-size-normal text-center"
+        ><strong
+          >El costo y tiempo de entrega se calculará según destino</strong
+        ></label
+      >
+      <p class="text-center font-size-normal my-2">Sus productos permanecerán 60 minutos en el carrito, luego los encontrará en Favoritos.</p>
+    </div>
+  </div>
+  <app-button
+    class="d-block w-100"
+    [label]="'Continuar'"
+    [rounded]="true"
+    [bold]="true"
+    [textSize]="2"
+    [size]="100"
+    [disabled]="cart?.infoShoppingCart?.length <= 0 || !proceedNext"
+    [additionalClasses]="'ls-1 py-3'"
+    (onClick)="checkout()"
+  ></app-button>
+</div>

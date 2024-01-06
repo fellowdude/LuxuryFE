@@ -1,0 +1,47 @@
+@import "_media";
+
+.animation-container{
+  text-align: center;
+  .animation-left{
+    width: 100%;
+    text-align: center;
+    @include media-breakpoint-down(xl) {
+      --animation-time: 25s;
+      position: absolute;
+      width: 100%;
+      margin: 0;
+      text-align: center;
+      white-space: nowrap;
+      /* Starting position */
+      -moz-transform:translateX(100%);
+      -webkit-transform:translateX(100%);
+      transform:translateX(100%);
+      -moz-animation: scroll-left-lg var(--animation-time) linear infinite;
+      -webkit-animation: scroll-left-lg var(--animation-time) linear infinite;
+      animation: scroll-left-lg var(--animation-time) linear infinite;
+    }
+  }
+}
+
+@-moz-keyframes scroll-left-lg {
+  0% { -moz-transform: translateX(100%); }
+  100% { -moz-transform: translateX(-280%); }
+}
+
+@-webkit-keyframes scroll-left-lg {
+  0% { -webkit-transform: translateX(100%); }
+  100% { -webkit-transform: translateX(-280%); }
+}
+
+@keyframes scroll-left-lg {
+  0% {
+    -moz-transform: translateX(100%); /* Browser bug fix */
+    -webkit-transform: translateX(100%); /* Browser bug fix */
+    transform: translateX(100%);
+  }
+  100% {
+    -moz-transform: translateX(-280%); /* Browser bug fix */
+    -webkit-transform: translateX(-280%); /* Browser bug fix */
+    transform: translateX(-280%);
+  }
+}

@@ -1,0 +1,14 @@
+@import "_media";
+
+.item-image{
+  --size: 270px;
+  max-width: var(--size);
+  max-height: var(--size);
+  width: auto;
+  height: auto;
+
+  @include media-breakpoint-up(lg) {
+    --size: 350px;
+  }
+
+}

@@ -1,0 +1,36 @@
+@import '~swiper/swiper-bundle.min.css';
+@import "_media";
+
+.gallery-container {
+    height: 90vh;
+    width: 800px;
+    @include media-breakpoint-down(lg) {
+      width: 100%;
+      height: 710px;
+    }
+}
+
+.img-gallery {
+  height: calc(90vh - 285px);
+  @include media-breakpoint-down(lg) {
+    height: 480px;
+  }
+}
+
+.video-gallery {
+    height: calc(90vh - 285px);
+    width: 720px;
+    @include media-breakpoint-down(lg) {
+        width: 420px;
+    }
+    @include media-breakpoint-down(sm) {
+        width: 522px;
+    }
+}
+
+.thumbnail-gallery {
+    height: 150px;
+    @include media-breakpoint-down(lg) {
+        height: 90px;
+    }
+}

@@ -1,0 +1,13 @@
+ul {
+    &:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        width: 50%;
+        height: 1px;
+        background-color: white;
+        bottom: -30px;
+        left: 0;
+        right: 0;
+        margin: auto;
+    }
+}

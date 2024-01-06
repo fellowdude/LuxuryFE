@@ -1,0 +1,47 @@
+@import "_media";
+
+.ad-horizontal-banner {
+  .carousel.slide {
+    .carousel-item {
+      position: relative;
+      max-height: 355px !important;
+      height: 28vw !important;
+      .item {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+      }
+    }
+  }
+}
+
+.ad-vertical-banner {
+  height: 100%;
+  .carousel-inner {
+    height: 100%;
+  }
+  .carousel.slide {
+    height: 100%;
+    .carousel-item {
+      .item {
+        width: 100%;
+		height: 100%;
+      }
+    }
+  }
+}
+
+.banner-parent {
+	height: 100%;
+  justify-content: flex-end;
+  @include media-breakpoint-down(sm) {
+    justify-content: center;
+  }
+}
+
+.banner-subtitle {
+  width: 50%;
+  @include media-breakpoint-down(sm) {
+    width: 100%;
+  }
+}

@@ -1,0 +1,20 @@
+@import "_media";
+
+.advantage-item {
+    flex-basis: 22%;
+    @include media-breakpoint-down(xl) {
+        img {
+            width: 40px;
+        }
+    }
+}
+
+/* .advantage-text {
+    font-size: 20px;
+    @include media-breakpoint-down(xl) {
+        font-size: 17px;
+    }
+    @include media-breakpoint-down(lg) {
+        font-size: 14px;
+    }
+} */

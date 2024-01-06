@@ -1,0 +1,14 @@
+
+<div class="d-flex w-100 flex-column">
+  <ng-container *ngIf="!loading">
+    <ng-container *ngFor="let supplier of supplierList">
+      <app-checkout-supplier [supplierOrder]="supplier" [isSummary]="true" (onClick)="cartChange($event)"></app-checkout-supplier>
+    </ng-container>
+    <ng-container *ngIf="supplierList.length == 0">
+      <label class="font-size-normal blue-1-text bold-text my-2 pl-1">No tiene productos en su carrito</label>
+    </ng-container>
+  </ng-container>
+  <ng-container *ngIf="loading">
+    <app-global-loading class="w-100 my-3"></app-global-loading>
+  </ng-container>
+</div>

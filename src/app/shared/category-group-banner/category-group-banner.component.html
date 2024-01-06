@@ -1,0 +1,34 @@
+<div class="category-group-banner h-100">
+  <carousel
+    [interval]="bannerConfig?.interval"
+    [itemsPerSlide]="bannerConfig?.itemsPerSlide"
+    [singleSlideOffset]="true"
+    [showIndicators]="bannerConfig?.indicators"
+    [isAnimated]="bannerConfig?.animation"
+  >
+    <slide
+      *ngFor="let slide of bannerConfig?.banners"
+      class="w-100 h-100"
+      style="height: 15vw !important; min-height: 130px"
+    >
+      <div
+        [class.gradient-banner]="isGradient"
+        (click)="redirectService.redirect(slide)"
+      >
+        <a class="w-100 h-100">
+          <div
+            class="d-flex px-5 h-100 align-items-center position-relative banner-background"
+            style="background-image: url('{{ slide.imageURL }}');
+                background-position: center;
+              height: 15vw !important;
+              min-height: 130px;"
+          >
+            <div class="white-text" style="z-index: 50">
+              <p class="font-size-x-large">{{slide?.title}}</p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </slide>
+  </carousel>
+</div>

@@ -1,0 +1,17 @@
+<app-modal-header [title]="'Filtros'" [returnCondition]="true" (onReturn)="closeModal()" (onClose)="closeModal()"></app-modal-header>
+<div class="modal-body">
+  <app-fake-filter-list [fakeFilterList]="fakeFilterList" (onClick)="sendToRoute($event)" [inMobile]="true"></app-fake-filter-list>
+  <app-filter-list #filterChild [filters]="filterList" [mobile]="true"></app-filter-list>
+</div>
+<div class="modal-footer">
+  <app-button
+    class="d-block w-100"
+    [label]="'Filtrar'"
+    [rounded]="true"
+    [bold]="true"
+    [textSize]="2"
+    [size]="100"
+    [additionalClasses]="'ls-1 py-3'"
+    (onClick)="applyFilters()"
+  ></app-button>
+</div>

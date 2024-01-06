@@ -1,0 +1,32 @@
+<app-modal-header
+  [title]="'Mis direcciones'"
+  [returnCondition]="canBack"
+  (onClose)="closeModal()"
+  (onReturn)="returnModal()"
+></app-modal-header>
+<div class="modal-body">
+  <div class="d-flex flex-column">
+    <ng-container *ngFor="let address of addressList; let i=index">
+      <app-checkout-address-item
+        class="w-100 h-100"
+        [profile]="true"
+        [address]="address"
+        [position]="i"
+        (onClick)="changeChecked($event)"
+      ></app-checkout-address-item>
+    </ng-container>
+  </div>
+</div>
+<div class="modal-footer">
+  <app-button
+    class="d-block w-100"
+    [label]="'Agregar dirección'"
+    [rounded]="true"
+    [bold]="true"
+    [textSize]="2"
+    [size]="100"
+    [disabled]="availableAddresses.length === 0"
+    [additionalClasses]="'ls-1 py-3'"
+    (onClick)="addNewAddress()"
+  ></app-button>
+</div>

@@ -1,0 +1,100 @@
+<section class="mb-4 container mx-auto">
+  <!-- <app-multiple-banners
+    [categoryResults]="categoryExperience"
+  ></app-multiple-banners> -->
+</section>
+<div class="container mx-auto">
+  <section class="d-block w-100 mb-4 mb-lg-5">
+    <app-breadcrumb [breadcrumb]="breadcrumb"></app-breadcrumb>
+  </section>
+  <div class="row m-0">
+    <div
+      class="pl-0 col-lg-3 pr-0 pr-lg-5 col-12 d-none d-lg-flex w-100 flex-column"
+    >
+      <div class="d-flex w-100">
+        <app-category-select
+          class="w-100"
+          [listCategories]="categoryList"
+        ></app-category-select>
+      </div>
+      <div
+        class="d-flex w-100 mt-5 flex-column"
+      >
+        <app-subtitle-header [subtitle]="'Filtros'"></app-subtitle-header>
+        <app-fake-filter-list [fakeFilterList]="brandFakeFilter"></app-fake-filter-list>
+        <app-filter-list
+          [filters]="filters"
+          (onClick)="sendFilterData($event)"
+        ></app-filter-list>
+      </div>
+    </div>
+    <section class="d-flex d-lg-none w-100 flex-column">
+      <app-product-list-mobile-menu
+        [listCategories]="categoryList"
+        [filterList]="filters"
+        [experience]="true"
+        (onResponse)="sendFilterData($event)"
+      ></app-product-list-mobile-menu>
+    </section>
+    <div
+      class="p-0 pl-lg-5 mt-4 mt-lg-0 col-12 col-lg-9 d-flex d-md-block flex-column"
+    >
+      <!-- <section *ngIf="categoryExperience?.subcategories?.length > 0"> -->
+      <!--   <div class="mb-4"> -->
+      <!--     <app-subtitle-header -->
+      <!--       [subtitle]="'Subcategorías'" -->
+      <!--     ></app-subtitle-header> -->
+      <!--     <app-card-list -->
+      <!--       [type]="'category'" -->
+      <!--       [cardList]="categoryExperience?.subcategories" -->
+      <!--     ></app-card-list> -->
+      <!--   </div> -->
+      <!-- </section> -->
+      <!-- Brands -->
+      <section *ngIf="categoryExperience?.brands?.length > 0">
+        <app-subtitle-header [subtitle]="'Marcas'"></app-subtitle-header>
+        <app-brands-carousel-secondary
+          [items]="categoryExperience?.brands"
+        ></app-brands-carousel-secondary>
+      </section>
+
+      <!-- Categories -->
+      <section
+        class="mb-5 order-2 mt-5"
+        *ngIf="categoryExperience?.subcategories?.length > 0"
+      >
+        <div class="mb-4">
+          <app-subtitle-header
+            [subtitle]="'Subcategorías'"
+          ></app-subtitle-header>
+        </div>
+        <app-card-list
+          [type]="'group'"
+          [cardList]="categoryExperience?.subcategories"
+        ></app-card-list>
+      </section>
+
+      <!-- Activaciones -->
+      <section
+        class="mb-5 order-2 mt-5"
+        *ngIf="categoryExperience?.activations?.activationsList?.length > 0"
+      >
+        <div class="mb-4">
+          <app-subtitle-header
+            [subtitle]="'Activaciones'"
+          ></app-subtitle-header>
+        </div>
+        <app-experiences-list-pageable
+          [experiencesCards]="categoryExperience?.activations?.activationsList"
+          [pages]="categoryExperience?.activations?.totalPages"
+          [totalFound]="categoryExperience?.activations?.totalFound"
+          (onPageClick)="changePage($event)"
+          [currentPage]="currentPage"
+        ></app-experiences-list-pageable>
+      </section>
+    </div>
+  </div>
+  <section class="mt-3 mb-5 my-lg-5 pt-lg-5 pb-lg-4">
+    <app-magazine-prestige-list></app-magazine-prestige-list>
+  </section>
+</div>

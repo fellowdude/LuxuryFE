@@ -1,0 +1,50 @@
+<div class="d-none d-md-block">
+  <ng-container *ngIf="bannersData?.length == 1 || bannersData?.length == 4">
+    <div class="my-2">
+      <app-banner-item
+        [bannerData]="bannersData[0]"
+        [type]="'main'"
+      ></app-banner-item>
+    </div>
+    <ng-container *ngIf="bannersData?.length == 4">
+      <app-banner-internal-group
+        [data]="bannersData.slice(1,4)"
+      ></app-banner-internal-group>
+    </ng-container>
+  </ng-container>
+  <ng-container *ngIf="bannersData?.length == 2">
+    <div class="d-flex flex-column">
+      <ng-container *ngFor="let item of bannersData; let i=index">
+        <app-banner-item
+          [bannerData]="bannersData[i]"
+          [type]="'main'"
+          class="my-2"
+        ></app-banner-item>
+      </ng-container>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="bannersData?.length == 3">
+    <app-banner-internal-group [data]="bannersData"></app-banner-internal-group>
+  </ng-container>
+</div>
+<div class="d-block d-md-none">
+  <div class="d-flex flex-column">
+    <ng-container *ngIf="bannersData?.length > 0">
+      <div class="my-1">
+        <app-banner-item
+          [bannerData]="bannersData[0]"
+          [type]="'main'"
+        ></app-banner-item>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="bannersData?.length > 1">
+      <ng-container *ngFor="let item of bannersData.slice(1,4); let i=index">
+        <app-banner-item
+          [bannerData]="bannersData[i]"
+          [type]="'basic'"
+          class="my-1"
+        ></app-banner-item>
+      </ng-container>
+    </ng-container>
+  </div>
+</div>

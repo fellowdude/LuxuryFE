@@ -1,0 +1,24 @@
+<div
+  class="img-zoom-container w-100"
+  (mouseenter)="showZoom()"
+  (mouseleave)="hideZoom()"
+>
+  <img
+    #img
+    class="img-lazy"
+    [style.width]="'100%'"
+    [lazyLoad]="true"
+    id="myimage"
+    [src]="image"
+    (load)="onLoad()"
+  />
+  <div
+    #len
+    [style.width]="lenSize + 'px'"
+    [style.height]="lenSize +'px'"
+    [style.left]="posX+'px'"
+    [style.top]="posY+'px'"
+    [hidden]="!yet"
+    class="img-zoom-lens"
+  ></div>
+</div>

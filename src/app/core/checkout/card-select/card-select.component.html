@@ -1,0 +1,38 @@
+<div class="d-flex w-100 mx-1">
+  <label class="font-size-large blue-dark-text"
+    >Elija la tarjeta e ingrese el número de su CVV</label
+  >
+</div>
+<div class="d-flex w-100 flex-wrap">
+  <ng-container *ngIf="!loading">
+    <ng-container *ngFor="let card of cardList; let i = index">
+      <div class="d-flex col-12 col-xl-6 px-0 px-lg-2">
+        <div class="d-flex w-100 py-1">
+          <app-checkout-card-item
+            class="w-100 h-100"
+            [card]="card"
+            [position]="i"
+            (onClick)="changeChecked($event)"
+            (onDelete)="deletedCard($event)"
+          ></app-checkout-card-item>
+        </div>
+      </div>
+    </ng-container>
+    <div class="d-flex col-12 col-xl-6 px-0 px-lg-2">
+      <div class="d-flex w-100 py-1">
+        <div
+          class="d-flex w-100 align-items-center justify-content-center py-5 my-2 br-20 blue-4f-border border-style-dashed cursor-pointer"
+          (click)="otherPaymentMethod()"
+        >
+          <mdb-icon fas icon="plus" class="blue-4f-text"></mdb-icon>
+          <label class="blue-4f-text my-0 ml-2 mt-1"
+            >Pagar con otra tarjeta</label
+          >
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="loading">
+    <app-global-loading class="w-100 my-3"></app-global-loading>
+  </ng-container>
+</div>

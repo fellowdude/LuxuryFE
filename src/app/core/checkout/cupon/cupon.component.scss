@@ -1,0 +1,4 @@
+// Removing the red border bottom if input is invalid
+.form-control.ng-invalid.ng-dirty {
+	border-bottom: 1px #ced4da solid !important;
+}

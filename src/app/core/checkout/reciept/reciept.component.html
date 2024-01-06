@@ -1,0 +1,58 @@
+<div class="d-flex w-100 mx-1">
+  <label class="font-size-large blue-dark-text">Seleccione su comprobante:</label>
+</div>
+<div class="d-flex rounded flex-column align-center mx-1 py-2 cursor-pointer"  [ngClass]="{'blue-4f-border': ballot, 'grey-border': !ballot}" (click)="isBallot($event)">
+  <div class="d-flex justify-content-space-between py-2">
+    <app-radio-button [checked]="ballot" [size]="20" [noClick]="true"></app-radio-button>
+    Boleta
+  </div>
+</div>
+<div class="d-flex rounded flex-column align-center my-2 mx-1 py-2 cursor-pointer" [ngClass]="{'blue-4f-border': invoice, 'grey-border': !invoice}" (click)="isInvoice($event)">
+  <div class="d-flex justify-content-space-between py-2">
+    <app-radio-button [checked]="invoice" [size]="20" [noClick]="true"></app-radio-button>
+    Factura
+  </div>
+  <div class="d-flex justify-content-space-between flex-column py-2 px-4" *ngIf="invoice">
+    <form [formGroup]="invoiceForm">
+      <div class="input-block mt-3">
+        <label for="name" [ngClass]="!invoice? 'grey-text': ''"><strong>Razón social</strong></label>
+        <input type="text" id="name" formControlName="name" placeholder="Ingrese razón social" class="form-control" mdbInput mdbValidate [readOnly]="!invoice">
+      </div>
+      <div class="input-block mt-3">
+        <label for="ruc" [ngClass]="!invoice? 'grey-text': ''"><strong>RUC</strong></label>
+        <input type="text" id="ruc" formControlName="ruc" placeholder="Ingrese RUC" class="form-control" mdbInput mdbValidate [readOnly]="!invoice" OnlyNumbers="true">
+      </div>
+      <div class="input-block mt-3">
+        <label for="address" [ngClass]="!invoice? 'grey-text': ''"><strong>Dirección</strong></label>
+        <input type="text" id="address" formControlName="address" placeholder="Ingrese dirección" class="form-control" mdbInput mdbValidate [readOnly]="!invoice">
+      </div>
+      <div class="input-block mt-3">
+        <label for="department" [ngClass]="!invoice? 'grey-text': ''"><strong>Departamento</strong></label>
+        <select class="form-control" id="department" formControlName="department" mdbInput mdbValidate [attr.disabled]="!invoice ? '' : null">
+          <option selected disabled [value]="null"></option>
+          <option *ngFor="let department of departmentsList" [value]="department._id">
+            {{department.name}}
+          </option>
+        </select>
+      </div>
+      <div class="input-block mt-3">
+        <label for="province" [ngClass]="!invoice? 'grey-text': ''"><strong>Provincia</strong></label>
+        <select class="form-control" id="province" formControlName="province" mdbInput mdbValidate [attr.disabled]="!invoice ? '' : null">
+          <option selected disabled [value]="null"></option>
+          <option *ngFor="let province of provinceList" [value]="province._id">
+            {{province.name}}
+          </option>
+        </select>
+      </div>
+      <div class="input-block mt-3">
+        <label for="district" [ngClass]="!invoice? 'grey-text': ''"><strong>Distrito</strong></label>
+        <select class="form-control" id="district" formControlName="district" mdbInput mdbValidate [attr.disabled]="!invoice ? '' : null">
+          <option selected disabled [value]="null"></option>
+          <option *ngFor="let district of districtList" [value]="district._id">
+            {{district.name}}
+          </option>
+        </select>
+      </div>
+    </form>
+  </div>
+</div>

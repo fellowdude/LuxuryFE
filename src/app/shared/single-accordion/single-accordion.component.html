@@ -1,0 +1,23 @@
+<div>
+  <div
+    class="py-3 d-flex justify-content-between cursor-pointer blue-4f-text align-items-center"
+    [ngClass]="{ 'bold-text': bold }"
+    (click)="toggleAccordion()"
+  >
+    <span class="pr-5 font-size-large">{{ accordion.title }}</span>
+    <i
+      class="icon-transition fas fa-chevron-down"
+      [ngClass]="{ 'fa-rotate-180': accordion.opened }"
+    ></i>
+  </div>
+  <hr class="gray-4f mt-0" style="height: 2px" />
+  <div
+    class="answer"
+    [class]="accordion.opened ? 'open font-size-normal ' + additionalContentClasses : ''"
+  >
+    <p
+      [innerHTML]="safeHtml(accordion.content)"
+      class="mb-2 text-justify detail"
+    ></p>
+  </div>
+</div>

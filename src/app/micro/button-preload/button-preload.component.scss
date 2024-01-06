@@ -1,0 +1,18 @@
+.btn {
+    box-shadow: none;
+    text-transform: none;
+    font-size: inherit;
+    font-size: var(--font-size-1);
+  }
+  .btn-rounded {
+    border-radius: 0.2em;
+  }
+  
+  .primary {
+    background-color: var(--blue-6) !important;
+    border-color: var(--blue-6) !important;
+    color: var(--white) !important;
+    padding: 0.6rem 1.5rem;
+  }
+
+  

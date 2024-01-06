@@ -1,0 +1,26 @@
+<div class="d-flex flex-column w-100 font-family-2 br-8 px-0 px-lg-3 py-0 py-lg-2 custom-border">
+  <a>
+    <div
+      class="d-flex w-100 flex-row justify-content-between align-items-center rounded question pl-1"
+    >
+      <p class="font-size-normal" [ngClass]=" isOpened ? 'blue-dark-text' : 'grey-text'">
+        <strong>{{ title }}</strong>
+      </p>
+      <mdb-icon
+        fas
+        class="d-none d-lg-flex ml-3 mr-1"
+        [icon]="isOpened ? 'chevron-up' : 'chevron-down'"
+        [ngClass]=" isOpened ? 'blue-dark-text' : 'grey-text'"
+      ></mdb-icon>
+    </div>
+  </a>
+  <div
+    class="d-flex w-100 flex-column answer"
+    [class.open]="isOpened"
+  >
+    <div [hidden]="!isOpened">
+      <ng-template drawerHost></ng-template>
+    </div>
+  </div>
+</div>
+

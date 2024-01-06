@@ -1,0 +1,13 @@
+<div
+  class="payment d-flex h-100 w-100 flex-column justify-content-start rounded font-family-2 px-2 px-sm-3 pt-2 pt-sm-3 br-8 gray-e7"
+>
+  <h3 class="font-size-base bold-text mb-2 blue-4f-text">
+    <span>{{ card?.title }}</span>
+  </h3>
+  <p class="font-size-normal blue-1-text mb-5 h-100" [innerHtml]="card?.text"></p>
+  <p
+    class="font-size-normal blue-4f-text mb-3 bold-text"
+    [innerHtml]="card?.subText"
+  ></p>
+  <hr class="w-100 light-blue-4-border mt-0 mb-1" />
+</div>

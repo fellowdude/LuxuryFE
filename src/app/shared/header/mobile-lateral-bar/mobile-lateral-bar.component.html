@@ -1,0 +1,93 @@
+<div class="black-light text-white w-100 scrollbar-primary overflow-auto h-100">
+  <div class="py-5">
+    <div class="w-80 mx-auto">
+      <div class="text-center">
+        <div class="d-flex flex-column">
+          <label class="font-size-3"
+            >{{ userInfo?.suffix }}{{ userInfo?.last_name_father }}</label
+          >
+          <label class="font-size-1"
+            >Socio Luxury #{{ userInfo?.number_card }}</label
+          >
+
+          <div class="text-center my-4">
+            <label
+              class="font-size-3 font-weight-bold cursor-pointer"
+              (click)="logout()"
+              >Cerrar Sesión</label
+            >
+          </div>
+        </div>
+        <div class="w-80 mx-auto">
+          <div class="border-bottom border-white" style="height: 1px">
+            &nbsp;
+          </div>
+        </div>
+      </div>
+      <div class="text-center">
+        <div class="mt-5 p-0">
+          <ul>
+            <li
+              class="font-size-3 my-3 line-height-24 cursor-pointer"
+              (click)="showUser()"
+            >
+              Mis datos
+            </li>
+
+            <li
+              class="font-size-3 my-3 line-height-24 cursor-pointer"
+              (click)="showAddresses()"
+            >
+              Mis direcciones
+            </li>
+            <li
+              class="font-size-3 my-3 line-height-24 cursor-pointer"
+              (click)="showWishlist()"
+            >
+              Mis favoritos<b class="ml-1" *ngIf="wishlistSize > 0"
+                >({{ wishlistSize }})</b
+              >
+            </li>
+            <li
+              class="font-size-3 my-3 line-height-24 cursor-pointer"
+              (click)="showOrderHistory()"
+            >
+              Historial
+            </li>
+            <li
+              class="font-size-3 my-3 line-height-24 cursor-pointer"
+              (click)="showRateExperience()"
+            >
+              Califica tus experiencias
+            </li>
+          </ul>
+        </div>
+        <div class="p-0 mt-5">
+          <ul>
+            <li
+              class="font-size-05 cursor-pointer py-2"
+              (click)="showContact()"
+            >
+              Contacto
+            </li>
+            <li class="font-size-05 cursor-pointer py-2" (click)="goToFAQ()">
+              Preguntas frecuentes
+            </li>
+            <li class="font-size-05 cursor-pointer py-2" (click)="goToBook()">
+              Libro de reclamaciones
+            </li>
+            <li class="font-size-05 cursor-pointer py-2" (click)="goToTerms()">
+              Términos y condiciones
+            </li>
+            <li
+              class="font-size-05 cursor-pointer py-2"
+              (click)="goToPolitics()"
+            >
+              Políticas de privacidad
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<div>
+  <div class="px-4 py-3">
+    <div class="modal-header">
+      <button
+        type="button"
+        class="close pull-right p-0 font-size-6"
+        style="top: 40px; right: 40px;"
+        (click)="hideModal()"
+      >
+        <span>×</span>
+      </button>
+      <h4 class="modal-title w-100 font-weight-bold">{{ modalTitle }}</h4>
+    </div>
+    <div *ngIf="!innerBody" class="modal-body h-auto">
+      {{ modalBody }}
+    </div>
+    <div *ngIf="innerBody" class="modal-body h-auto" [innerHTML]="modalBody"></div>
+  </div>
+</div>

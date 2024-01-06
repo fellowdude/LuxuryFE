@@ -1,0 +1,247 @@
+@use "sass:map";
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1600px,
+  xxxl: 1920px,
+  xxxxl: 2560px,
+);
+
+$font-sizes: (
+  "base": 16px,
+  "10": 10px,
+  "11": 11px,
+  "05": 12px,
+  "1": 14px,
+  "2": 16px,
+  "25": 15px,
+  "3": 18px,
+  "35": 20px,
+  "21": 21px,
+  "4": 24px,
+  "24": 24px,
+  "45": 26px,
+  "5": 30px,
+  "6": 36px,
+  "7": 44px,
+  "75": 44px,
+  "8": 64px,
+  "15": 15px,
+  "12px": 12px,
+  "14px": 14px,
+  "logo": 28px,
+  "modal": 20px,
+  "hero": 44px,
+  "24-custom": 24px,
+  "icons": 25px,
+  "bc": 16px,
+  "40": 40px,
+  "50": 50px,
+  "70": 70px,
+  "small": 13px,
+  "normal": 14px,
+  "large": 18px,
+  "x-large": 22px
+);
+
+$font-sizes-mb: (
+  "base": 14px,
+  "05": 10px,
+  "1": 12px,
+  "2": 13px,
+  "3": 14px,
+  "35": 15px,
+  "4": 16px,
+  "45": 18px,
+  "5": 18px,
+  "21": 21px,
+  "6": 22px,
+  "24": 24px,
+  "25": 15px,
+  "7": 28px,
+  "75": 35px,
+  "8": 40px,
+  "12px": 12px,
+  "14px": 14px,
+  "logo": 20px,
+  "modal": 18px,
+  "hero": 19px,
+  "24-custom": 20px,
+  "icons": 25px,
+  "bc": 16px,
+  "50": 23px,
+  "small": 13px,
+  "normal": 14px,
+  "large": 18px,
+  "x-large": 22px
+);
+
+$font-sizes-lg: (
+  "base": 14px,
+  "11": 11px,
+  "05": 11px,
+  "1": 13px,
+  "2": 14px,
+  "25": 15px,
+  "3": 16px,
+  "35": 17px,
+  "21": 21px,
+  "4": 20px,
+  "45": 26px,
+  "small": 13px,
+  "normal": 14px,
+  "large": 18px,
+  "x-large": 22px
+);
+
+$bold-text-weigths: (
+  "400": 400,
+);
+
+$colors: (
+  "beige-2": #f8f8f8,
+  "beige-3": #ebebeb,
+  "beige-light": #fafafa,
+  "black": #1e1e1e,
+  "black-light": #333333,
+  "black-shallow": #00000073,
+  "blue-1": #001c3e,
+  "blue-2": #103057,
+  "blue-3": #1e426e,
+  "blue-4": #2f5888,
+  "blue-4f": #0b234f,
+  "blue-5": #4675ac,
+  "blue-6": #2765ad,
+  "blue-7": #012452,
+  "blue-8": #3b4b69,
+  "blue-categories": #0a5da6,
+  "blue-dark": #092444,
+  "brown-2c": #8c662c,
+  "gray": #959595,
+  "gray-a7": #a1a1a7ff,
+  "gray-button": #eaeff6,
+  "gray-category": #f8f8f8,
+  "gray-e7": #e6e6e7,
+  "gray-subcategory": #ebebeb,
+  "grey": #d9d9d9,
+  "grey-checkout": #959595,
+  "grey-dark": #787878,
+  "grey-icon": #4f4f4f,
+  "grey-input": #eeeeee,
+  "grey-light": #fafbfc,
+  "grey-nav": #4d4d4d,
+  "light-blue-0": #203f63,
+  "light-blue-1": #628ab9,
+  "light-blue-2": #8aa8cb,
+  "light-blue-3": #aac0d9,
+  "light-blue-4": #d5e0ec,
+  "light-blue-5": #eaeff6,
+  "light-blue-6": #eff3f8,
+  "pale-blue": #58719e,
+  "primary-blue": #132341,
+  "red-1": #d81e05,
+  "red-2": #ff0019,
+  "secondary-blue": #0a5da6,
+  "third-blue": #58719e,
+  "white": #ffffff,
+  "light-blue-link": #3498db,
+);
+
+$widths: (
+  "login-btn": 240px,
+  "170": 170px,
+  "200": 200vw,
+  "100": 100%,
+  "95": 95%,
+  "94": 94%,
+  "90": 90%,
+  "85": 85%,
+  "80": 80%,
+  "75": 75%,
+  "70": 70%,
+  "65": 65%,
+  "60": 60%,
+  "55": 55%,
+  "50": 50%,
+  "45": 45%,
+  "40": 40%,
+  "35": 35%,
+  "30": 30%,
+  "25": 25%,
+  "20": 20%,
+  "15": 15%,
+  "10": 10%,
+  "banner-btn": 200px,
+  "130": 130px,
+);
+
+$custom-spaces: (
+  "1": 1rem,
+  "01": 0.1rem,
+  "0125": 0.125rem,
+  "05": 0.5rem,
+  "075": 0.75rem,
+  "custom-sm": 2.2rem,
+  "custom-5": 2.43rem,
+  "25": 2.5rem,
+  "custom-form": 2.5%,
+  "xl-txt": 42%,
+  "lg-txt": 30%,
+  "158": 158px,
+  "7": 7%,
+  "10": 10%,
+  "15": 15%,
+  "20": 20%,
+  "30": 30%,
+);
+
+$line-heights: (
+  "normal": normal,
+  "20": 20px,
+  "24": 24px,
+  "35": 35px,
+  "30": 30px,
+  "40": 40px,
+  "micro": 1.9,
+);
+
+$border-radius: (
+  "4": 4px,
+  "8": 8px,
+  "10": 10px,
+  "15": 15px,
+  "20": 20px,
+  "25p": 25%,
+  "50p": 50%,
+  "product-card": 10px 10px 0px 10px,
+);
+
+$border-style: (
+  "none": none,
+  "dashed": dashed,
+);
+
+$positions: (
+  "top": 0,
+  "left": 0,
+  "right": 0,
+  "bottom": 0,
+);
+
+$letter-spacing: (
+  "4": 4px,
+  "6": 6px,
+);
+
+// z-indexes
+$z-category-list-hero: 1000;
+$z-header: 1100;
+$z-carousel-btn: 1001;
+$z-navbar-dropdown: 1101;
+
+$z-zoom-area-lens: 1010;
+$z-zoom-area-zoomed-img: 1011;
+$z-zoom-area-overlay: 1012;

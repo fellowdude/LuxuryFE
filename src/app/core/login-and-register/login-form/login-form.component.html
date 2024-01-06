@@ -1,0 +1,97 @@
+<div
+  class="px-3 px-md-3 py-4 position-relative"
+  style="border-radius: 20px; background: rgba(255, 255, 255, 0.65)"
+>
+  <app-login-register-buttons></app-login-register-buttons>
+  <h2 class="font-size-x-large primary-blue-text bold-text">Iniciar sesión</h2>
+  <form class="mt-3" [formGroup]="loginForm" autocomplete="nope">
+    <div class="input-group my-3 md-form position-relative">
+      <input
+        mdbInput
+        id="email"
+        type="email"
+        formControlName="email"
+        name="fakeusernameremembered"
+        class="form-control font-size-large w-100 outline-none pl-5 br-10"
+        placeholder="Correo electrónico"
+        style="border: 0; background: white"
+        autocomplete="nope"
+      />
+      <mdb-icon
+        fas
+        icon="envelope"
+        class="primary-blue-text position-absolute left pl-3 top bottom d-flex align-items-center h-100"
+      ></mdb-icon>
+    </div>
+    <div class="input-group my-3 md-form position-relative">
+      <input
+        mdbInput
+        id="password"
+        type="password"
+        name="fakepasswordnoremembered"
+        formControlName="password"
+        placeholder="Contraseña"
+        class="form-control font-size-large w-100 outline-none pl-5 br-10"
+        style="border: 0; background: white"
+        autocomplete="new-password"
+      />
+      <mdb-icon
+        fas
+        icon="lock"
+        class="primary-blue-text position-absolute left pl-3 top bottom d-flex align-items-center h-100"
+      ></mdb-icon>
+    </div>
+    <div class="mt-2 mb-3 d-flex align-items-center">
+      <!-- <input class="mr-2" type="checkbox" value="" id="remember" formControlName="keepLogged" />
+      <label class="form-check-label font-size-10 primary-blue-text bold-text" for="remember">
+        Recordar cuenta
+      </label> -->
+
+      <mdb-checkbox
+        class="d-block ml-4"
+        [default]="true"
+        [checked]="true"
+        formControlName="keepLogged"
+      >
+        <span
+          class="text-clip-1 font-size-normal primary-blue-text"
+          style="padding-top: 2px"
+          [title]="'Recordar cuenta'"
+          >Recordar cuenta</span
+        >
+      </mdb-checkbox>
+    </div>
+    <app-button
+      *ngIf="!loadingLogin"
+      [type]="''"
+      [label]="'Iniciar sesión'"
+      [size]="'50'"
+      [textSize]="3"
+      [rounded]="true"
+      [additionalClasses]="'mt-4 d-block mx-auto px-0 br-10'"
+      [disabled]="loginForm.invalid"
+      [color]="'primary-blue'"
+      [textColor]="'white'"
+      (onClick)="login()"
+    ></app-button>
+    <app-global-loading class="my-3" *ngIf="loadingLogin"></app-global-loading>
+  </form>
+  <div
+    class="d-flex w-100 mt-4 justify-content-around flex-row align-items-center"
+  >
+    <p class="mt-2 font-size-normal primary-blue-text mr-2 text-left w-100">
+      <a
+        [routerLink]="['/ingreso/recuperar-usuario']"
+        style="white-space: nowrap"
+        ><strong>Recuperar usuario</strong></a
+      >
+    </p>
+    <p class="mt-2 font-size-normal primary-blue-text ml-2 text-right w-100">
+      <a
+        [routerLink]="['/ingreso/recuperar-contrasena']"
+        style="white-space: nowrap"
+        ><strong>Recuperar contraseña</strong></a
+      >
+    </p>
+  </div>
+</div>

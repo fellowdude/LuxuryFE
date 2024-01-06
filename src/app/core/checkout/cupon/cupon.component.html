@@ -1,0 +1,55 @@
+<div
+  class="d-flex w-100 flex-column br-8 grey-border font-family-2 px-3 py-2 beige-light mb-lg-3"
+>
+  <div
+    class="d-flex w-100 flex-column align-items-center rounded question pl-1"
+  >
+    <p class="font-size-large blue-dark-text w-100">
+      <strong>¿Tiene un cupón Luxury?</strong>
+    </p>
+    <div class="d-flex w-100 mt-3 flex-column justify-content-between">
+      <form [formGroup]="couponForm" (ngSubmit)="validateCoupon()">
+        <input
+          mdbInput
+          class="form-control mt-2 text-center bold-text py-4 br-10"
+          [ngClass]="{'text-uppercase': couponField}"
+          formControlName="coupon"
+          placeholder="Ingréselo aquí"
+        />
+      </form>
+      <p *ngIf="isThereCoupon" class="blue-4f-text mt-2 mb-1">
+        Se ha aplicado el cupón <strong>{{ couponCode | uppercase }}</strong>
+      </p>
+      <div class="mt-2 w-100 row align-self-center">
+        <ng-container *ngIf="!loadingCoupon">
+          <button
+            (click)="removeCoupon()"
+            *ngIf="isThereCoupon"
+            class="col-2 d-flex align-items-center justify-content-center p-0 outline-none border-none bg-transparent"
+          >
+            <mdb-icon
+              far
+              icon="trash-alt"
+              class="red-2-text font-size-35"
+            ></mdb-icon>
+          </button>
+          <app-button
+            class="d-block w-100"
+            [ngClass]="isThereCoupon ? 'col-10 pr-0' : ''"
+            [label]="buttonLabel"
+            [rounded]="true"
+            [bold]="true"
+            [textSize]="2"
+            [size]="100"
+            [additionalClasses]="'ls-1 py-3 br-10'"
+            [disabled]="couponForm.invalid"
+            (onClick)="validateCoupon()"
+          ></app-button>
+        </ng-container>
+        <div *ngIf="loadingCoupon" class="w-100 d-flex justify-content-center">
+          <app-global-loading></app-global-loading>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

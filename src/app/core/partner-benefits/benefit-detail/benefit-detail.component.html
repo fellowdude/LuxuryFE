@@ -1,0 +1,113 @@
+<div class="mb-4 container mx-auto">
+  <app-single-banner
+    [desktopBanner]="benefitData.desktopBanner"
+    [mobileBanner]="benefitData.mobileBanner"
+    [title]="benefitData.name"
+    [isGradient]="true"
+  ></app-single-banner>
+</div>
+<div class="d-block container mx-auto">
+  <section class="d-block w-100 mb-4 mb-lg-5">
+    <!--BREADCRUMB-->
+    <app-breadcrumb [breadcrumb]="breadcrumb"></app-breadcrumb>
+  </section>
+  <div class="d-flex w-100 mt-4 mt-lg-3">
+    <div class="d-none d-lg-flex w-30 flex-column mr-5">
+      <div class="d-flex w-100 flex-column">
+        <app-button
+          [label]="'Información de la marca'"
+          [type]="''"
+          [color]="'light-blue-5'"
+          [textSize]="1"
+          [bold]="true"
+          [textColor]="'blue-4f'"
+          [sufixIcon]="'info-circle'"
+          [size]="100"
+          [additionalClasses]="'d-flex text-left justify-content-between align-items-center'"
+          (onClick)="showInformation()"
+        ></app-button>
+        <app-button
+          [label]="'Galeria multimedia'"
+          [type]="''"
+          [color]="'light-blue-5'"
+          [textSize]="1"
+          [bold]="true"
+          [textColor]="'blue-4f'"
+          [sufixIcon]="'image'"
+          [size]="100"
+          [additionalClasses]="'d-flex text-left justify-content-between align-items-center mt-2'"
+          (onClick)="showMediaGalery()"
+        ></app-button>
+      </div>
+    </div>
+    <div class="ml-0 ml-lg-5 w-100">
+      <ng-container *ngIf="benefitData?.detail">
+        <div
+          *ngFor="let info of benefitData?.detail, let i=index"
+          [ngClass]="{'d-flex flex-column flex-lg-row justify-content-between mb-3': i==1}"
+        >
+          <div [ngClass]="{'d-flex flex-column': i==1}">
+            <div
+              class="font-weight-bold font-size-x-large"
+              [ngClass]="{'blue-4f-text ': i==0, 'blue-4f-text mt-3': i>=1}"
+            >
+              {{info?.title}}
+            </div>
+            <hr
+              *ngIf="i==0 || i==2"
+              class="w-100 mt-2"
+              [ngClass]="{'gray-a7': i==0, 'gray-a7': i==2}"
+              style="height: 2px"
+            />
+            <div class="grey-icon-text font-size-normal" [innerHTML]="info?.text"></div>
+          </div>
+          <div *ngIf="i==1" class="d-lg-flex flex-column">
+            <ng-container
+              *ngFor="let action of resolvedData.companyData.list_action_email_form; let i_action=index"
+            >
+              <app-button
+                *ngIf="(i_action + 1) % 2 != 0"
+                [label]="action.button_name"
+                [textSize]="2"
+                [textColor]="'white'"
+                [size]="100"
+                [additionalClasses]="'p-0 px-5 py-1 br-10 my-1'"
+                (onClick)="openExperienceForm(action._id)"
+              ></app-button>
+              <app-button
+                *ngIf="(i_action + 1) % 2 == 0"
+                [label]="action.button_name"
+                [type]="''"
+                [color]="'white'"
+                [textSize]="2"
+                [textColor]="'blue-4f'"
+                [size]="100"
+                [additionalClasses]="'p-0 px-5 py-1 br-10 blue-4f-border my-1'"
+                (onClick)="openExperienceForm(action._id)"
+              ></app-button>
+            </ng-container>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+  <section class="row mx-0 mt-0 pt-0 mt-lg-5 pt-lg-5">
+    <div
+      class="pl-0 col-lg-3 pr-0 pr-lg-5 col-12 order-2 order-lg-1 mt-4 mt-lg-0"
+    >
+      <app-contact-info
+        [contactInfo]="benefitData.contactInfo"
+        [companyInfo]="resolvedData.companyData"
+      ></app-contact-info>
+    </div>
+    <div class="p-0 mt-4 pl-lg-5 mt-lg-0 col-12 col-lg-9 order-1 order-lg-2">
+      <app-map
+        *ngIf="benefitData.addressList.length"
+        [addressList]="benefitData.addressList"
+      ></app-map>
+    </div>
+  </section>
+  <div class="my-4 my-lg-5 pt-0 pb-4 py-lg-5">
+    <app-magazine-prestige-list></app-magazine-prestige-list>
+  </div>
+</div>

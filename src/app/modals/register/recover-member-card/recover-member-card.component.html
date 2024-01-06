@@ -1,0 +1,87 @@
+<div class="mx-4 my-4 position-relative" style="max-width: 450px;">
+  <mdb-icon fas icon="times" class="font-size-x-large position-absolute top right cursor-pointer pr-0" (click)="closeModal()"></mdb-icon>
+  <h2 class="font-size-x-large primary-blue-text bold-text">Recordar número de socio</h2>
+  <form class="mt-2" [formGroup]="recoveryForm">
+    <div class="d-block text-left pb-1">
+      <label class="d-block text-black font-size-2 w-100 primary-blue-text">Ingrese su tipo de documento y su número de documento para identificar el número de socio Luxury relacionado.</label>
+    </div>
+    <div class="d-flex my-2">
+      <div class="input-group w-25 mr-2 my-2 md-form">
+        <!-- <label for="document" class="font-size-10 w-100 active"
+          >DNI/CE*</label
+        > -->
+        <select
+          id="document"
+          formControlName="type_document"
+          class="form-control font-size-normal w-100 outline-none pl-2 br-10 primary-blue-border"
+          style="
+            border: 0;
+            background: white;
+          "
+        >
+          <option [value]="null">DNI/CE*</option>
+          <option *ngFor="let typeDoc of typeDocList" [value]="typeDoc._id">{{typeDoc.value}}</option>
+        </select>
+      </div>
+      <div class="input-group w-75 my-2 md-form">
+        <!-- <label for="document-number" class="font-size-2 mb-2 w-100"
+          >Nùmero de documento*</label
+        > -->
+        <input
+          mdbInput
+          id="document-number"
+          type="text"
+          formControlName="document"
+          placeholder="Número de documento*"
+          class="form-control font-size-large w-100 outline-none pl-3 br-10 primary-blue-border"
+          style="
+            border: 0;
+            background: white;
+          "
+          OnlyNumbers="true"
+          NoPaste
+          maxlength="13"
+        />
+      </div>
+    </div>
+    <app-button
+      *ngIf="!requested"
+      [type]="''"
+      [color]="'primary-blue'"
+      [textColor]="'white'"
+      [label]="'Recordar número de socio'"
+      [size]="'75'"
+      [rounded]="true"
+      [additionalClasses]="'mt-3 mx-auto d-block br-20'"
+      [disabled]="recoveryForm.invalid"
+      (onClick)="requestMemberNumber()"
+    ></app-button>
+    <ng-container *ngIf="requested && memberNumber">
+      <label class="w-100 text-center primary-blue-text">
+        Su número de socio es: <strong>{{memberNumber}}</strong>
+        <a (click)="copyMemberNumber()">
+          <mdb-icon fas icon="copy" class="ml-2 primary-blue-text" mdbTooltip="¡Copiado!" triggers="" #pop="mdb-tooltip" (click)="pop.show()" (mouseleave)="wait(pop)"></mdb-icon>
+        </a>
+      </label>
+      <label class="w-100 text-center primary-blue-text">
+        <a (click)="closeModal()"><u>Cerrar</u></a>
+      </label>
+    </ng-container>
+    <ng-container *ngIf="requested && !memberNumber">
+      <label class="w-100 text-center primary-blue-text">Usted no esta registrado como socio.<br>¿Desea ser un socio Luxury?</label>
+      <app-button
+        [type]="''"
+        [color]="'primary-blue'"
+        [textColor]="'white'"
+        [label]="'Deseo ser socio Luxury'"
+        [size]="'75'"
+        [rounded]="true"
+        [additionalClasses]="'mt-3 mx-auto d-block br-20'"
+        (onClick)="openNewMemberForm()"
+      ></app-button>
+      <label class="w-100 text-center primary-blue-text mt-2">
+        <a (click)="reset()"><u>Reintentar</u></a>
+      </label>
+    </ng-container>
+  </form>
+</div>

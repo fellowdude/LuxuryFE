@@ -1,0 +1,18 @@
+<button
+  class="outline-none blue-4f-text px-2 py-1 rounded blue-4f-border mr-2 mb-2"
+  [ngClass]="{
+		'blue-4f': textVariationSelected === textVariation?.value, 
+		'white': textVariationSelected !== textVariation?.value
+  }"
+  (click)="selectTextVariation(textVariation)"
+  [disabled]="!textVariation?.active && !selected"
+  [style.opacity]="textVariation?.active ? 1 : .5"
+  [style.cursor]="textVariation?.active ? 'pointer' : 'default'"
+>
+  <span
+    [ngClass]="{
+		  'text-white': textVariationSelected === textVariation?.value
+	}"
+    >{{ textVariation?.value | uppercase }}</span
+  >
+</button>

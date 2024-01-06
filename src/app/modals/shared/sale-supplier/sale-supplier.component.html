@@ -1,0 +1,33 @@
+<div class="d-flex rounded flex-column align-center px-3 pb-2 my-2 grey-border">
+  <div class="d-flex w-100 mt-3 mb-1">
+    <label class="font-size-normal text-clip-1">
+      Vendido y entregado por
+      <strong>{{saleOrder.supplierName}}</strong>
+    </label>
+  </div>
+  <hr class="my-0 w-100" />
+  <div class="d-flex w-100 my-1 flex-column">
+    <app-sale-supplier-product
+      *ngFor="let product of saleOrder.products"
+      [product]="product"
+    ></app-sale-supplier-product>
+  </div>
+  <hr class="my-0 w-100" />
+  <div class="d-flex w-100 my-2 justify-content-between">
+    <div class="d-flex flex-shrink-0" style="width: 80px;"></div>
+    <div class="d-flex w-100 flex-column mx-3 gray-text">
+      <div class="d-flex w-100 justify-content-between mt-1">
+        <label class="font-size-normal">Costo de envío</label>
+        <label class="font-size-normal"
+          >{{ saleOrder.shippingCost | currency: 'S/'}}</label
+        >
+      </div>
+      <div class="d-flex w-100 justify-content-between mt-1">
+        <label class="font-size-normal my-0">Tiempo de entrega</label>
+        <label class="font-size-normal my-0"
+          >{{ saleOrder.deliveryTime }} días</label
+        >
+      </div>
+    </div>
+  </div>
+</div>

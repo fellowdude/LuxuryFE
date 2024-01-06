@@ -1,0 +1,16 @@
+@import "_media";
+
+.main, .basic {
+    height: 355px;
+    @include media-breakpoint-down(xl) {
+      height: 28vw;
+    }
+    @include media-breakpoint-down(md) {
+      height: 200px;
+    }
+}
+
+.large {
+    height: 100%;
+}
+

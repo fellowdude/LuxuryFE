@@ -1,0 +1,12 @@
+<label class="w-100 font-size-large bold-text blue-4f-text"
+  >{{ filter?.filter?.name }}</label
+>
+<div class="d-block w-100 ml-0">
+  <app-checkbox
+    class="d-block"
+    [label]="filter?.filter?.name"
+    [checked]="active"
+    [noClick]="true"
+    (click)="changeActive()"
+  ></app-checkbox>
+</div>

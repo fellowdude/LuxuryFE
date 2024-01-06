@@ -1,0 +1,35 @@
+<section class="row">
+  <div class="col-12">
+    <app-ad-carousel-banner
+      class="d-none d-md-block my-2"
+      [config]="horizontalBanners"
+    ></app-ad-carousel-banner>
+  </div>
+  <div class="col">
+    <div class="row">
+      <div class="col-6">
+        <div class="row">
+          <div class="col-12">
+            <app-ad-carousel-banner
+              class="d-none d-md-block my-2"
+              [config]="topLeftBanners"
+            ></app-ad-carousel-banner>
+          </div>
+          <div class="col-12">
+            <app-ad-carousel-banner
+              class="d-none d-md-block my-2"
+              [config]="bottomLeftBanners"
+            ></app-ad-carousel-banner>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 d-flex">
+        <app-ad-carousel-banner
+          class="d-none d-md-block my-2 flex-1"
+          [config]="verticalBanners"
+          type="vertical"
+        ></app-ad-carousel-banner>
+      </div>
+    </div>
+  </div>
+</section>

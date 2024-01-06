@@ -1,0 +1,17 @@
+<app-subtitle-header
+  [subtitle]="'Productos destacados'"
+  [highlight]="true"
+></app-subtitle-header>
+<owl-carousel-o [options]="customOptions">
+  <ng-container *ngFor="let product of featuredProducts">
+    <ng-template carouselSlide>
+      <app-card-product [product]="product" [showFlag]="true" [origin]="'Featured Products'"></app-card-product>
+    </ng-template>
+  </ng-container>
+</owl-carousel-o>
+<div #testDiv></div>
+<!--<swiper [config]="swiperConfig">
+    <ng-container *ngFor="let product of featuredProducts">
+        <app-card-product [product]="product"></app-card-product>
+    </ng-container>
+</swiper>-->

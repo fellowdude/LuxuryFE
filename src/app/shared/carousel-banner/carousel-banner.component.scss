@@ -1,0 +1,22 @@
+@import "_media";
+
+.banner-parent {
+  justify-content: flex-end;
+  @include media-breakpoint-down(sm) {
+    justify-content: center;
+  }
+}
+
+.banner-parent {
+    text-align: right;
+    @include media-breakpoint-down(sm) {
+        text-align: center;
+    }
+}
+
+.banner-subtitle {
+    width: 50%;
+    @include media-breakpoint-down(sm) {
+        width: 100%;
+    }
+}

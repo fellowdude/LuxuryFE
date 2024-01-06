@@ -1,0 +1,33 @@
+<div class="container mx-auto">
+  <app-single-banner
+    [desktopBanner]="aboutUsPage.bannerImg"
+    [mobileBanner]="aboutUsPage.bannerImg"
+    [title]="aboutUsPage.textBanner | uppercase"
+    [isGradient]="true"
+  ></app-single-banner>
+</div>
+<div class="container mx-auto">
+  <div class="mx-auto mt-5" style="max-width: 800px">
+    <h1 class="aboutus-title font-size-x-large blue-4f-text">{{ aboutUsPage.aboutUsTitle }}</h1>
+    <div
+      class="mb-3 text-justify p-container"
+      [innerHTML]="aboutUsPage.aboutUsText | safeHtml"
+    ></div>
+    <h2 class="font-size-x-large blue-4f-text mt-5 mb-3">
+      {{ aboutUsPage.benefitsTitle }}
+    </h2>
+    <ol class="mb-5" start="1">
+      <li
+        *ngFor="let benefit of aboutUsPage.benefits; let idx = index;"
+        class="d-flex font-size-large font-weight-bold blue-4f-text mb-2"
+        [innerHtml]="benefit | safeHtml"
+      ></li>
+    </ol>
+    <div class="d-flex justify-content-center mb-5">
+      <!-- <a class="text-center" routerLink="../terminos-condiciones"> -->
+      <!--   (*) Ver términos y condiciones -->
+      <!-- </a> -->
+      <div [innerHtml]="aboutUsPage.lastText | safeHtml"></div>
+    </div>
+  </div>
+</div>

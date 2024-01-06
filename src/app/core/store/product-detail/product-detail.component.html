@@ -1,0 +1,31 @@
+<section class="d-block container mx-auto my-5" *ngIf="productDetail">
+  <app-subtitle-breadcrumb
+    class="d-block w-100"
+    [breadcrumb]="breadcrumb"
+  ></app-subtitle-breadcrumb>
+  <div class="row mt-md-5">
+    <div class="d-none d-lg-block col-6">
+      <app-product-detail-images-galery
+        [productDetail]="productDetail"
+      ></app-product-detail-images-galery>
+    </div>
+    <!-- <div class="d-none d-md-block col-1"></div> -->
+    <div class="col col-lg-6">
+      <app-product-detail-header
+        [productDetail]="productDetail"
+      ></app-product-detail-header>
+      <hr />
+      <div class="d-block d-lg-none my-3">
+        <app-mobile-product-detail-images-galery
+          [productDetail]="productDetail"
+        ></app-mobile-product-detail-images-galery>
+        <hr />
+      </div>
+      <app-product-detail-body [productDetail]="productDetail" (onDetailChange)="detailChange($event)">
+      </app-product-detail-body>
+    </div>
+  </div>
+</section>
+<section class="d-block w-80 mx-auto my-5" *ngIf="!productDetail">
+  <app-global-loading></app-global-loading>
+</section>

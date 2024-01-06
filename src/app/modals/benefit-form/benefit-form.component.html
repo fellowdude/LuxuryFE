@@ -1,0 +1,226 @@
+<app-modal-header
+  [title]="benefitFormData.title"
+  [returnCondition]="false"
+  (onClose)="closeModal()"
+></app-modal-header>
+
+<div class="modal-body">
+  <form
+    *ngIf="benefitForm"
+    [formGroup]="benefitForm"
+    class="px-3 d-flex flex-column justify-content-between h-100"
+  >
+    <div>
+      <!-- <ng-container *ngFor="let field of benefitFormData.formFields"> -->
+      <!--   <div class="my-2 my-md-3"> -->
+      <!--     <!-1- Text -1-> -->
+      <!--     <ng-container *ngIf="field.type === 'text'"> -->
+      <!--       <ng-container -->
+      <!--         *ngIf="field.sub_type != 'date' && field.sub_type != 'number'" -->
+      <!--       > -->
+      <!--         <div class="input-group md-form my-0"> -->
+      <!--           <label -->
+      <!--             [for]="field.name" -->
+      <!--             class="font-size-1 w-100 blue-4f-text" -->
+      <!--             >{{ field.name }}</label -->
+      <!--           > -->
+      <!--           <input -->
+      <!--             mdbInput -->
+      <!--             [name]="field.name" -->
+      <!--             [type]="field.type" -->
+      <!--             [formControlName]="field.field" -->
+      <!--             class="blue-4f-text input-border-bottom-blue my-0 form-control font-size-1 w-100 outline-none pl-1" -->
+      <!--           /> -->
+      <!--         </div> -->
+      <!--       </ng-container> -->
+      <!--       <ng-container *ngIf="field.sub_type == 'date'"> -->
+      <!--         <label -->
+      <!--           [for]="field.name" -->
+      <!--           class="font-size-1 w-100 blue-4f-text" -->
+      <!--           >{{ field.name }}</label -->
+      <!--         > -->
+      <!--         <input -->
+      <!--           mdbInput -->
+      <!--           [name]="field.name" -->
+      <!--           [type]="field.sub_type" -->
+      <!--           [formControlName]="field.field" -->
+      <!--           class="blue-4f-text input-border-bottom-blue my-0 form-control font-size-1 w-100 outline-none pl-1 border-0 rounded-0" -->
+      <!--         /> -->
+      <!--       </ng-container> -->
+      <!--       <ng-container *ngIf="field.sub_type == 'number'"> -->
+      <!--         <div class="input-group md-form my-0"> -->
+      <!--           <label -->
+      <!--             [for]="field.name" -->
+      <!--             class="font-size-1 w-100 blue-4f-text" -->
+      <!--             >{{ field.name }}</label -->
+      <!--           > -->
+      <!--           <input -->
+      <!--             mdbInput -->
+      <!--             [name]="field.name" -->
+      <!--             [type]="field.type" -->
+      <!--             [formControlName]="field.field" -->
+      <!--             class="blue-4f-text input-border-bottom-blue my-0 form-control font-size-1 w-100 outline-none pl-1" -->
+      <!--             OnlyNumbers="true" -->
+      <!--             NoPaste -->
+      <!--           /> -->
+      <!--         </div> -->
+      <!--       </ng-container> -->
+      <!--     </ng-container> -->
+      <!--     <!-1- Selects -1-> -->
+      <!--     <ng-container *ngIf="field.type === 'list'"> -->
+      <!--       <div class="input-group md-form my-0"> -->
+      <!--         <label -->
+      <!--           [for]="field.name" -->
+      <!--           class="font-size-1 w-100 blue-4f-text" -->
+      <!--         > -->
+      <!--           {{ field.name }} -->
+      <!--         </label> -->
+      <!--         <select -->
+      <!--           mdbInput -->
+      <!--           [name]="field.name" -->
+      <!--           [formControlName]="field.field" -->
+      <!--           class="blue-4f-text my-0 form-control font-size-1 w-100 outline-none pl-1 input-border-bottom-blue border-0" -->
+      <!--         > -->
+      <!--           <option -->
+      <!--             class="blue-4f-text" -->
+      <!--             *ngFor="let option of field.list" -->
+      <!--           > -->
+      <!--             {{ option }} -->
+      <!--           </option> -->
+      <!--         </select> -->
+      <!--       </div> -->
+      <!--     </ng-container> -->
+      <!--     <!-1- Textarea -1-> -->
+      <!--     <ng-container *ngIf="field.type === 'text-area'"> -->
+      <!--       <div class="input-group md-form my-0"> -->
+      <!--         <label -->
+      <!--           [for]="field.name" -->
+      <!--           class="font-size-1 w-100 blue-4f-text" -->
+      <!--         > -->
+      <!--           {{ field.name }} -->
+      <!--         </label> -->
+      <!--         <textarea -->
+      <!--           mdbInput -->
+      <!--           [name]="field.name" -->
+      <!--           rows="3" -->
+      <!--           [formControlName]="field.field" -->
+      <!--           class="blue-4f-text input-border-bottom-blue scrollbar-primary my-0 md-textare form-control font-size-1 w-100 outline-none pl-1 border-0" -->
+      <!--         ></textarea> -->
+      <!--       </div> -->
+      <!--     </ng-container> -->
+      <!--     <!-1- Subtitle (label) -1-> -->
+      <!--     <ng-container *ngIf="field.type === 'instruction'"> -->
+      <!--       <p class="bold-text blue-4f-text">{{field.name}}</p> -->
+      <!--     </ng-container> -->
+      <!--   </div> -->
+      <!-- </ng-container> -->
+
+      <ng-container *ngFor="let field of benefitFormData.formFields">
+        <div class="my-2 my-md-3">
+          <!-- Text -->
+          <ng-container *ngIf="field.type === 'text'">
+            <ng-container
+              *ngIf="field.sub_type != 'date' && field.sub_type != 'number'"
+            >
+              <div class="input-block">
+                <label [for]="field.name" class="blue-4f-text">
+                  <strong> {{ field.name }} </strong>
+                </label>
+                <input
+                  mdbInput
+                  [name]="field.name"
+                  [type]="field.type"
+                  [formControlName]="field.field"
+                  class="blue-4f-text form-control"
+                />
+              </div>
+            </ng-container>
+            <ng-container *ngIf="field.sub_type == 'date'">
+              <div class="input-block">
+                <label [for]="field.name" class="blue-4f-text">
+                  <strong> {{ field.name }} </strong>
+                </label>
+                <input
+                  mdbInput
+                  [name]="field.name"
+                  [type]="field.sub_type"
+                  [formControlName]="field.field"
+                  class="blue-4f-text form-control"
+                />
+              </div>
+            </ng-container>
+            <ng-container *ngIf="field.sub_type == 'number'">
+              <div class="input-block">
+                <label [for]="field.name" class="blue-4f-text">
+                  <strong> {{ field.name }} </strong>
+                </label>
+                <input
+                  mdbInput
+                  [name]="field.name"
+                  [type]="field.type"
+                  [formControlName]="field.field"
+                  class="blue-4f-text form-control"
+                  OnlyNumbers="true"
+                  NoPaste
+                />
+              </div>
+            </ng-container>
+          </ng-container>
+          <!-- Selects -->
+          <ng-container *ngIf="field.type === 'list'">
+            <div class="input-block">
+              <label [for]="field.name" class="blue-4f-text">
+                <strong> {{ field.name }} </strong>
+              </label>
+              <select
+                mdbInput
+                [name]="field.name"
+                [formControlName]="field.field"
+                class="blue-4f-text form-control"
+              >
+                <option class="blue-4f-text" *ngFor="let option of field.list">
+                  {{ option }}
+                </option>
+              </select>
+            </div>
+          </ng-container>
+          <!-- Textarea -->
+          <ng-container *ngIf="field.type === 'text-area'">
+            <div class="input-block">
+              <label [for]="field.name" class="blue-4f-text">
+                <strong> {{ field.name }} </strong>
+              </label>
+              <textarea
+                mdbInput
+                [name]="field.name"
+                rows="3"
+                [formControlName]="field.field"
+                class="blue-4f-text form-control scrollbar-primary"
+              ></textarea>
+            </div>
+          </ng-container>
+          <!-- Subtitle (label) -->
+          <ng-container *ngIf="field.type === 'instruction'">
+            <p class="bold-text blue-4f-text">{{field.name}}</p>
+          </ng-container>
+        </div>
+      </ng-container>
+    </div>
+    <div>
+      <p class="font-size-small gray-text text-justify mb-4">
+        {{ benefitFormData.footerMessage }}
+      </p>
+      <div class="w-100">
+        <app-modal-loading *ngIf="loadingSending"></app-modal-loading>
+        <app-button
+          *ngIf="!loadingSending"
+          [label]="benefitFormData.buttonText | titlecase"
+          [size]="100"
+          [rounded]="true"
+          [disabled]="benefitForm.invalid"
+          (onClick)="sendForm()"
+        ></app-button>
+      </div>
+    </div>
+  </form>
+</div>

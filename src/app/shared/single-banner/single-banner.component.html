@@ -1,0 +1,41 @@
+<section class="w-100 position-relative">
+  <div [class.gradient-banner]="isGradient">
+    <div
+      class="d-none d-md-flex align-items-center px-5"
+      style="background-image: url('{{desktopBanner}}');
+		   background-position: center;
+		   background-size: cover;
+		   height: 15vw;
+		   min-height: 220px;"
+    >
+      <div
+        class="font-weight-bold white-text col-8 col-lg-6"
+        style="z-index: 50; max-width: 500px"
+      >
+        <p class="font-size-x-large" [innerHTML]="title | nextLine"></p>
+        <p class="mt-3 font-size-x-large" *ngIf="subtitle">{{ subtitle }}</p>
+      </div>
+    </div>
+    <div
+      class="d-flex d-md-none align-items-center px-4"
+      style="background-image: url('{{mobileBanner}}');
+		   background-size: cover;
+		   background-position: center;
+		   height: 130px;"
+    >
+      <p
+        class="font-weight-bold font-size-x-large white-text col-9 col-sm-6"
+        style="z-index: 50"
+      >
+        {{ title }}
+      </p>
+      <p
+        class="font-weight-bold font-size-large white-text col-9 col-sm-6"
+        style="z-index: 50"
+        *ngIf="subtitle"
+      >
+        {{ subtitle }}
+      </p>
+    </div>
+  </div>
+</section>

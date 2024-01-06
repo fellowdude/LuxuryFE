@@ -1,0 +1,45 @@
+<carousel class="d-none d-md-block">
+  <slide
+    *ngFor="let bannerDesktop of categoryResults?.desktopBanner"
+    class="w-100"
+  >
+    <app-single-banner
+      *ngIf="bannerDesktop?.link && bannerDesktop?.link != ''"
+      [desktopBanner]="bannerDesktop?.link"
+      [title]="bannerDesktop?.title"
+      [subtitle]="bannerDesktop?.subtitle"
+      [isGradient]="true"
+    >
+    </app-single-banner>
+  </slide>
+  <!-- <app-single-banner
+    *ngIf="categoryResults.desktopBanner.length == 0"
+    [desktopBanner]="categoryResults.defaultDesktopBanner"
+    [title]="categoryResults.categoryName || categoryResults.campaignName"
+    [isGradient]="true"
+  >
+  </app-single-banner> -->
+</carousel>
+
+<carousel class="d-md-none">
+  <slide
+    *ngFor="let bannerMobile of categoryResults?.mobileBanner"
+    class="w-100"
+  >
+    <app-single-banner
+      *ngIf="bannerMobile.link && bannerMobile?.link != ''"
+      [mobileBanner]="bannerMobile?.link"
+      [title]="bannerMobile?.title"
+      [subtitle]="categoryResults?.subtitle"
+      [isGradient]="true"
+    >
+    </app-single-banner>
+  </slide>
+  <!-- <app-single-banner
+    *ngIf="categoryResults.mobileBanner.length == 0"
+    [mobileBanner]="categoryResults.mobileBanner"
+    [title]="categoryResults.categoryName || categoryResults.campaignName"
+    [isGradient]="true"
+  >
+  </app-single-banner> -->
+</carousel>

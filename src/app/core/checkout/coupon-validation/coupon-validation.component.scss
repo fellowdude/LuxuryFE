@@ -1,0 +1,27 @@
+.msg-default {
+    font-size: 16px !important;
+    line-height: 21px !important;
+    padding: 13px 12px !important   ;
+}
+
+.msg-success {
+    background: #E0FFCD !important;
+}
+
+.msg-error {
+    background: #FFF3CD !important;
+}
+
+.msg-default mdb-icon {
+    height: 19.14px;
+    width: 21.88;
+    min-height: 26px;
+}
+
+.msg-success mdb-icon {
+    color: #4FFF40 !important;
+}
+
+.msg-error mdb-icon {
+    color: #FF4240 !important;
+}

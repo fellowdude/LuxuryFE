@@ -1,0 +1,14 @@
+<a [routerLink]="[config?.link]">
+  <!-- <div
+    class="d-flex card-item full-img-bg position-relative white-text overflow-hidden br-10"
+    [ngClass]="{'p-2 p-md-3': type !== 'category', 'justify-content-center align-items-center': type == 'brand'}"
+    [style.background-image]="'url(' + config?.imageDesktop + ')'"
+  ></div> -->
+  <img class="d-flex br-10 overflow-hidden img-lazy mx-auto" defaultImage="./assets/placeholder.svg" [lazyLoad]="config?.imageDesktop" style="object-fit: cover; width: 150px; height: 150px;">
+  <p
+    class="text-center my-3 text-clip-2"
+    [ngClass]="{'font-size-normal': type == 'group', 'font-size-large': type == 'category' || type == 'brand', 'text-uppercase ls-4': type == 'brand'}"
+  >
+    {{config?.text}}
+  </p>
+</a>

@@ -1,0 +1,38 @@
+<div class="d-flex">
+  <div class="d-flex flex-column col-2 px-0">
+    <img
+      class="mb-2 cursor-pointer img-lazy"
+      [lazyLoad]="true"
+      *ngFor="let imagePath of productDetailImages"
+      [src]="imagePath"
+      width="100%"
+      height="auto"
+      style="min-height: 80px; object-fit: contain"
+      (click)="selectMainImage(imagePath)"
+    />
+  </div>
+  <div class="col-10 position-relative">
+    <!-- <img [src]="imageSelected" class="w-100 ml-2"/> -->
+
+    <!-- The zoom and the lenSize is proportional to the width/height of the #divZoomed 
+	 In this case, the width/height is 400px (scss of this component). so for a good scale 
+	 between the portion of the image within the lens and the zoom showed in the 
+	 #divZoomed is necesary divide 400 / lenSize to calculate the correct zoom number
+	 400 / 160 = 2.5
+	-->
+    <app-main-image-zoom
+      #mainImage
+      class="d-block w-100"
+      [img]="imageSelected"
+      [divZoomed]="divZoomed"
+      [zoom]="2.5"
+      [lenSize]="160"
+      [imgWidth]="100"
+    ></app-main-image-zoom>
+    <div
+      #divZoomed
+      class="img-zoom-result position-absolute z-1"
+      style="top: 0; left: calc(100% + 50px)"
+    ></div>
+  </div>
+</div>

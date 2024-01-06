@@ -1,0 +1,89 @@
+<div class="w-100 bg-white h-100 scrollbar-primary overflow-auto">
+  <!-- Group of categories -->
+  <ul class="bg-white">
+    <li class="bg-white" *ngFor="let categoryGroupItem of groupCategoriesList">
+      <div
+        [ngClass]="{
+			'secondary-blue-text': isGroupSelected(categoryGroupItem) && !isGroupExperience(categoryGroupItem),
+			'brown-2c-text': isGroupExperience(categoryGroupItem)
+		  }"
+        class="py-3 px-10 d-flex justify-content-between"
+      >
+        <a
+          (click)="navigate(path(categoryGroupItem) + categoryGroupItem.friendly_url)"
+          class="d-flex align-items-center"
+          >
+          <img *ngIf="categoryGroupItem?.menu_icon" class="img-lazy mr-2" defaultImage="./assets/placeholder.svg" [lazyLoad]="categoryGroupItem.url_attachment + categoryGroupItem.menu_icon" width="18" height="18">
+          {{ categoryGroupItem.name }}</a
+        >
+        <div
+          *ngIf="categoryGroupItem.categories.length || categoryGroupItem.campaigns.length"
+          class="d-flex align-items-center"
+        >
+          <i
+            class="fas fa-chevron-down cursor-pointer"
+            [class.fa-rotate-180]="isGroupSelected(categoryGroupItem)"
+            (click)="isGroupSelected(categoryGroupItem) ? unSelectGroup() : selectGroup(categoryGroupItem)"
+          ></i>
+        </div>
+      </div>
+
+      <!-- Categories and campaigns of group -->
+      <ul *ngIf="isGroupSelected(categoryGroupItem)">
+        <!-- Campaigns -->
+        <li *ngFor="let campaign of categoryGroupItem.campaigns">
+          <div class="d-flex justify-content-between py-3 px-10 gray-category">
+            <a
+              class="ml-3 bold-text d-flex align-items-center"
+              (click)="navigate(path(categoryGroupItem) + categoryGroupItem.friendly_url + '/camp/' + campaign.friendly_url)"
+              >
+              <img *ngIf="campaign?.image_menu" class="img-lazy mr-2" defaultImage="./assets/placeholder.svg" [lazyLoad]="campaign.url_attachment + campaign.image_menu" width="18" height="18">
+              {{ campaign.name }}</a
+            >
+          </div>
+        </li>
+        <!-- Categories -->
+        <li *ngFor="let category of categoryGroupItem.categories">
+          <div
+            [ngClass]="{
+				'secondary-blue-text': isCategorySelected(category) && !isGroupExperience(categoryGroupItem),
+				'brown-2c-text': isGroupExperience(categoryGroupItem)
+			  }"
+            class="d-flex justify-content-between py-3 px-10 gray-category category-container"
+          >
+            <a
+              class="ml-3 bold-text d-flex align-items-center"
+              (click)="navigate(path(categoryGroupItem) + categoryGroupItem.friendly_url + '/categoria/' + category.friendly_url)"
+              >
+              <img *ngIf="category?.image_menu" class="img-lazy mr-2" defaultImage="./assets/placeholder.svg" [lazyLoad]="category.url_attachment + category.image_menu" width="18" height="18">
+              {{ category.name }} {{ quantitySubcategories(category) }}</a
+            >
+            <div *ngIf="category.subcategories.length">
+              <i
+                class="fas fa-chevron-down cursor-pointer"
+                [class.fa-rotate-180]="isCategorySelected(category)"
+                (click)="isCategorySelected(category) ? unSelectCategory() : selectCategory(category)"
+              ></i>
+            </div>
+          </div>
+          <!-- Sub categories -->
+          <ul *ngIf="isCategorySelected(category)">
+            <li
+              class="py-3 px-10 gray-subcategory"
+              *ngFor="let subcategory of category.subcategories"
+              [ngClass]="{
+				'brown-2c-text': isGroupExperience(categoryGroupItem)
+			  }"
+            >
+              <a
+                class="ml-5"
+                (click)="navigate(path(categoryGroupItem) + categoryGroupItem.friendly_url + '/categoria/' + subcategory.friendly_url)"
+                >{{ subcategory.name }}</a
+              >
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>

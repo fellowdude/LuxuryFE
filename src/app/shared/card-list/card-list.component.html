@@ -1,0 +1,7 @@
+<div class="card-list w-100">
+  <ng-container *ngFor="let card of cardList">
+    <div class="w-100" [ngClass]="classes">
+      <app-card-item [config]="card" [type]="type"></app-card-item>
+    </div>
+  </ng-container>
+</div>

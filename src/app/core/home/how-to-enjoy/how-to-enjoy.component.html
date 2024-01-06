@@ -1,0 +1,18 @@
+<app-header-subtitle
+  [subtitle]="'¿Cómo disfrutar de Luxury?'"
+></app-header-subtitle>
+<ng-container *ngIf="hteList?.length > 0">
+  <app-hte-banner
+  [data]="hteList[0]"
+  [position]="'left'"
+  [color]="'blue-1'"
+  [txtColor]="'white-text'"
+  ></app-hte-banner>
+  <app-hte-banner
+    [data]="hteList[1]"
+    [position]="'right'"
+    [color]="'white'"
+    [txtColor]="'black-text'"
+  ></app-hte-banner>
+</ng-container>
+

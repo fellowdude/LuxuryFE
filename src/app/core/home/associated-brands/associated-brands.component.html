@@ -1,0 +1,29 @@
+<div class="associated-brands">
+  <div class="w-100 mx-auto mb-4 mb-md-5">
+    <app-subtitle-header
+      [subtitle]="'Nuestras marcas asociadas'"
+      [highlight]="highlight"
+    ></app-subtitle-header>
+  </div>
+  <div
+    class="w-100 mx-auto"
+  >
+    <app-brands-carousel
+      [items]="items"
+      [greyscale]="true"
+      [setHeight]="true"
+    ></app-brands-carousel>
+  </div>
+  <!-- <section class="d-block d-md-none w-100 mx-auto"> -->
+  <!--   <div class="d-flex flex-row flex-wrap d-md-none home-padding-fixed"> -->
+  <!--     <ng-container *ngFor="let item of items.slice(0,8)"> -->
+  <!--       <img -->
+  <!--         [src]="item.logo" -->
+  <!--         style="max-height: 81px" -->
+  <!--         class="col-3 p-0 p-1" -->
+  <!--         [ngClass]="{'greyscale': greyscale}" -->
+  <!--       /> -->
+  <!--     </ng-container> -->
+  <!--   </div> -->
+  <!-- </section> -->
+</div>

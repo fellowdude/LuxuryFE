@@ -1,0 +1,53 @@
+<owl-carousel-o [options]="customOptions">
+  <ng-container *ngFor="let item of items">
+    <ng-template carouselSlide>
+      <div
+        class="img-container slide d-flex align-items-center justify-content-center"
+      >
+        <img
+          class="d-block img-lazy h-100"
+          [lazyLoad]="true"
+          [ngClass]="{'greyscale': greyscale}"
+          [src]="item?.logo"
+          [width]="arrowsInside ? '175' : '120'"
+          style="object-fit: contain"
+        />
+      </div>
+    </ng-template>
+  </ng-container>
+</owl-carousel-o>
+<!--<div class="d-flex justify-content-center">
+  <swiper [config]="swiperConfig" class="order-1 w-100">
+    <ng-container *ngFor="let item of items">
+      <div swiperSlide class="d-flex align-items-center justify-content-center">
+        <img
+          class="d-block img-lazy"
+          [lazyLoad]="true"
+          [ngClass]="{'greyscale': greyscale}"
+          [src]="item?.logo"
+          [width]="arrowsInside ? '175' : '120'"
+        />
+      </div>
+    </ng-container>
+  </swiper>
+  <div
+    class="order-0 d-flex justify-content-center align-items-center flex-1"
+    *ngIf="!arrowsInside"
+  >
+    <img
+      class="prev-btn cursor-pointer outline-none img-lazy"
+      [lazyLoad]="true"
+      src="assets/images/arrows/arrow-left.svg"
+    />
+  </div>
+  <div
+    class="order-2 d-flex justify-content-center align-items-center flex-1"
+    *ngIf="!arrowsInside"
+  >
+    <img
+      class="next-btn cursor-pointer outline-none img-lazy"
+      [lazyLoad]="true"
+      src="assets/images/arrows/arrow-right.svg"
+    />
+  </div>
+</div>-->

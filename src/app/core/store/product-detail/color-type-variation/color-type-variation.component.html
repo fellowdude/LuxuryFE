@@ -1,0 +1,13 @@
+<div
+  (click)="selectColor(color)"
+  class="rounded-circle mr-2 border"
+  [ngClass]="{
+    'border-dark': color.value === '#FFFFFF' && colorSelected !== '#FFFFFF',
+	  'secondary-blue-border': colorSelected === color.value,
+    'cursor-pointer': color?.active
+	}"
+  [style.backgroundColor]="color.value"
+  [style.borderWidth]="color.value === colorSelected ? '2px !important': '1px !important'"
+  [style.opacity]="color?.active ? 1 : .5"
+  style="width: 24px; height: 24px"
+></div>

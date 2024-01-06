@@ -1,0 +1,76 @@
+<!--<div class="w-100 position-relative home-padding-right">
+    <div class="banner-bg blue-1">
+        <div class="banner-text d-flex justify-content-center white-text line-height-30 position-absolute">
+            <p>{{data?.text}}</p>
+        </div>
+    </div>
+    <img [src]="data?.imageUrl" class="banner-img position-absolute bottom right">
+</div>-->
+
+<!--<div class="w-100 position-relative home-padding-right">
+    <div class="blue-1 banner-bg">
+    </div>
+    <div class="d-flex white-text position-absolute top left col-5 col-lg-6 col-xl-5 p-lg-5">
+        <p class="banner-text p-4 p-lg-4 mt-lg-2">{{data?.text}}</p>
+    </div>
+    <img [src]="data?.imageUrl" class="position-absolute bottom right col-7 col-lg-6 col-xl-7 p-0">
+</div>-->
+<div
+  class="d-none d-lg-block w-100 position-relative my-5"
+  [ngClass]="(position == 'left') ? 'home-padding-right' : 'home-padding-left'"
+>
+  <div
+    class="{{color}} banner-bg"
+    style="margin-right: calc(10% + 0.5rem)"
+  ></div>
+  <div
+    class="d-flex flex-row w-100 position-absolute top bottom align-items-center"
+  >
+    <p
+      class="text-justify d-none d-xl-block {{txtColor}} p-2 pl-lg-4 pt-lg-3 pr-lg-3 pl-xl-5 mx-xl-5 line-height-30 align-self-center font-size-normal"
+      [ngClass]="(position == 'left') ? 'order-1 pb-xl-5' : 'order-2'"
+      [innerHTML]="data?.text"
+    ></p>
+    <p
+      class="text-justify d-block d-xl-none {{txtColor}} p-2 pl-lg-4 pt-lg-3 pr-lg-3 pl-xl-5 mx-xl-5 line-height-30 align-self-center font-size-normal"
+      [ngClass]="(position == 'left') ? 'order-1 pb-xl-5' : 'order-2'"
+      [innerHTML]="data?.text"
+    ></p>
+    <!--<p class="{{txtColor}} p-2 pl-lg-4 pt-lg-3 pr-lg-3 pl-xl-5 mx-xl-5 pt-xl-4 line-height-30" [ngClass]="(position == 'left') ? 'order-1' : 'order-2'">{{data?.text}}</p>-->
+    <img
+      class="banner-img img-lazy"
+      [lazyLoad]="true"
+      [src]="data?.imageUrl"
+      [ngClass]="(position == 'left') ? 'order-2 ml-auto' : 'order-1'"
+      style="max-width: 620px; max-height: 420px; width: 40vw; height: 25vw"
+    />
+  </div>
+</div>
+
+<div
+  class="d-block d-lg-none position-relative my-3"
+  style="padding-bottom: 120px"
+>
+  <div
+    class="d-flex justify-content-center {{color}} banner-bg"
+    style="height: fit-content; padding-bottom: 190px"
+  >
+    <!--<p class="d-none d-sm-block {{txtColor}} w-45 mt-4 mt-sm-5 line-height-30">{{data?.text}}</p>
+        <p class="d-block d-sm-none {{txtColor}} w-70 mt-4 mt-sm-5 line-height-30">{{data?.text}}</p>-->
+    <p
+      class="text-justify d-none d-sm-block {{txtColor}} w-45 mt-4 mt-sm-5 mb-md-4 mb-lg-0 line-height-30 font-size-normal"
+      [innerHTML]="data?.text"
+    ></p>
+    <p
+      class="text-justify d-block d-sm-none {{txtColor}} w-70 mt-4 mt-sm-5 line-height-30 font-size-normal"
+      [innerHTML]="data?.text"
+    ></p>
+  </div>
+  <img
+    class="banner-img position-absolute bottom img-lazy"
+    [src]="data?.imageUrl"
+    [lazyLoad]="true"
+    [ngClass]="(position == 'left') ? 'right' : 'left'"
+    style="max-width: 620px; max-height: 420px"
+  />
+</div>

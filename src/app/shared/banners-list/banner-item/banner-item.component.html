@@ -1,0 +1,41 @@
+<a (click)="redirect(bannerData)">
+  <div
+    class="d-flex full-img-bg br-10 white-text position-relative overflow-hidden {{type}}"
+    [ngClass]="(type == 'main') ? 'justify-content-end text-right p-4 p-md-5' : 'p-4'"
+    [style.background-image]="'url(' + bannerData?.imageURL + ')'"
+    *ngIf="isImageLoaded"
+  >
+    <img
+      class="d-none"
+      [src]="bannerData?.imageURL"
+      (error)="imageNotLoaded()"
+    />
+    <div class="m-md-3">
+      <p class="font-size-x-large mb-2">{{bannerData?.title}}</p>
+      <p
+        class="font-size-x-large"
+        [ngClass]="(type == 'main') ? 'w-60 ml-auto' : 'w-70 mr-auto'"
+      >
+        {{bannerData?.subtitle}}
+      </p>
+    </div>
+    <app-button
+      *ngIf="bannerData.buttonLabel"
+      class="d-none d-md-block position-absolute right bottom"
+      [textColor]="'white'"
+      [label]="bannerData.buttonLabel"
+      [textSize]="'2'"
+      [size]="'banner-btn'"
+      [additionalClasses]="'br-tr-15'"
+    ></app-button>
+    <app-button
+      *ngIf="bannerData.buttonLabel"
+      class="d-block d-md-none position-absolute right bottom"
+      [additionalClasses]="'p-2'"
+      [textColor]="'white'"
+      [label]="bannerData.buttonLabel"
+      [textSize]="'3'"
+      [size]="'130'"
+    ></app-button>
+  </div>
+</a>

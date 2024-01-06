@@ -1,0 +1,141 @@
+<div
+  class="d-flex rounded flex-column align-items-center p-3 my-2 mt-3 mt-lg-4 grey-border text-center bg-white position-relative"
+>
+  <div class="top left position-absolute" *ngIf="showFlag">
+    <!--
+    <img *ngIf="!product?.categories[categoryPosition]?.active_stamp && product?.active_stamp" defaultImage="./assets/placeholder.svg" [lazyLoad]="product?.image_stamp" width="30px">
+    <img *ngIf="product?.categories && product?.categories[categoryPosition]?.active_stamp" defaultImage="./assets/placeholder.svg" [lazyLoad]="product?.categories[0]?.image_stamp" width="30px">
+      -->
+      <img *ngIf="product?.image_stamp" defaultImage="./assets/placeholder.svg" [lazyLoad]="product?.image_stamp" height="30px" width="30px">
+  </div>
+  <div
+    class="br-product-card blue-4f top right position-absolute"
+    style="margin-top: -15px"
+    *ngIf="product?.discount > 0"
+  >
+    <label class="white-text py-2 px-2 px-md-3 font-size-small my-0">
+      <b>{{product?.discount | number: '1.0-0'}}%</b>
+    </label>
+  </div>
+  <h4 class="font-weight-bold primary-blue-text text-clip-1 mt-2 font-size-normal">
+    {{ product?.productName }}
+  </h4>
+  <span class="my-2 text-clip-1 font-size-small">{{ product?.brand }}</span>
+  <div class="my-2">
+    <a [routerLink]="[product?.link]">
+      <img
+        class="img-fluid m-auto img-lazy img-product"
+        style=" object-fit: contain"
+        defaultImage="./assets/placeholder.svg"
+        [lazyLoad]="product?.productImage"
+      />
+    </a>
+  </div>
+  <div class="d-flex h-100 flex-column justify-content-end justify-content-sm-between text-price">
+    <ng-container *ngIf="!product?.isCampaign && !product?.isGiftCard">
+      <p class="my-0 py-0">
+        <span class="blue-4f-text font-size-normal bold-text font-size-normal">Precio Luxury</span>
+        <strong class="blue-4f-text font-size-normal mb-1 font-size-normal d-block">{{ product?.specialPrice | currency:'S/' }}</strong>
+      </p>
+      <small class="gray-a7-text my-3 pt-0125 text-clip-1 font-size-small"
+        >Precio normal {{ product?.normalPrice | currency:'S/' }}</small
+      >
+    </ng-container>
+    <ng-container *ngIf="product?.isCampaign">
+      <ng-container *ngIf="product?.campaignPrice !== product?.specialPrice">
+        <span class="primary-blue-text font-size-normal my-1 bold-text"
+          >{{product?.campaignName}}
+          <span class="primary-blue-text ml-1 d-block d-md-inline"
+            >{{ product?.campaignPrice | currency:'S/' }}</span
+          ></span
+        >
+        <span class="blue-4f-text font-size-normal my-1">
+          Precio Luxury
+          <span class="ml-1 d-block d-md-inline">{{product?.specialPrice | currency:'S/'}}</span>
+        </span>
+        <small class="gray-a7-text mb-3 mt-1 pt-0125 font-size-small"
+          >Precio normal {{ product?.normalPrice | currency:'S/' }}</small
+        >
+      </ng-container>
+      <ng-container *ngIf="product?.campaignPrice === product?.specialPrice">
+        <p class="my-0 py-0">
+          <span class="primary-blue-text font-size-normal bold-text">{{product?.campaignName}}</span>
+          <strong class="primary-blue-text font-size-normal mb-1 d-block">{{ product?.specialPrice | currency:'S/' }}</strong>
+        </p>
+        <small class="gray-a7-text my-3 pt-0125 text-clip-1 font-size-small"
+          >Precio normal {{ product?.normalPrice | currency:'S/' }}</small
+        >
+      </ng-container>
+    </ng-container>
+    <ng-container *ngIf="product?.isGiftCard && !product?.isCampaign">
+      <ng-container *ngIf="product?.giftCardPrice !== product?.specialPrice">
+        <span class="primary-blue-text my-1 font-size-normal bold-text"
+          >Precio Scotiabank
+          <span class="primary-blue-text ml-1"
+            >{{ product?.giftCardPrice | currency:'S/' }}</span
+          ></span
+        >
+        <span class="blue-4f-text font-size-normal my-1">
+          Precio Luxury
+          <span class="ml-1 d-block d-md-inline">{{product?.specialPrice | currency:'S/'}}</span>
+        </span>
+        <small class="gray-a7-text mb-3 mt-1 pt-0125 font-size-small"
+          >Precio normal {{ product?.normalPrice | currency:'S/' }}</small
+        >
+      </ng-container>
+      <ng-container *ngIf="product?.giftCardPrice === product?.specialPrice">
+        <span class="primary-blue-text font-size-normal bold-text"
+          >Precio Scotiabank</span
+        >
+        <strong class="primary-blue-text font-size-normal mb-1"
+          >{{ product?.giftCardPrice | currency:'S/' }}</strong
+        >
+        <small class="gray-a7-text my-3 pt-0125 text-clip-1 font-size-small"
+          >Precio normal {{ product?.normalPrice | currency:'S/' }}</small
+        >
+      </ng-container>
+    </ng-container>
+  </div>
+
+  <div class="d-flex w-100">
+    <div class="d-flex w-20 mr-2" style="min-width: 40px;" [ngClass]="{'w-20': !product?.isBase, 'w-100': product?.isBase}">
+      <a [routerLink]="[product?.link]" class="h-100 w-100">
+        <button
+          class="detail-button white shadow-none my-0 mx-0 w-100 d-flex justify-content-center align-items-center br-15 gray-a7-text"
+          style="height: 40px;"
+        >
+          <i class="fas fa-search-plus"></i>
+        </button>
+      </a>
+    </div>
+    <div class="w-80" *ngIf="!product?.isBase">
+      <app-button
+        *ngIf="!loadingProduct"
+        class="w-100 d-none d-md-block"
+        [textColor]="'white'"
+        [size]="100"
+        [label]="product?.stock > 0? 'Agregar al carrito': 'En reposición'"
+        [rounded]="true"
+        [additionalClasses]="'px-2 h-100 br-15'"
+        [disabled]="!product?.stock || preview" 
+        (onClick)="addToCart()"
+      ></app-button>
+      <app-button
+        *ngIf="!loadingProduct"
+        class="w-100 d-block d-md-none"
+        [textColor]="'white'"
+        [size]="100"
+        [prefixIcon]="product?.stock > 0? 'shopping-cart': ''"
+        [label]="product?.stock > 0? 'Agregar': 'Reposición'"
+        [rounded]="true"
+        [textSize]="'normal'"
+        [additionalClasses]="'px-2 h-100 br-15'"
+        [disabled]="!product?.stock || preview"
+        (onClick)="addToCart()"
+      ></app-button>
+      <ng-container *ngIf="loadingProduct">
+        <app-global-loading class="d-block w-100"></app-global-loading>
+      </ng-container>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<div class="container mx-auto">
+  <app-single-banner
+    [title]="termsConditionPage.bannerTitle | uppercase"
+    [desktopBanner]="termsConditionPage.bannerImage"
+    [mobileBanner]="termsConditionPage.bannerImage"
+    [isGradient]="true"
+  ></app-single-banner>
+</div>
+<div class="container mx-auto">
+  <div class="mx-auto mt-4 mb-5" style="max-width: 800px">
+    <div [innerHTML]="termsConditionPage.termsConditionsText | safeHtml"></div>
+  </div>
+</div>

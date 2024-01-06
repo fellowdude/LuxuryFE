@@ -1,0 +1,330 @@
+<div
+  class="pl-3 pl-md-3 py-4 overflow-hidden"
+  style="
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.65);
+  "
+>
+  <div class="custom-height scrollbar-primary pr-3 pr-md-3">
+    <app-login-register-buttons></app-login-register-buttons>
+    <h2 class="font-size-x-large primary-blue-text bold-text">Regístrese</h2>
+    <form class="mt-4" [formGroup]="registerForm" autocomplete="off">
+      <div class="d-flex flex-column w-100">
+        <label class="font-size-3 w-100 pl-1"><a (click)="openRememberNumberForm()"><u>Recuerde su número de socio Luxury</u></a></label>
+        <div class="input-group my-1 md-form">
+          <input
+            mdbInput
+            id="partner-number"
+            type="text"
+            formControlName="number_card"
+            placeholder="Número de socio Luxury*"
+            class="form-control font-size-large w-100 outline-none pl-3 py-2 br-10"
+            style="
+              border: 0;
+              background: white;
+            "
+            OnlyNumbers="true"
+            NoPaste
+            maxlength="13"
+          />
+        </div>
+        <div class="input-group my-1 md-form">
+          <!-- <label for="email" class="font-size-2 w-100"
+            >Correo electrónico personal*</label
+          > -->
+          <input
+            mdbInput
+            id="email"
+            type="email"
+            placeholder="Correo electrónico personal*"
+            formControlName="email"
+            class="form-control font-size-large w-100 outline-none pl-3 py-2 br-10"
+            style="
+              border: 0;
+              background: white;
+            "
+            autocomplete="fakeusernameremembered"
+          />
+        </div>
+        <div class="input-group my-1 md-form">
+          <!-- <label for="email" class="font-size-2 w-100"
+            >Correo electrónico personal*</label
+          > -->
+          <input
+            mdbInput
+            id="email_confirm"
+            type="email_confirm"
+            placeholder="Confirmar correo electrónico personal*"
+            formControlName="email_confirm"
+            class="form-control font-size-large w-100 outline-none pl-3 py-2 br-10"
+            style="
+              border: 0;
+              background: white;
+            "
+            autocomplete="fakeusernameremembered"
+          />
+        </div>
+        <div class="d-flex my-1">
+          <div class="input-group w-50 mr-2 my-0 md-form">
+            <!-- <label for="password" class="font-size-2 w-100">Contraseña*</label> -->
+            <input
+              mdbInput
+              id="password"
+              type="password"
+              formControlName="password"
+              placeholder="Contraseña*"
+              class="form-control font-size-large w-100 outline-none pl-3 py-2 br-10"
+              style="
+                border: 0;
+                background: white;
+              "
+              autocomplete="new-password"
+            />
+          </div>
+          <div class="input-group w-50 my-0 md-form">
+            <!-- <label for="confirm" class="font-size-2 w-100"
+              >Confirmar contraseña*</label
+            > -->
+            <input
+              mdbInput
+              id="confirm"
+              type="password"
+              placeholder="Repetir contraseña*"
+              formControlName="confirm_password"
+              class="form-control font-size-large w-100 outline-none pl-3 py-2 br-10"
+              style="
+                border: 0;
+                background: white;
+              "
+            />
+          </div>
+        </div>
+        <div class="d-flex my-1">
+          <div class="input-group w-35 mr-2 my-0 md-form custom-arrow position-relative">
+            <!-- <label for="suffix" class="font-size-10 pb-2 w-100 active"
+              >Sufijo*</label
+            > -->
+            <select
+              id="suffix"
+              formControlName="suffix"
+              class="form-control font-size-large w-100 outline-none pl-3 py-2 br-10"
+            >
+              <option [value]="null" selected disabled>Sufijo*</option>
+              <option *ngFor="let typeSuffix of typeSuffixList" [value]="typeSuffix.value">{{typeSuffix.value}}</option>
+            </select>
+          </div>
+          <div class="input-group w-65 my-0 md-form">
+            <!-- <label for="names" class="font-size-2 w-100">Nombre(s)*</label> -->
+            <input
+              mdbInput
+              id="names"
+              type="text"
+              formControlName="name"
+              placeholder="Nombre(s)*"
+              class="form-control font-size-large w-100 outline-none pl-3 py-2 br-10"
+              style="
+                border: 0;
+                background: white;
+              "
+            />
+          </div>
+        </div>
+        <div class="d-flex my-1">
+          <div class="input-group w-50 mr-2 my-0 md-form">
+            <!-- <label for="f-lastname" class="font-size-2 w-100"
+              >Apellido paterno*</label
+            > -->
+            <input
+              mdbInput
+              id="f-lastname"
+              type="text"
+              placeholder="Apellido paterno*"
+              formControlName="last_name_father"
+              class="form-control font-size-large w-100 outline-none pl-3 py-2 br-10"
+              style="
+                border: 0;
+                background: white;
+              "
+            />
+          </div>
+          <div class="input-group w-50 my-0 md-form">
+            <!-- <label for="m-lastname" class="font-size-2 w-100"
+              >Apellido materno*</label
+            > -->
+            <input
+              mdbInput
+              id="m-lastname"
+              type="text"
+              placeholder="Apellido materno*"
+              formControlName="last_name_mother"
+              class="form-control font-size-large w-100 outline-none pl-3 py-2 br-10"
+              style="
+                border: 0;
+                background: white;
+              "
+            />
+          </div>
+        </div>
+        <div class="row my-1">
+          <div class="input-group col-6 my-0 md-form pr-0">
+            <!-- <label for="phone" class="font-size-2 w-100">Teléfono*</label> -->
+            <input
+              mdbInput
+              id="phone"
+              type="tel"
+              formControlName="phone"
+              placeholder="Teléfono móvil*"
+              class="form-control font-size-large w-100 outline-none pl-3 py-2 br-10 mr-1"
+              style="
+                border: 0;
+                background: white;
+              "
+              OnlyNumbers="true"
+              NoPaste
+              maxlength="9"
+            />
+          </div>
+
+          <div class="input-group col-6 my-0 md-form pl-0">
+            <!-- <div class="input-group w-50 my-0 md-form position-relative" [ngClass]="{'datepicker': registerForm.get('birth_date').pristine}"> <label for="birthdate" class="font-size-2 w-100"
+              >Fecha de nacimiento*</label
+            > -->
+            <div class="desk">
+              <input
+				      [max]="setMinDateTo18YearsOld()"
+              mdbInput
+              id="birthdate"
+			        type="text"
+			        (focus)="onFocusDate($event)"
+        	    (blur)="onBlurDate($event)"
+              formControlName="birth_date"
+              placeholder="Fecha de nacimiento*"
+              class="form-control font-size-large w-100 outline-none py-2 br-10 ml-1"
+              style="
+                border: 0;
+                background: white;
+                box-sizing: border-box;
+                "
+            />
+            </div>
+            <div class="mobile">
+              <input
+              [max]="setMinDateTo18YearsOld()"
+              mdbInput
+              id="birthdate"
+              type="date"
+              (focus)="onFocusDate($event)"
+              (blur)="onBlurDate($event)"
+              formControlName="birth_date"
+              placeholder="Fecha de nacimiento*"
+              class="form-control font-size-large w-100 outline-none pl-3 py-2 br-10 ml-1"
+              style="
+                border: 0;
+                background: white;
+                box-sizing: border-box;
+                "
+            />
+            </div>
+          </div>
+        </div>
+        <div class="d-flex my-1">
+          <div class="input-group w-35 mr-2 my-0 md-form custom-arrow">
+            <!-- <label for="document" class="font-size-10 w-100 active">DNI/CE*</label> -->
+            <select
+              id="document"
+              formControlName="type_document"
+              class="form-control font-size-large w-100 outline-none pl-3 py-2 br-10"
+              style="
+                border: 0;
+                background: white;
+              "
+            >
+              <option [value]="null" selected disabled>DNI/CE*</option>
+              <option *ngFor="let typeDoc of typeDocList" [value]="typeDoc._id">{{typeDoc.value}}</option>
+            </select>
+          </div>
+          <div class="input-group w-65 my-0 md-form">
+            <!-- <label for="document-number" class="font-size-2 w-100"
+              >Nùmero de documento*</label
+            > -->
+            <input
+              mdbInput
+              id="document-number"
+              type="tel"
+              formControlName="number_document"
+              placeholder="Número de documento*"
+              class="form-control font-size-large w-100 outline-none pl-3 py-2 br-10"
+              style="
+                border: 0;
+                background: white;
+              "
+              OnlyNumbers="true"
+              NoPaste
+              minlength="8"
+              maxlength="13"
+            />
+          </div>
+        </div>
+        <p class="font-size-normal mt-2 mb-1 primary-blue-text">* Todos los campos son obligatorios</p>
+        <div class="mt-4 mb-3 d-flex align-items-center">
+          <!-- <input
+            class="mr-2"
+            type="checkbox"
+            value=""
+            id="remember"
+            formControlName="check_terms"
+          />
+          <label class="form-check-label font-size-10 primary-blue-text" for="remember">
+            Acepto los
+            <strong><a>Términos y condiciones y Políticas de Privacidad</a></strong>
+            de Luxury
+          </label> -->
+
+          <mdb-checkbox
+            class="d-block ml-4 checkbox"
+            [default]="true"
+            [checked]="false"
+            formControlName="check_terms"
+          >
+            <span class="font-size-normal primary-blue-text d-block" style="margin-top: 2px" [title]="'Términos y condiciones'">Acepto los <strong><a>Términos y condiciones y Políticas de Privacidad</a></strong> de Luxury.</span>
+          </mdb-checkbox>
+        </div>
+        <div class="mt-3 mb-3 d-flex align-items-center">
+          <!-- <input
+            class="mr-2"
+            type="checkbox"
+            value=""
+            id="check_age"
+            formControlName="check_age"
+          />
+          <label class="form-check-label font-size-10 primary-blue-text" for="check_age">
+            Confirmo que soy <strong><a>mayor de 18 años</a></strong>.
+          </label> -->
+
+          <mdb-checkbox
+            class="d-block ml-4 checkbox"
+            [default]="true"
+            [checked]="false"
+            formControlName="check_age"
+          >
+            <span class="font-size-normal primary-blue-text d-block" style="margin-top: 2px" [title]="'Confirmación de edad'">Confirmo que soy <strong><a>mayor de 18 años</a></strong>.</span>
+          </mdb-checkbox>
+        </div>
+      </div>
+
+      <app-button
+        *ngIf="!loadingRegister"
+        [type]="''"
+        [label]="'Registrarse'"
+        [size]="'50'"
+        [rounded]="true"
+        [color]="'primary-blue'"
+        [additionalClasses]="'mt-3 d-block px-0 mx-auto br-20'"
+        [disabled]="registerForm.invalid"
+        [textColor]="'white'"
+        (onClick)="register()"
+      ></app-button>
+      <app-global-loading class="my-3" *ngIf="loadingRegister"></app-global-loading>
+    </form>
+  </div>
+</div>

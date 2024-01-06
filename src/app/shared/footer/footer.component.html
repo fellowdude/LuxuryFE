@@ -1,0 +1,208 @@
+<div class="d-none d-md-block w-80 m-0 mx-auto">
+  <div class="d-flex flex-row">
+    <!-- <div class="d-flex flex-row w-90 justify-content-between"> -->
+    <div class="w-90">
+      <div class="row">
+        <!-- <div class="d-flex flex-column pr-3 w-30 flex-md-grow-1"> -->
+        <div class="col-4 col-lg-3">
+          <h2 class="my-2 font-size-normal">CONTÁCTENOS</h2>
+          <ng-container
+            *ngIf="footerData && footerData.contenido_datos_empresa"
+          >
+            <div
+              *ngFor="let property of footerData.contenido_datos_empresa.value"
+            >
+              <div class="d-flex flex-row font-size-normal line-height-30">
+                <div class="w-10"><i class="{{property.icon}}"></i></div>
+                <div class="w-90" *ngIf="property.field == 'contact_phone'">
+                  <a [href]="'tel:'+ property.value">{{property.value}}</a>
+                </div>
+                <div
+                  class="w-90 clip-word"
+                  *ngIf="property.field == 'contact_email'"
+                >
+                  <a [href]="'mailto:' + property.value">{{property.value}}</a>
+                </div>
+                <div
+                  class="w-90"
+                  *ngIf="property.field !== 'contact_phone' && property.field !== 'contact_email'"
+                >
+                  {{property.value}}
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+        <!-- <div -->
+        <!--   class="d-flex flex-column flex-md-shrink-0 flex-md-grow-1 pl-md-0 pl-lg-3 pl-xl-4" -->
+        <!-- > -->
+        <div class="col-4 col-lg-3">
+          <h2 class="my-2 font-size-normal">INFORMACIÓN</h2>
+          <div class="font-size-normal line-height-30">
+            <a
+              [routerLink]="['/informacion/nosotros']"
+              class="cursor-pointer d-block"
+            >
+              Nosotros
+            </a>
+            <a
+              [routerLink]="['/informacion/preguntas_frecuentes']"
+              class="cursor-pointer d-block"
+            >
+              Preguntas frecuentes
+            </a>
+          </div>
+        </div>
+        <!-- <div -->
+        <!--   class="d-flex flex-column w-30 flex-md-grow-1 pl-md-0 pl-lg-3 pl-xl-5" -->
+        <!-- > -->
+        <div class="col-4 col-lg-3">
+          <h2 class="my-2 font-size-normal">SERVICIO AL CLIENTE</h2>
+          <div class="font-size-normal line-height-30">
+            <a
+              [routerLink]="['/informacion/terminos_y_condiciones']"
+              class="cursor-pointer d-block"
+            >
+              Términos y condiciones
+            </a>
+            <a
+              [routerLink]="['/informacion/politicas_de_privacidad']"
+              class="cursor-pointer d-block"
+            >
+              Políticas de Privacidad
+            </a>
+            <a
+              class="d-none d-xl-flex align-items-center line-height-normal font-size-normal mt-2 border w-80 p-2 cursor-pointer"
+              [routerLink]="['/informacion/libro_de_reclamaciones']"
+            >
+              <i class="fas fa-book-open mr-2"></i>Libro de Reclamaciones
+            </a>
+            <a
+              class="d-flex d-xl-none align-items-center line-height-normal font-size-normal mt-2 border w-90 p-2 cursor-pointer"
+              [routerLink]="['/informacion/libro_de_reclamaciones']"
+            >
+              <i class="fas fa-book-open mr-2"></i>Libro de Reclamaciones
+            </a>
+          </div>
+        </div>
+        <!-- <div class="d-none d-lg-flex flex-column w-20 flex-md-grow-1"> -->
+        <div class="d-none d-lg-block col-3">
+          <h2 class="my-2 font-size-normal w-80 mx-auto">MI CUENTA</h2>
+          <div class="font-size-normal line-height-30 w-80 mx-auto">
+            <a (click)="showUser()" class="cursor-pointer d-block">Mi cuenta</a>
+            <!--<div *ngIf="!logged">Iniciar sesión</div>
+                    <div *ngIf="logged">Cerrar sesión</div>-->
+            <a (click)="logout()" class="cursor-pointer d-block"
+              >Cerrar sesión</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="w-10 mx-2 mx-lg-0">
+      <img
+        *ngIf="footerData"
+        class="d-none d-lg-block w-70 mx-auto mt-lg-3 img-lazy"
+        [lazyLoad]="footerData"
+        [src]="footerData.contenido_logo_banco.url_attachment + footerData.contenido_logo_banco.value"
+      />
+      <img
+        *ngIf="footerData"
+        class="d-block d-lg-none w-100 mt-sm-4 img-lazy"
+        [lazyLoad]="footerData"
+        [src]="footerData.contenido_logo_banco.url_attachment + footerData.contenido_logo_banco.value"
+      />
+    </div>
+  </div>
+  <div class="grey-dark w-100" style="margin-top: 6%; height: 1px"></div>
+  <div class="d-flex flex-row mt-2 pb-2 grey-dark-text font-size-normal">
+    <span class="w-70">
+      &copy;2013–2021 Luxury es una marca registrada de
+      <img
+        *ngIf="footerData"
+        class="mx-2 d-inline-block img-lazy mb-2"
+        [lazyLoad]="footerData"
+        [src]="footerData.contenido_logo_empresa.url_attachment + footerData.contenido_logo_empresa.value"
+        style="max-height: 25px"
+      />
+      . Todos los derechos reservados.
+    </span>
+    <div class="d-flex justify-content-end w-30">
+      <span>
+        Powered By:
+        <img
+          style="width: 3.5rem"
+          class="mx-2 mb-3"
+          src="assets/images/handel-logo.svg"
+        />
+      </span>
+    </div>
+  </div>
+</div>
+
+<div class="d-block d-md-none w-85 m-0 mx-auto font-size-normal">
+  <div class="d-flex flex-column text-center">
+    <h2 class="my-2 font-size-normal">CONTÁCTENOS</h2>
+    <ng-container *ngIf="footerData && footerData.contenido_datos_empresa">
+      <div *ngFor="let property of footerData.contenido_datos_empresa.value">
+        <div
+          class="d-flex flex-row line-height-30 justify-content-center font-size-normal"
+        >
+          <div class="mr-2"><i class="{{property.icon}}"></i></div>
+          <div *ngIf="property.field == 'contact_phone'">
+            <a [href]="'tel:'+ property.value">{{property.value}}</a>
+          </div>
+          <div *ngIf="property.field == 'contact_email'">
+            <a [href]="'mailto:' + property.value">{{property.value}}</a>
+          </div>
+          <div
+            *ngIf="property.field !== 'contact_phone' && property.field !== 'contact_email'"
+          >
+            {{property.value}}
+          </div>
+        </div>
+      </div>
+      <div>
+        <a
+          class="line-height-30 cursor-pointer font-size-normal"
+          [routerLink]="['/informacion/terminos_y_condiciones']"
+          >Términos y Condiciones
+        </a>
+        &nbsp; | &nbsp;
+        <a
+          class="line-height-30 cursor-pointer font-size-normal"
+          [routerLink]="['/informacion/libro_de_reclamaciones']"
+          >Libro de Reclamaciones
+        </a>
+      </div>
+    </ng-container>
+    <img
+      *ngIf="footerData"
+      class="img-lazy w-10 mx-auto mt-4"
+      [src]="footerData.contenido_logo_banco.url_attachment + footerData.contenido_logo_banco.value"
+      [lazyLoad]="footerData"
+    />
+  </div>
+  <div class="grey-dark w-100" style="margin-top: 6%; height: 1px"></div>
+  <div class="d-flex flex-column text-center grey-dark-text pt-3 pt-lg-0">
+    <span>
+      &copy;2013–2021 Luxury es una marca registrada de
+      <img
+        *ngIf="footerData"
+        class="img-lazy mx-2 d-inline-block mb-2"
+        [lazyLoad]="footerData"
+        [src]="footerData.contenido_logo_empresa.url_attachment + footerData.contenido_logo_empresa.value"
+        style="max-height: 25px"
+      />
+      . Todos los derechos reservados.
+    </span>
+    <span class="pb-3 pb-lg-0">
+      Powered By:
+      <img
+        style="width: 3.5rem"
+        class="mx-2 mb-3"
+        src="assets/images/handel-logo.svg"
+      />
+    </span>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+.custom-bg-gradient{
+  &:after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(280.15deg, #000A15 -3.14%, rgba(139, 139, 139, 0) 93.19%), linear-gradient(102.87deg, #000000 8.07%, rgba(0, 0, 0, 0) 97.13%);
+  }
+}

@@ -1,0 +1,31 @@
+<app-modal-header
+  [title]="'Favoritos'"
+  [returnCondition]="false"
+  (onClose)="closeModal()"
+></app-modal-header>
+<div class="modal-body scrollbar-primary">
+  <ng-container *ngIf="!loading">
+    <div class="py-2 mx-0">
+      <div class="list-group">
+        <app-modal-wishlist-item
+          *ngFor="let item of wishList.infoProducts"
+          [wishListItem]="item"
+          (onClick)="wishListChange($event)"
+        ></app-modal-wishlist-item>
+      </div>
+    </div>
+    <div
+      class="px-2 py-2 mx-2 d-flex justify-content-center"
+      *ngIf="!wishList.infoProducts.length"
+    >
+      <label class="my-0 font-size-large text-center"
+        >Tu lista de Favoritas está vacía</label
+      >
+    </div>
+  </ng-container>
+  <ng-container *ngIf="loading">
+    <app-modal-loading
+      class="w-100 py-2 d-flex mx-2 justify-content-center"
+    ></app-modal-loading>
+  </ng-container>
+</div>

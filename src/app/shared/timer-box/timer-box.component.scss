@@ -1,0 +1,25 @@
+.timer-box {
+  height: 45px;
+  width: 45px;
+  color: #cd4564;
+  font-family: "Roboto";
+  border: 1px solid #ffffff;
+  background-color: #ffffff;
+
+  @media screen and (min-width: 992px) {
+    height: 65px;
+    width: 65px;
+  }
+
+  .counter {
+    font-size: 16px !important;
+
+    @media screen and (min-width: 992px) {
+      font-size: 26px !important;
+    }
+  }
+  .tag {
+    margin-top: 2px;
+    font-size: 10px !important;
+  }
+}

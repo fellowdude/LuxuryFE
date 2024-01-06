@@ -1,0 +1,26 @@
+<app-modal-header
+  [title]="'Detalle de la orden'"
+  [returnCondition]="true"
+  (onClose)="closeModal()"
+  (onReturn)="returnModal()"
+></app-modal-header>
+
+<div class="modal-body">
+  <ng-container *ngIf="!loading">
+    <div class="py-2 mx-0">
+      <app-modal-order-item [order]="orderBasics"></app-modal-order-item>
+      <ng-container *ngFor="let sale of orderDetail.sales">
+        <!-- <app-checkout-supplier -->
+        <!--   [supplierOrder]="supplier" -->
+        <!--   [isSummary]="false" -->
+        <!-- ></app-checkout-supplier> -->
+        <app-sale-supplier [saleOrder]="sale"></app-sale-supplier>
+      </ng-container>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="loading">
+    <app-modal-loading
+      class="w-100 py-2 d-flex mx-2 justify-content-center"
+    ></app-modal-loading>
+  </ng-container>
+</div>

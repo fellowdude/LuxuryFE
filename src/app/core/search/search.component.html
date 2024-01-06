@@ -1,0 +1,98 @@
+<section class="row container mx-auto my-5">
+  <div
+    class="pl-0 col-lg-3 pr-0 pr-lg-5 col-12 d-none d-lg-flex w-100 flex-column"
+    *ngIf="searchResult?.brands?.length || searchResult?.productsFound?.length"
+  >
+    <div class="w-100">
+      <app-subtitle-header [subtitle]="'Filtros'"></app-subtitle-header>
+    </div>
+    <ng-container>
+      <div class="d-block w-100 my-4">
+        <label class="w-100 font-size-large bold-text blue-4f-categories-text"
+          >Marcas</label
+        >
+        <div class="d-block w-100 ml-0">
+          <app-checkbox
+            class="d-block"
+            *ngFor="let option of filters?.brands"
+            [label]="option.value"
+            [checked]="option.active"
+            [noClick]="true"
+            (click)="changeActive(option)"
+          ></app-checkbox>
+        </div>
+      </div>
+      <div class="d-block w-100 my-4">
+        <label class="w-100 font-size-large bold-text blue-4f-text">Precio</label>
+        <form [formGroup]="rangeForm">
+          <div
+            class="d-flex w-100 ml-0 align-items-center justify-content-between"
+          >
+            <input
+              mdbInput
+              class="d-flex w-100 py-2 px-2"
+              type="number"
+              min="0"
+              [placeholder]="'S/' + (filters?.price?.floor | number: '1.2-2')"
+              formControlName="min"
+            />
+            <label class="font-size-normal mx-2 my-0">a</label>
+            <input
+              mdbInput
+              class="d-flex w-100 py-2 px-2"
+              type="number"
+              min="0"
+              [placeholder]="'S/' + (filters?.price?.ceil | number: '1.2-2')"
+              formControlName="max"
+            />
+            <app-button
+              class="d-flex ml-2"
+              [label]="''"
+              [sufixIcon]="'chevron-right'"
+              [additionalClasses]="'px-1'"
+              [disabled]="rangeForm.invalid"
+              (onClick)="changePrice()"
+            ></app-button>
+          </div>
+        </form>
+      </div>
+    </ng-container>
+  </div>
+  <div
+    class="p-0 pl-lg-5 mt-4 mt-lg-0 col-12 col-lg-9 d-flex d-md-block flex-column"
+  >
+    <!--Carrousel Fake de marcas-->
+    <!-- <section class="mb-5" *ngIf="searchResult?.brands?.length">
+      <app-subtitle-header [subtitle]="'Marcas'"></app-subtitle-header>
+      <app-brands-carousel-secondary
+        [items]="searchResult.brands"
+        [arrowsInside]="true"
+      ></app-brands-carousel-secondary>
+    </section> -->
+    <section *ngIf="searchResult?.productsFound?.length">
+      <app-subtitle-header
+        [subtitle]="'Todos los productos'"
+      ></app-subtitle-header>
+      <app-product-list
+        [productsFound]="searchResult?.productsFound"
+        [totalFound]="searchResult?.totalProductsFound"
+        [pages]="searchResult?.totalPages"
+        (onPageClick)="changePage($event)"
+        (onSortClick)="changeSortType($event)"
+        [maxColumns]="3"
+        [currentPage]="currentPage"
+        [loading]="loadingProducts"
+        [origin]="'Search: ' + searchValue"
+        [sortOptions]="sortOptions"
+      ></app-product-list>
+    </section>
+    <section>
+      <p
+        class="font-weight-bold font-size-large blue-1-text"
+        *ngIf="!searchResult?.brands?.length && !searchResult?.productsFound?.length"
+      >
+        No se encontraron resultados para: {{ searchValue }}
+      </p>
+    </section>
+  </div>
+</section>

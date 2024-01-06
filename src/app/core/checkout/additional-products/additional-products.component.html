@@ -1,0 +1,18 @@
+<div
+  class="d-flex w-100 flex-column flex-lg-row"
+  *ngIf="additionalProductList?.length > 0"
+  #testDiv
+>
+  <ng-container *ngFor="let item of additionalProductList; let i = index">
+    <app-additional-products-item
+      [onlyOne]="additionalProductList?.length == 1"
+      (onClick)="onClick.emit()"
+      class="w-100"
+      [ngClass]="{
+        'mr-lg-2 mb-3 mb-lg-0': i == 0 && additionalProductList?.length != 1,
+        'ml-lg-2': i == 1 && additionalProductList?.length != 1
+      }"
+      [item]="item"
+    ></app-additional-products-item>
+  </ng-container>
+</div>

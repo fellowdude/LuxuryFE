@@ -1,0 +1,218 @@
+<div class="mx-auto container">
+  <app-single-banner
+    [desktopBanner]="complaintsBookPage.bannerImage"
+    [mobileBanner]="complaintsBookPage.bannerImage"
+    [title]="complaintsBookPage.textBanner"
+    [isGradient]="true"
+  ></app-single-banner>
+</div>
+<div class="container mx-auto">
+  <div class="mx-auto mt-5" style="max-width: 800px">
+    <p
+      class="mb-3 text-justify font-weight-bold"
+      [innerHTML]="complaintsBookPage.complaintsBookText | safeHtml"
+    ></p>
+    <form class="row" [formGroup]="complainsBookForm">
+      <ng-container *ngFor="let field of complaintsBookPage.formFields">
+        <div
+          class="col-12 my-2 my-md-3"
+          [ngClass]="{ 'col-md-6': field.type === 'text' || field.type === 'list' }"
+        >
+          <!-- <!-1- Instructions -1-> -->
+          <!-- <ng-container *ngIf="field.type === 'instruction'"> -->
+          <!--   <p class="text-center my-2">{{ field.name }}</p> -->
+          <!-- </ng-container> -->
+          <!-- <!-1- Text -1-> -->
+          <!-- <ng-container -->
+          <!--   *ngIf="field.type === 'text' && field.sub_type !== 'number'" -->
+          <!-- > -->
+          <!--   <div class="input-group md-form my-0"> -->
+          <!--     <label [for]="field.name" class="font-size-1 w-100 blue-4f-text" -->
+          <!--       >{{ field.name }}</label -->
+          <!--     > -->
+          <!--     <input -->
+          <!--       mdbInput -->
+          <!--       [name]="field.name" -->
+          <!--       [type]="field.sub_type || field.type" -->
+          <!--       [formControlName]="field.field" -->
+          <!--       class="blue-4f-text input-border-bottom-blue my-0 form-control font-size-1 w-100 outline-none pl-1" -->
+          <!--     /> -->
+          <!--   </div> -->
+          <!-- </ng-container> -->
+          <!-- <ng-container -->
+          <!--   *ngIf="field.type === 'text' && field.sub_type === 'number'" -->
+          <!-- > -->
+          <!--   <div class="input-group md-form my-0"> -->
+          <!--     <label [for]="field.name" class="font-size-1 w-100 blue-4f-text" -->
+          <!--       >{{ field.name }}</label -->
+          <!--     > -->
+          <!--     <input -->
+          <!--       mdbInput -->
+          <!--       [name]="field.name" -->
+          <!--       [type]="field.type" -->
+          <!--       [formControlName]="field.field" -->
+          <!--       class="blue-4f-text input-border-bottom-blue my-0 form-control font-size-1 w-100 outline-none pl-1" -->
+          <!--       OnlyNumbers="true" -->
+          <!--       NoPaste -->
+          <!--     /> -->
+          <!--   </div> -->
+          <!-- </ng-container> -->
+          <!-- <!-1- Selects -1-> -->
+          <!-- <ng-container *ngIf="field.type === 'list'"> -->
+          <!--   <div class="input-group md-form my-0"> -->
+          <!--     <label -->
+          <!--       [for]="field.name" -->
+          <!--       class="font-size-1 w-100 blue-4f-text" -->
+          <!--     > -->
+          <!--       {{ field.name }} -->
+          <!--     </label> -->
+          <!--     <select -->
+          <!--       mdbInput -->
+          <!--       [name]="field.name" -->
+          <!--       [formControlName]="field.field" -->
+          <!--       class="blue-4f-text my-0 form-control font-size-1 w-100 outline-none pl-1 input-border-bottom-blue border-0" -->
+          <!--     > -->
+          <!--       <option value="" class="d-none"></option> -->
+          <!--       <option -->
+          <!--         class="blue-4f-text" -->
+          <!--         *ngFor="let option of field.list" -->
+          <!--       > -->
+          <!--         {{ option }} -->
+          <!--       </option> -->
+          <!--     </select> -->
+          <!--   </div> -->
+          <!-- </ng-container> -->
+          <!-- <!-1- Textarea -1-> -->
+          <!-- <ng-container *ngIf="field.type === 'text-area'"> -->
+          <!--   <div class="input-group md-form my-0"> -->
+          <!--     <label -->
+          <!--       [for]="field.name" -->
+          <!--       class="font-size-1 w-100 blue-4f-text" -->
+          <!--     > -->
+          <!--       {{ field.name }} -->
+          <!--     </label> -->
+          <!--     <textarea -->
+          <!--       mdbInput -->
+          <!--       [name]="field.name" -->
+          <!--       rows="3" -->
+          <!--       [formControlName]="field.field" -->
+          <!--       class="blue-4f-text input-border-bottom-blue scrollbar-primary my-0 md-textare form-control font-size-1 w-100 outline-none pl-1 border-0" -->
+          <!--     ></textarea> -->
+          <!--   </div> -->
+          <!-- </ng-container> -->
+          <!-- <!-1- {{ field | json }} -1-> -->
+          <!-- </div> -->
+          <!-- </ng-container> -->
+
+          <!-- Instructions -->
+          <ng-container *ngIf="field.type === 'instruction'">
+            <p class="text-center my-2">{{ field.name }}</p>
+          </ng-container>
+          <!-- Text -->
+          <ng-container
+            *ngIf="field.type === 'text' && field.sub_type !== 'number'"
+          >
+            <div class="input-block">
+              <label [for]="field.name" class="blue-4f-text">
+                <strong> {{ field.name }} </strong>
+              </label>
+              <input
+                mdbInput
+                [name]="field.name"
+                [type]="field.sub_type || field.type"
+                [formControlName]="field.field"
+                class="blue-4f-text form-control"
+              />
+            </div>
+          </ng-container>
+          <ng-container
+            *ngIf="field.type === 'text' && field.sub_type === 'number'"
+          >
+            <div class="input-block">
+              <label [for]="field.name" class="blue-4f-text">
+                <strong> {{ field.name }} </strong>
+              </label>
+              <input
+                mdbInput
+                [name]="field.name"
+                [type]="field.type"
+                [formControlName]="field.field"
+                class="blue-4f-text form-control"
+                OnlyNumbers="true"
+                NoPaste
+              />
+            </div>
+          </ng-container>
+          <!-- Selects -->
+          <ng-container *ngIf="field.type === 'list'">
+            <div class="input-block">
+              <label [for]="field.name" class="blue-4f-text">
+                <strong> {{ field.name }} </strong>
+              </label>
+              <select
+                mdbInput
+                [name]="field.name"
+                [formControlName]="field.field"
+                class="blue-4f-text form-control"
+              >
+                <option value="" class="d-none"></option>
+                <option class="blue-4f-text" *ngFor="let option of field.list">
+                  {{ option }}
+                </option>
+              </select>
+            </div>
+          </ng-container>
+          <!-- Textarea -->
+          <ng-container *ngIf="field.type === 'text-area'">
+            <div class="input-block">
+              <label [for]="field.name" class="blue-4f-text">
+                <strong> {{ field.name }} </strong>
+              </label>
+              <textarea
+                mdbInput
+                [name]="field.name"
+                rows="3"
+                [formControlName]="field.field"
+                class="blue-4f-text scrollbar-primary form-control"
+              ></textarea>
+            </div>
+          </ng-container>
+          <!-- {{ field | json }} -->
+        </div>
+      </ng-container>
+      <div class="mx-0 row justify-content-center w-100 mt-4 mb-5">
+        <div class="col-12 col-sm-5 col-md-4 col-lg-3 mb-3">
+          <app-button
+            [type]="''"
+            [rounded]="true"
+            [color]="''"
+            [bold]="true"
+            [label]="'Limpiar'"
+            [textSize]="2"
+            [size]="100"
+            [additionalClasses]="'py-2 shadow-none blue-4f-text blue-4f-border h-100'"
+            (onClick)="resetForm()"
+          ></app-button>
+        </div>
+        <div class="col-12 col-sm-5 col-md-4 col-lg-3 mb-3">
+          <app-global-loading
+            class="mx-auto"
+            *ngIf="loadingComplainSending"
+          ></app-global-loading>
+          <app-button
+            *ngIf="!loadingComplainSending"
+            [type]="'primary'"
+            [rounded]="true"
+            [bold]="true"
+            [label]="'Enviar'"
+            [textSize]="2"
+            [size]="100"
+            [disabled]="complainsBookForm.invalid"
+            [additionalClasses]="'h-100 py-2'"
+            (onClick)="submit()"
+          ></app-button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

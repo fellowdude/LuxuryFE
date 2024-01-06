@@ -1,0 +1,97 @@
+<div
+  class="d-flex rounded flex-column align-center px-3 pb-2 my-2"
+  [ngClass]="{ 'red-2-border': supplierOrder.delivery_price === -1 || supplierOrder.discountError, 'grey-border': supplierOrder.delivery_price !== -1 && !supplierOrder.discountError}"
+>
+  <div class="d-flex w-100 mt-3 mb-1">
+    <label class="font-size-normal text-clip-1 grey-nav-text"
+      >Vendido y entregado por <strong>{{supplierOrder.name}}</strong></label
+    >
+  </div>
+  <hr class="my-0 w-100" />
+  <div class="d-flex w-100 my-1 flex-column">
+    <app-checkout-supplier-product
+      *ngFor="let itemProduct of supplierOrder.products"
+      [product]="itemProduct"
+      [isSummary]="isSummary"
+      [supplierOrder]="supplierOrder"
+      (onClick)="itemChange($event, itemProduct)"
+    ></app-checkout-supplier-product>
+  </div>
+  <hr class="my-0 w-100" />
+  <div class="d-flex w-100 my-2 justify-content-between">
+    <div class="d-flex flex-shrink-0 mr-3" style="width: 80px"></div>
+    <div class="d-flex w-100 mr-3">
+      <div class="d-none d-lg-flex w-100"></div>
+      <div class="d-flex w-100 flex-column">
+        <div class="d-flex w-100 ml-auto justify-content-between mt-1">
+          <label class="font-size-normal grey-checkout-text"
+            ><strong>Costo de envío</strong></label
+          >
+          <label
+            class="font-size-normal text-right grey-checkout-text"
+            *ngIf="supplierOrder.delivery_price && supplierOrder.delivery_price !== -1"
+          >
+            <strong>
+              <ng-container
+                >{{ supplierOrder.delivery_price | currency:
+                'S/'}}</ng-container
+              >
+            </strong>
+          </label>
+          <label
+            class="font-size-normal red-2-text text-right"
+            *ngIf="supplierOrder.delivery_price === -1"
+            ><strong>Sin Delivery</strong></label
+          >
+          <label
+            class="font-size-normal blue-4f-text text-right"
+            *ngIf="!supplierOrder?.delivery_price && supplierOrder?.delivery_price !== 0 && !isSummary"
+            ><strong>Según destino</strong></label
+          >
+          <label
+            class="font-size-normal blue-4f-text text-right"
+            *ngIf="supplierOrder?.delivery_price === 0 && !isSummary"
+            ><strong>Envío gratis</strong></label
+          >
+          <label
+            class="font-size-normal my-0 blue-4f-text text-right"
+            *ngIf="!supplierOrder.delivery_time && supplierOrder.delivery_price !== -1 && isSummary"
+            ><strong>Sin envío</strong></label
+          >
+        </div>
+        <div class="d-flex w-100 ml-auto justify-content-between mt-1">
+          <label class="font-size-normal my-0 grey-checkout-text"
+            ><strong>Tiempo de entrega</strong></label
+          >
+          <label
+            class="font-size-normal my-0 text-right blue-4f-text"
+            *ngIf="supplierOrder.delivery_time && supplierOrder.delivery_price !== -1"
+          >
+            <strong>{{ supplierOrder.delivery_time}}</strong>
+            <mdb-icon
+              fas
+              class="grey-checkout-text cursor-pointer pl-1 font-size-normal"
+              icon="info-circle"
+              (click)="showInfoModel()"
+            ></mdb-icon>
+          </label>
+          <label
+            class="font-size-normal my-0 red-2-text text-right"
+            *ngIf="supplierOrder.delivery_price === -1"
+            ><strong>Sin Delivery</strong></label
+          >
+          <label
+            class="font-size-normal my-0 blue-4f-text text-right"
+            *ngIf="!supplierOrder.delivery_time && supplierOrder.delivery_price !== -1 && !isSummary"
+            ><strong>Según destino</strong></label
+          >
+          <label
+            class="font-size-normal my-0 blue-4f-text text-right"
+            *ngIf="!supplierOrder.delivery_time && supplierOrder.delivery_price !== -1 && isSummary"
+            ><strong>Sin envío</strong></label
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

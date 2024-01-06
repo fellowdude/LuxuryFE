@@ -1,0 +1,55 @@
+<div *ngIf="isCouponValid; else inValid">
+    <div class="d-flex align-items-center w-100 flex-row br-8 grey-border font-family-2 px-3 py-2 bg-success msg-default msg-success" *ngIf="currentStep!=3 && currentStep!=6; else mid">
+        <mdb-icon fas icon="exclamation-triangle" class="green-text font-size-icons align-middle mr-1 msg-success">
+        </mdb-icon>
+        <span>
+            Su cupón será aplicado al momento del pago en caso cumpla con las condiciones de la promoción.
+        </span>
+    </div>
+    <ng-template #mid>
+        <div class="d-flex align-items-center w-100 flex-row br-8 grey-border font-family-2 px-3 py-2 bg-success msg-default msg-success" *ngIf="currentStep==3; else final">
+            <mdb-icon fas icon="exclamation-triangle" class="green-text font-size-icons align-middle mr-1 msg-success">
+            </mdb-icon>
+            <span>
+                Dirección de entrega validada.
+            </span>
+        </div>
+    </ng-template>
+    <ng-template #final>
+        <div class="d-flex align-items-center w-100 flex-row br-8 grey-border font-family-2 px-3 py-2 bg-success msg-default msg-success">
+            <mdb-icon fas icon="exclamation-triangle" class="green-text font-size-icons align-middle mr-1 msg-success">
+            </mdb-icon>
+            <span>
+                Dirección de entrega validada.
+            </span>
+        </div>
+    </ng-template>
+</div>
+<ng-template #inValid>
+    <div
+        class="d-flex align-items-center w-100 flex-row br-8 grey-border font-family-2 px-3 py-2 bg-warning msg-default msg-error" *ngIf="currentStep!=3 && currentStep!=6; else noMid">
+        <mdb-icon fas icon="exclamation-triangle" class="red-text font-size-icons align-middle mr-1 msg-error">
+        </mdb-icon>
+        <span>
+            {{errorCoupon!=''? "Su cupón no ha sido validado al no cumplir con las condiciones de la promoción.": "El cupón ingresado no es válido o no se encuentra vigente."}}
+        </span>
+    </div>
+    <ng-template #noMid>
+        <div class="d-flex align-items-center w-100 flex-row br-8 grey-border font-family-2 px-3 py-2 bg-warning msg-default msg-error" *ngIf="currentStep==3; else noFinal">
+            <mdb-icon fas icon="exclamation-triangle" class="red-text font-size-icons align-middle mr-1 msg-error">
+            </mdb-icon>
+            <span>
+                Su cupón no ha sido validado por no estar dentro del rango de entrega de la promoción vigente.
+            </span>
+        </div>
+    </ng-template>
+    <ng-template #final>
+        <div class="d-flex align-items-center w-100 flex-row br-8 grey-border font-family-2 px-3 py-2 bg-warning msg-default msg-error">
+            <mdb-icon fas icon="exclamation-triangle" class="red-text font-size-icons align-middle mr-1 msg-error">
+            </mdb-icon>
+            <span>
+                Su cupón no ha sido validado al no cumplir con el método de pago vigente en la promoción.
+            </span>
+        </div>
+    </ng-template>
+</ng-template>
